@@ -50,7 +50,7 @@ const latNum = () => 2 * (sasWidth / latSpacing)
 const perfDis = () => 11.79 * (Math.pow(perfDia,2)) * (Math.sqrt(distalHead))
 
 // This function calucates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
-const perfNum = () => Math.floor(latLength / perfSpacing)
+const perfNum = () => Math.floor((latLength() / perfSpacing))
 
 // This function calculates the lateral discharge rate (Q) using the perforation discharge rate (perfDis) and the number of total number of perforations per lateral (N) */
 const latDis = () => perfDis() * perfNum()
