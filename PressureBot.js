@@ -6,9 +6,18 @@ let distalHead = 2.5
 let perfDia = 0.375
 let perfSpacing = 2
 let roughCoeff = 150
-let percRate = 15
-let soilClass = 'II'
-let latLength = 60
+let manifoldType = 'Center'
+let trenchLength = 60
+
+// The following switch statement determines the total lateral length (latLength) based on whether the manifold is location in the center ('Center') or the end ('End') of the FileReader.
+switch (manifoldType){
+    case 'Center':
+        latLength = trenchLength / 2
+        break;
+    case 'End':
+        latLength = trenchLength
+        break;
+}
 
 // This function calculates the perforation discharge rate (perfDis) using the perforation diameter (perfDia) and in-line distal head (distalHead)
 const perfDis = () => 11.79 * (Math.pow(perfDia,2)) * (Math.sqrt(distalHead))
