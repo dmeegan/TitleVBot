@@ -8,6 +8,8 @@ let perfSpacing = 2
 let roughCoeff = 150
 let manifoldType = 'Center'
 let trenchLength = 60
+let trenchNum = 24
+let trenchHeight = 2
 
 // The following switch statement determines the total lateral length (latLength) based on whether the manifold is location in the center ('Center') or the end ('End') of the FileReader.
 switch (manifoldType){
@@ -50,7 +52,7 @@ do {
     latDiaIterator++
 } while (deltaHead > latTargetHeadloss())
 
-// const maniLength = () => 
+
 // let perfFlowIterator = 0
 // let sumHead = 0
 // do {
@@ -60,5 +62,11 @@ do {
 //     perfFlowIterator++
 //     } while (perfFlowIterator < (perfNum()+1))
 
+// The following function calulcates the total piping volume of that laterals (latPipingVolume) in gallons per DynamicsCompressorNode, based on the number of laterals, the lenght of laterals, and the height of the trenches+1 ft for the risers from the manifoldType.
+const latPipingVolume = () => 7.48 * (Math.PI * Math.pow((latDia / 24),2) * trenchNum * (latLength+trenchHeight+1))
+// const manPipingVolume = () => 7.48 * (Math.PI * Math.pow((manDia / 24),2) * (sasWidth)
 
+
+
+console.log(latPipingVolume())
 console.log(latDia)
