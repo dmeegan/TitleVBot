@@ -84,7 +84,7 @@ do {
     maniFlowIterator++
     } while (maniFlowIterator < trenchNum+1)
 
-// The following function calulcates the total piping volume of that laterals (latPipingVolume) in gallons per DynamicsCompressorNode, based on the number of laterals, the lenght of laterals, and the height of the trenches+1 ft for the risers from the manifoldType.
+// The following function calulcates the total piping volume of that laterals (latPipingVolume) in gallons, based on the number of laterals, the length of laterals, and the height of the trenches+1 ft for the risers from the manifoldType.
 const latPipingVolume = () => 7.48 * (Math.PI * Math.pow((latDia / 24),2) * trenchNum * (latLength+trenchHeight+1))
 
 const minimumManiDia = () => Math.ceil(Math.pow((sumManiFrictionLoss / (0.1 * distalHead)) ,0.21))
@@ -101,9 +101,10 @@ do {
     } while (maniSizeDifference > 0) 
 
 
-// The following function calulcates the total piping volume of that laterals (latPipingVolume) in gallons per DynamicsCompressorNode, based on the number of laterals, the lenght of laterals, and the height of the trenches+1 ft for the risers from the manifoldType.
+// The following function calulcates the total piping volume of the manifold (maniPipingVolume) in gallons, based on the number of trenches (trenchNum) and the lateral spacing(latSpacing).
 const maniPipingVolume = () => 7.48 * Math.PI * Math.pow((useManiDia / 24),2) * trenchNum * latSpacing
-console.log(maniPipingVolume())
+
+
 
 
 
