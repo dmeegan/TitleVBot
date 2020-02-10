@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Title V Bot</title>
+    <link rel="stylesheet" type="text/css" href="css\bot.css">
+</head>
+
+<body>
+    <form id="networkLayoutForm">
+        <!--id='NetworkLayoutForm' action="/" method="POST"> -->
+        <fieldset>
+            <legend>
+                Network Layout:
+            </legend background-color: rgb(221, 247, 253); border-style:inset;>
+            <div>
+                Design Flow: <input type="number" id="UserInput-designFlow" required placeholder="gallons per day" min="0"><br>
+            </div>
+            <div>
+                Is your Soil Absorption System a field or Trenches? <select type="text" id="UserInput-fieldOrTrenches"
+                    tabindex="2" onchange="createTrenchOptions()"><br>
+                    <option value=''></option>
+                    <option value='Trenches'>Trenches</option>
+                    <option value='Field'>Field</option>
+                </select>
+                <br>
+            </div>
+            <div id='trenchWidthDiv'>
+            </div>
+            <div id='trenchHeightDiv'>
+            </div>
+            <div id="reserveBetweenTrenchesDiv">
+            </div>
+            <div>
+                Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required placeholder="feet" min="0"><br>
+            </div>
+            <div>
+                Percolation Rate: <input type="number" id="UserInput-percRate" required placeholder="inches per hour"
+                    onblur="createSoilClassOptions()" min="0"><br>
+            </div>
+            <div>
+                Soil Class: <select type="text" id="UserInput-soilClass" tabindex="4" required>
+                </select>
+                <br>
+            </div>
+            <!-- </div>
+                    //             Soil Class: <select type="text" id="UserInput-soilClass" tabindex="4" required>
+                    //                 <option value='I'>I</option>
+                    //                 <option value='II'>II</option>
+                    //                 <option value='III'>III</option>
+                    //                 <option value='IV'>IV</option>
+                    //             </select>
+                    //             <br>
+                    //         </div> -->
+            <button onclick="sasNetworkLayout()"> Run Program </button>
+        </fieldset>
+    </form>
+</body>
+<footer>
+    <script src="createTrenchOptions.js">
+    </script>
+    <script src="createSoilClassOptions.js">
+    </script>
+    <script src="SASBot.js">
+    </script>
+</footer>
+
+</html>

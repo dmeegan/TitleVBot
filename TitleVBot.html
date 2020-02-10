@@ -5,6 +5,25 @@
         <title>Title V Bot</title>
     </head>
     <body>
-        The Content of my page.
+        <script src="SASBot.js">
+        </script>
+        <form>
+            <fieldset>
+                <legend>
+                    Network Layout:
+                </legend>
+                Design Flow: <input type="number" id="designFlow"><br>
+                Trench Length: <input type="number" id="trenchLength"><br>
+                Trench Width: <input type="number" id="trenchWidth"><br>
+                Percolation Rate: <input type="number" id="percRate"><br>
+                Soil Class: <select type="text" id='soilClass' tabindex="4">
+                    <option value="0">I</option>
+                    <option value="1">II</option>
+                    <option value="2">III</option>
+                    <option value="3">IV</option>
+                    <br>
+            </fieldset>
+        </form>    
+        <button onclick="fullService()">Run Program </button>
     </body>
 </html>

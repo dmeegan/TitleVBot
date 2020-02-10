@@ -1,0 +1,11 @@
+#networkLayoutForm {
+    style="padding: 10px; 
+}
+#networkLayoutForm div:not([id]), div[id=""]{
+    padding: 5px;
+}
+
+form {
+    background-color: #bbebfa;
+}
+
