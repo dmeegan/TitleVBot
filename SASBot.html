@@ -32,11 +32,11 @@
             <div id='reserveBetweenTrenchesDiv'>
             </div>
             <div>
-                Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required placeholder="feet" onblur="validateDesiredLength()" min="0" max="100"><br>
+                Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required placeholder="feet" onchange="validateDesiredLength()" min="0" max="100"><br>
             </div>
             <div>
                 Percolation Rate: <input type="number" id="UserInput-percRate" required placeholder="inches per hour"
-                    onblur="createSoilClassOptions()" min="0"><br>
+                    onblur="createSoilClassOptions()" min="0" max="60"><br>
             </div>
             <div>
                 Soil Class: <select type="text" id="UserInput-soilClass" tabindex="4" required>

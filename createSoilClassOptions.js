@@ -1,7 +1,9 @@
 function createSoilClassOptions() {
     document.getElementById("UserInput-soilClass").length = 0
     var percRate = +document.getElementById('UserInput-percRate').value
-    if (percRate <= 8) {
+    if (percRate <= 0) {
+    alert ("Invalid Input: Your percolation rate should be a positive non-zero rate in inches per hour")
+    else if (percRate > 0 && percRate <= 8) {
         var scO1 = document.createElement("OPTION");
         scO1.setAttribute("value", 'I');
         var scTN1 = document.createTextNode("I");
@@ -46,6 +48,8 @@ function createSoilClassOptions() {
         var scTN4 = document.createTextNode("IV");
         scO4.appendChild(scTN4);
         document.getElementById("UserInput-soilClass").appendChild(scO4);
+    } else if (percRate < 60) {
+        alert ("Invalid Input: Per Title V section 15.242, the maximum percolation rate is 60 inches per hour")
     }
 
 }
