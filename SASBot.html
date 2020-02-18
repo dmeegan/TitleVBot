@@ -32,7 +32,7 @@
             <div id='reserveBetweenTrenchesDiv'>
             </div>
             <div>
-                Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required placeholder="feet" min="0" max="100"><br>
+                Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required placeholder="feet" onblur="validateDesiredLength()" min="0" max="100"><br>
             </div>
             <div>
                 Percolation Rate: <input type="number" id="UserInput-percRate" required placeholder="inches per hour"
@@ -51,7 +51,11 @@
 <footer>
     <script src="validateTrenchWidth.js">
     </script>
+      <script src="validateTrenchHeight.js">
+    </script>
     <script src="createTrenchOptions.js">
+    </script>
+    <script src="validateDesiredLength.js">
     </script>
     <script src="createSoilClassOptions.js">
     </script>

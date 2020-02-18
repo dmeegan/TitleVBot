@@ -5,3 +5,4 @@ function validateTrenchWidth() {
   } else if (trenchWidthValue > 3) {
     alert("Per Title V section 15.251, the maximum trench width shall be 3 feet");
 }
+}
