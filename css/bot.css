@@ -1,5 +1,5 @@
 #networkLayoutForm {
-    style="padding: 10px; 
+    padding: 10px; 
 }
 #networkLayoutForm div:not([id]), div[id=""]{
     padding: 5px;

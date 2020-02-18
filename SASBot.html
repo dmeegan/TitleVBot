@@ -9,11 +9,10 @@
 
 <body>
     <form id="networkLayoutForm">
-        <!--id='NetworkLayoutForm' action="/" method="POST"> -->
         <fieldset>
             <legend>
                 Network Layout:
-            </legend background-color: rgb(221, 247, 253); border-style:inset;>
+            </legend>
             <div>
                 Design Flow: <input type="number" id="UserInput-designFlow" required placeholder="gallons per day" min="0"><br>
             </div>
@@ -30,10 +29,10 @@
             </div>
             <div id='trenchHeightDiv'>
             </div>
-            <div id="reserveBetweenTrenchesDiv">
+            <div id='reserveBetweenTrenchesDiv'>
             </div>
             <div>
-                Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required placeholder="feet" min="0"><br>
+                Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required placeholder="feet" min="0" max="100"><br>
             </div>
             <div>
                 Percolation Rate: <input type="number" id="UserInput-percRate" required placeholder="inches per hour"
@@ -44,20 +43,14 @@
                 </select>
                 <br>
             </div>
-            <!-- </div>
-                    //             Soil Class: <select type="text" id="UserInput-soilClass" tabindex="4" required>
-                    //                 <option value='I'>I</option>
-                    //                 <option value='II'>II</option>
-                    //                 <option value='III'>III</option>
-                    //                 <option value='IV'>IV</option>
-                    //             </select>
-                    //             <br>
-                    //         </div> -->
-            <button onclick="sasNetworkLayout()"> Run Program </button>
+            <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
+            <button id='button-networkLayoutForm-runProgram' onclick="sasNetworkLayout()"> Run Program </button>
         </fieldset>
     </form>
 </body>
 <footer>
+    <script src="validateTrenchWidth.js">
+    </script>
     <script src="createTrenchOptions.js">
     </script>
     <script src="createSoilClassOptions.js">
