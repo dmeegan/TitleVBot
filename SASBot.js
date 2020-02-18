@@ -77,7 +77,7 @@ function sasNetworkLayout() {
         sasNetworkReportWindow.document.write("Percolation Rate (in/hr): " + percRate + "<br/>")
         sasNetworkReportWindow.document.write("Soil Class: " + soilClass + "<br/>")
         sasNetworkReportWindow.document.write("Long Term Acceptance Rate (gallons per day per square foot): " + LTAR + "<br/>");
-        sasNetworkReportWindow.document.write("Minimum required SAS Surface Area: " + reqSasSurfArea() + "<br/>");
+        sasNetworkReportWindow.document.write("Minimum required SAS Surface Area(sf): " + reqSasSurfArea() + "<br/>");
         sasNetworkReportWindow.document.write("Surface area per trench(sf): " + trenchSurfaceArea() + "<br/>");
         sasNetworkReportWindow.document.write("Minimum required number of trenches: " + trenchNum() + "<br/>");
         sasNetworkReportWindow.document.write("Provided SAS overall surface Area(sf): " + provSasSurfaceAreaTrenches() + "<br/>")
@@ -94,7 +94,7 @@ function sasNetworkLayout() {
         sasNetworkReportWindow.document.write("Percolation Rate (in/hr): " + percRate + "<br/>");
         sasNetworkReportWindow.document.write("Soil Class: " + soilClass + "<br/>");
         sasNetworkReportWindow.document.write("Long Term Acceptance Rate (gallons per day per square foot): " + LTAR + "<br/>");
-        sasNetworkReportWindow.document.write("Minimum required SAS Surface Area: " + reqSasSurfArea() + "<br/>");
+        sasNetworkReportWindow.document.write("Minimum required SAS Surface Area(sf): " + reqSasSurfArea() + "<br/>");
         sasNetworkReportWindow.document.write("Minimum required SAS area width(ft): " + reqFieldWidth() + "<br/>");
         sasNetworkReportWindow.document.write("Provided SAS overall surface Area(sf):" + provSasSurfaceAreaField() + "<br/>")
     }
