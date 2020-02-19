@@ -48,40 +48,14 @@
             <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
             <button id='button-networkLayoutForm-runProgram' onclick="sasNetworkLayout()"> Run Program </button>
         </fieldset>
+        
         <form id="pressureNetworkForm">
             <fieldset>
                 <legend>
                     Pressure Network Sizing:
                 </legend>
                 <div>
-                    Design Flow: <input type="number" id="UserInput-designFlow" required placeholder="gallons per day" onchange="validateDesignFlow()" min="0"><br>
-                </div>
-                <div>
-                    Is your Soil Absorption System a field or Trenches? <select type="text" id="UserInput-fieldOrTrenches"
-                        tabindex="2" onchange="createTrenchOptions()"><br>
-                        <option value=''></option>
-                        <option value='Trenches'>Trenches</option>
-                        <option value='Field'>Field</option>
-                    </select>
-                    <br>
-                </div>
-                <div id='trenchWidthDiv'>
-                </div>
-                <div id='trenchHeightDiv'>
-                </div>
-                <div id='reserveBetweenTrenchesDiv'>
-                </div>
-                <div>
-                    Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required placeholder="feet" onchange="validateDesiredLength()" min="0" max="100"><br>
-                </div>
-                <div>
-                    Percolation Rate: <input type="number" id="UserInput-percRate" required placeholder="inches per hour"
-                        onblur="createSoilClassOptions()" min="0" max="60"><br>
-                </div>
-                <div>
-                    Soil Class: <select type="text" id="UserInput-soilClass" tabindex="4" required>
-                    </select>
-                    <br>
+                    Lateral Spacing: <input type="number" id="UserInput-latSpacing" required placeholder="feet" onchange="validateLatSpacing()" min="0"><br>
                 </div>
                 <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
                 <button id='button-networkLayoutForm-runProgram' onclick="sasNetworkLayout()"> Run Program </button>

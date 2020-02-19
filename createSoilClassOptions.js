@@ -3,7 +3,7 @@ function createSoilClassOptions() {
     var percRate = +document.getElementById('UserInput-percRate').value
     if (percRate <= 0) {
     alert ("Invalid Input: Your percolation rate should be a positive non-zero rate in inches per hour")
-    else if (percRate > 0 && percRate <= 8) {
+    } else if (percRate > 0 && percRate <= 8) {
         var scO1 = document.createElement("OPTION");
         scO1.setAttribute("value", 'I');
         var scTN1 = document.createTextNode("I");
