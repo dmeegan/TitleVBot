@@ -44,6 +44,9 @@ function sasNetworkLayout() {
     // The following function calculates the required surface area of the SAS (reqSasSurfArea) based on the Long term acceptance rate (LTAR) and the design flow (designFLow).
     const reqSasSurfArea = () => Math.ceil((designFlow / LTAR))
 
+    document.getElementById('result-LTAR').value = LTAR;
+    document.getElementById('result-reqSasSurfArea').value = reqSasSurfArea();
+
     if (fieldOrTrenches == 'Trenches') {
         trenchWidth = +document.getElementById('UserInput-trenchWidth').value
         trenchHeight = +document.getElementById('UserInput-trenchHeight').value
@@ -68,20 +71,17 @@ function sasNetworkLayout() {
         }
 
         // The following function calculates the overall width of the SAS (sasAreaWidth) based on the number of trenches (trenchNum) and the trench width (trenchWidth).
-        const overallSasAreaWidth = () => trenchNum() * trenchWidth + (trenchNum() - 1) * reqTrenchSeparation
+        const overallSasAreaWidthTrench = () => trenchNum() * trenchWidth + (trenchNum() - 1) * reqTrenchSeparation
 
         const provSasSurfaceAreaTrenches = () => trenchNum() * trenchSurfaceArea()
 
-        var sasNetworkReportWindow = window.open("", "SAS Network Layout Report", "Width=500,height=500");
-        sasNetworkReportWindow.document.write("Design flow (gallons per day): " + designFlow + "<br/>")
-        sasNetworkReportWindow.document.write("Percolation Rate (in/hr): " + percRate + "<br/>")
-        sasNetworkReportWindow.document.write("Soil Class: " + soilClass + "<br/>")
-        sasNetworkReportWindow.document.write("Long Term Acceptance Rate (gallons per day per square foot): " + LTAR + "<br/>");
-        sasNetworkReportWindow.document.write("Minimum required SAS Surface Area(sf): " + reqSasSurfArea() + "<br/>");
-        sasNetworkReportWindow.document.write("Surface area per trench(sf): " + trenchSurfaceArea() + "<br/>");
-        sasNetworkReportWindow.document.write("Minimum required number of trenches: " + trenchNum() + "<br/>");
-        sasNetworkReportWindow.document.write("Provided SAS overall surface Area(sf): " + provSasSurfaceAreaTrenches() + "<br/>")
-        sasNetworkReportWindow.document.write("Overall SAS area width(ft):" + overallSasAreaWidth() + "<br/>");
+        
+        document.getElementById('trenchSurfaceAreaDiv').style.display = 'initial';
+        document.getElementById('result-trenchSurfaceArea').value = trenchSurfaceArea();
+        document.getElementById('trenchNumDiv').style.display = 'initial';
+        document.getElementById('result-trenchNum').value = trenchNum();
+        document.getElementById('trenchNumDiv').style.display = 'initial';
+        document.getElementById('result-overallSurfaceArea').value = provSasSurfaceAreaTrenches();  
     } else if (fieldOrTrenches == 'Field') {
 
         // The following function calculates the required width of the field (reqFieldWidth).
@@ -89,15 +89,20 @@ function sasNetworkLayout() {
 
         const provSasSurfaceAreaField = () => reqFieldWidth() * sasAreaLength;
 
-        var sasNetworkReportWindow = window.open("", "SAS Network Layout Report", "Width=500,height=500");
-        sasNetworkReportWindow.document.write("Design flow (gallons per day): " + designFlow + "<br/>");
-        sasNetworkReportWindow.document.write("Percolation Rate (in/hr): " + percRate + "<br/>");
-        sasNetworkReportWindow.document.write("Soil Class: " + soilClass + "<br/>");
-        sasNetworkReportWindow.document.write("Long Term Acceptance Rate (gallons per day per square foot): " + LTAR + "<br/>");
-        sasNetworkReportWindow.document.write("Minimum required SAS Surface Area(sf): " + reqSasSurfArea() + "<br/>");
-        sasNetworkReportWindow.document.write("Minimum required SAS area width(ft): " + reqFieldWidth() + "<br/>");
-        sasNetworkReportWindow.document.write("Provided SAS overall surface Area(sf):" + provSasSurfaceAreaField() + "<br/>")
+        document.getElementById('minimumFieldWidthDiv').style.display = 'initial';
+        document.getElementById('result-minimumFieldWidth').value = reqFieldWidth();
+        document.getElementById('result-overallSurfaceArea').value = provSasSurfaceAreaField();
     }
+
+    // if (fieldOrTrenches == 'Trenches') {
+    //       if (reserveBetweenTrenches == 'Yes') {
+    //       typicalLatSpacing = (trenchWidthValue) + (3 * trenchWidthValue)
+    //       document.getElementById('UserInput-latSpacing').value = typicalLatSpacing
+    //     } else if (reserveBetweenTrenches == 'No') {
+    //       typicalLatSpacing = (trenchWidthValue) + (2 * trenchWidthValue)
+    //       document.getElementById('UserInput-latSpacing').value = typicalLatSpacing
+    //     }
+    //   }
 }
 
 

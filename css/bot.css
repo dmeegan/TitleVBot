@@ -1,12 +1,18 @@
 #networkLayoutForm {
     padding: 10px; 
 }
-#networkLayoutForm div:not([id]), div[id=""]{
+Form div {
     padding: 5px;
 }
 
-form {
-    display: flexbox;
-    background-color: #bbebfa;
-}
+#networkLayoutResultsFieldset {
+    display: flex;
+    background-color: #eefafc;
+} 
 
+
+section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start
+}
