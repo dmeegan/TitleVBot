@@ -95,15 +95,7 @@ function sasNetworkLayout() {
         document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaField();
     }
 
-    // if (fieldOrTrenches == 'Trenches') {
-    //       if (reserveBetweenTrenches == 'Yes') {
-    //       typicalLatSpacing = (trenchWidthValue) + (3 * trenchWidthValue)
-    //       document.getElementById('UserInput-latSpacing').value = typicalLatSpacing
-    //     } else if (reserveBetweenTrenches == 'No') {
-    //       typicalLatSpacing = (trenchWidthValue) + (2 * trenchWidthValue)
-    //       document.getElementById('UserInput-latSpacing').value = typicalLatSpacing
-    //     }
-    //   }
+    
 }
 
 

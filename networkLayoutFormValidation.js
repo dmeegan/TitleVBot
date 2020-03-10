@@ -43,6 +43,11 @@ function validateLatSpacing() {
   var latSpacing = +document.getElementById('UserInput-latSpacing').value
   var fieldOrTrenches = document.getElementById('UserInput-fieldOrTrenches').value
 
+  if (latSpacing <= 0) {
+    alert("Invalid Input: Your lateral spacing should be positive non-zero value in feet");
+    document.getElementById('UserInput-latSpacing').value = ''
+  }
+
   if (fieldOrTrenches == 'Trenches') {
     var trenchWidthValue = +document.getElementById('UserInput-trenchWidth').value
     var reserveBetweenTrenches = document.getElementById('UserInput-reserveAreaBetweenTrenches').value
@@ -53,13 +58,8 @@ function validateLatSpacing() {
       typicalLatSpacing = (trenchWidthValue) + (2 * trenchWidthValue)
       document.getElementById('UserInput-latSpacing').value = typicalLatSpacing
     }
-  } else if (fieldOrTrenches == 'Field') {
-    if (latSpacing <= 0) {
-      alert("Invalid Input: Your lateral spacing should be positive non-zero value in feet");
-      document.getElementById('UserInput-latSpacing').value = ''
-    } else if (latSpacing > 6) {
-      alert("Invalid Input: Per Title V section 15.252, the maximum spacing between laterals in a field is 6 feet");
-      document.getElementById('UserInput-latSpacing').value = 6
-    }
+  } else if (fieldOrTrenches == 'Field' && latSpacing > 6) {
+    alert("Invalid Input: Per Title V section 15.252, the maximum spacing between laterals in a field is 6 feet");
+    document.getElementById('UserInput-latSpacing').value = 6
   }
 }
