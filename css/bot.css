@@ -1,18 +1,26 @@
 #networkLayoutForm {
     padding: 10px; 
 }
-Form div {
+.formDiv {
     padding: 5px;
 }
 
-#networkLayoutResultsFieldset {
-    display: flex;
+.resultFieldset {
+    /* display: flex; */
     background-color: #eefafc;
 } 
 
+.flexCol {
+    display: flex;
+    flex-direction: column;
+}
 
-section {
+.flexRow {
     display: flex;
     flex-direction: row;
-    align-items: flex-start
+    flex-flow: wrap;
+}
+
+fieldset{
+    width: 40%;
 }

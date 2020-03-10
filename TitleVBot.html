@@ -12,101 +12,181 @@
         <a class="active" href="#home">Home</a>
     </div> -->
     <form id="networkLayoutForm">
-        <section>
-            <fieldset id="networkLayoutFieldset">
-                <legend>
-                    Soil Absorption System Sizing Input:
-                </legend>
-                <div>
-                    Design Flow: <input type="number" id="UserInput-designFlow" required placeholder="gallons per day"
-                        onchange="validateDesignFlow()" min="0"><br>
-                </div>
-                <div>
-                    Is your Soil Absorption System a field or Trenches? <select type="text"
-                        id="UserInput-fieldOrTrenches" tabindex="2" onchange="createTrenchOptions()"><br>
-                        <option value=''></option>
-                        <option value='Trenches'>Trenches</option>
-                        <option value='Field'>Field</option>
-                    </select>
-                    <br>
-                </div>
-                <div id='trenchWidthDiv' style="display:none">
-                    Trench Width: <input type="number" id="UserInput-trenchWidth" required placeholder="feet"
-                        onchange="validateTrenchWidth()" min="2" max="3"><br>
-                </div>
-                <div id='trenchHeightDiv' style="display:none">
-                    Trench Height: <input type="number" id="UserInput-trenchHeight" required placeholder="feet"
-                        onchange="validateTrenchHeight()" min="1/2" max="2"><br>
-                </div>
-                <div id='reserveBetweenTrenchesDiv' style="display:none">
-                    Is the reserve area between the trenches? <select type="text"
-                        id="UserInput-reserveAreaBetweenTrenches" tabindex="2"><br>
-                        <option value="Yes"> Yes </option>
-                        <option value="No"> No </option>
-                    </select>
-                </div>
-                <div>
-                    Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required
-                        placeholder="feet" onchange="validateDesiredLength()" min="0" max="100"><br>
-                </div>
-                <div>
-                    Percolation Rate: <input type="number" id="UserInput-percRate" required
-                        placeholder="inches per hour" onchange="createSoilClassOptions()" min="0" max="60"><br>
-                </div>
-                <div>
-                    Soil Class: <select type="text" id="UserInput-soilClass" tabindex="4" required>
-                    </select>
-                    <br>
-                </div>
-                <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
-                <button id='button-networkLayoutForm-runProgram' onclick="sasNetworkLayout()"> Run Program </button>
-            </fieldset>
-    <!-- </form>
+        <div class='formFlexContainer'>
+            <div class='flexCol'>
+                <div class='flexRow'>
+                    <fieldset id="networkLayoutFieldset">
+                        <legend>
+                            Soil Absorption System Sizing Input:
+                        </legend>
+                        <div class="formDiv">
+                            Design Flow: <input type="number" id="UserInput-designFlow" required
+                                placeholder="gallons per day" onchange="validateDesignFlow()" min="0"><br>
+                        </div>
+                        <div class="formDiv">
+                            Is your Soil Absorption System a field or Trenches? <select type="text"
+                                id="UserInput-fieldOrTrenches" onchange="createTrenchOptions()"><br>
+                                <option value=''></option>
+                                <option value='Trenches'>Trenches</option>
+                                <option value='Field'>Field</option>
+                            </select>
+                            <br>
+                        </div>
+                        <div id='trenchWidthDiv' style="display:none" class="formDiv">
+                            Trench Width: <input type="number" id="UserInput-trenchWidth" required placeholder="feet"
+                                onchange="validateTrenchWidth()" min="2" max="3"><br>
+                        </div>
+                        <div id='trenchHeightDiv' style="display:none" class="formDiv">
+                            Trench Height: <input type="number" id="UserInput-trenchHeight" required placeholder="feet"
+                                onchange="validateTrenchHeight()" min="1/2" max="2"><br>
+                        </div>
+                        <div id='reserveBetweenTrenchesDiv' style="display:none" class="formDiv">
+                            Is the reserve area between the trenches? <select type="text"
+                                id="UserInput-reserveAreaBetweenTrenches"><br>
+                                <option value="Yes"> Yes </option>
+                                <option value="No"> No </option>
+                            </select>
+                        </div>
+                        <div class="formDiv">
+                            Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required
+                                placeholder="feet" onchange="validateDesiredLength()" min="0" max="100"><br>
+                        </div>
+                        <div class="formDiv">
+                            Percolation Rate: <input type="number" id="UserInput-percRate" required
+                                placeholder="inches per hour" onchange="createSoilClassOptions()" min="0" max="60"><br>
+                        </div>
+                        <div class="formDiv">
+                            Soil Class: <select type="text" id="UserInput-soilClass" required>
+                                <option value="" style="display:initial"></option>
+                                <option value="I" style="display:none"> I </option>
+                                <option value="II" style="display:none"> II </option>
+                                <option value="III" style="display:none"> III </option>
+                                <option value="IV" style="display:none"> IV </option>
+                            </select>
+                            <br>
+                        </div>
+                        <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
+                        <button id='button-networkLayoutForm-runProgram' onclick="sasNetworkLayout()"> Size My SAS
+                        </button>
+                    </fieldset>
+                    <!-- </form>
     <form id="networkLayoutResultForm"> -->
-        <fieldset id="networkLayoutResultsFieldset">
-            <legend>
-                Soil Absorption System Sizing Results:
-            </legend>
-            <div id='LTARDiv'>
-                Long Term Acceptance Rate(LTAR): <input type="number" id="result-LTAR" readonly
-                    placeholder="gallons per day per square foot"><br>
+                    <fieldset id="networkLayoutResultsFieldset" class="resultFieldset">
+                        <legend>
+                            Soil Absorption System Sizing Results:
+                        </legend>
+                        <div id='LTARDiv' class="formDiv">
+                            Long Term Acceptance Rate(LTAR): <input type="number" id="result-LTAR" readonly
+                                placeholder="gallons per day per square foot"><br>
+                        </div>
+                        <div id='reqSASAreaDiv' class="formDiv">
+                            Minimum Required SAS Surface Area: <input type="number" id="result-reqSasSurfArea" readonly
+                                placeholder="square foot"><br>
+                        </div>
+                        <div id='trenchSurfaceAreaDiv' style="display:none" class="formDiv">
+                            Surface Area per Trench: <input type="number" id='result-trenchSurfaceArea' readonly
+                                placeholder="square foot"><br>
+                        </div>
+                        <div id='trenchNumDiv' style="display:none" class="formDiv">
+                            Minumum Required Number of Trenches: <input type="number" id='result-trenchNum'
+                                readonly><br>
+                        </div>
+                        <div id='SASWidthDiv' class="formDiv">
+                            Minimum SAS Area Width: <input type="number" id='result-minimumSASAreaWidth' readonly
+                                placeholder="feet"><br>
+                        </div>
+                        <div id='surfaceAreaDiv' class="formDiv">
+                            Provided SAS Surface Area: <input type="number" id='result-providedSurfaceArea' readonly
+                                placeholder="square foot"><br>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- </form> -->
+                <div class='flexRow'>
+                    <!-- <form id="pressureNetworkForm"> -->
+                    <fieldset id="pressureNetworkFieldset">
+                        <legend>
+                            Pressure Network Sizing Input:
+                        </legend>
+                        <div class="formDiv">
+                            Lateral Spacing: <input type="number" id="UserInput-latSpacing" required placeholder="feet"
+                                onchange="validateLatSpacing()" min="0"><br>
+                        </div>
+                        <div class="formDiv">
+                            Desired Distal Head: <input type="number" id="UserInput-distalHead" required
+                                placeholder="feet" min="0" step="0.5"><br>
+                        </div>
+                        <div class="formDiv">
+                            Desired Perforation Spacing: <input type="number" id="UserInput-perfSpacing" required
+                                placeholder="feet" min="0" step="0.5"><br>
+                        </div>
+                        <div class="formDiv">
+                            Desired Perforation Diameter: <input type="number" id="UserInput-perfDia" required
+                                placeholder="inches" min="0.25" step="0.01"><br>
+                        </div>
+                        <div class="formDiv">
+                            Are you using an end manifold or center manifold? <select type="text"
+                                id="UserInput-manifoldType"><br>
+                                <option value=''></option>
+                                <option value='End'>End</option>
+                                <option value='Center'>Center</option>
+                            </select>
+                        </div>
+                        <div class="formDiv">
+                            What type of material is your piping? <select type="text" id="UserInput-pipeMaterial"
+                                onblur="createLatSizeOptions()"><br>
+                                <option value=''></option>
+                                <option value='pvc'>polyvinyl chloride (PVC)</option>
+                                <option value='hdpe'>high density polyethylene (HDPE)</option>
+                                <option value='abs'>acrylonitrile-butadiene-styrene (ABS)</option>
+                            </select>
+                        </div>
+                        <div class="formDiv">
+                            Desired Lateral Size: <select type="text" id="UserInput-latSize" required>
+                                <option value="" style="display:initial"></option>1, 1.25, 1.5, 2, 3, 4
+                                <option value="1" style="display:none"> 1" </option>
+                                <option value="1.25" style="display:none"> 1-1/4" </option>
+                                <option value="1.5" style="display:none"> 1-1/2" </option>
+                                <option value="2" style="display:none"> 2" </option>
+                                <option value="3" style="display:none"> 3" </option>
+                                <option value="4" style="display:none"> 4" </option>
+                            </select><br>
+                        </div>
+                        <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
+                        <button id='button-networkLayoutForm-runProgram' onclick="sasNetworkLayout()"> Run Program
+                        </button>
+                    </fieldset>
+                    <fieldset id="pressureNetworkResultsFieldset" class="resultFieldset">
+                        <legend>
+                            Pressure Network Sizing Results:
+                        </legend>
+                        <!-- <div id='LTARDiv' class="formDiv">
+                        Long Term Acceptance Rate(LTAR): <input type="number" id="result-LTAR" readonly
+                            placeholder="gallons per day per square foot"><br>
+                    </div>
+                    <div id='reqSASAreaDiv' class="formDiv">
+                        Minimum Required SAS Surface Area: <input type="number" id="result-reqSasSurfArea" readonly
+                            placeholder="square foot"><br>
+                    </div>
+                    <div id='trenchSurfaceAreaDiv' style="display:none" class="formDiv">
+                        Surface Area per Trench: <input type="number" id='result-trenchSurfaceArea' readonly
+                            placeholder="square foot"><br>
+                    </div>
+                    <div id='trenchNumDiv' style="display:none" class="formDiv">
+                        Minumum Required Number of Trenches: <input type="number" id='result-trenchNum' readonly><br>
+                    </div>
+                    <div id='SASWidthDiv' class="formDiv">
+                        Minimum SAS Area Width: <input type="number" id='result-minimumSASAreaWidth' readonly
+                            placeholder="feet"><br>
+                    </div>
+                    <div id='surfaceAreaDiv' class="formDiv">
+                        Provided SAS Surface Area: <input type="number" id='result-providedSurfaceArea' readonly
+                            placeholder="square foot"><br>
+                    </div> -->
+                    </fieldset>
+                </div>
             </div>
-            <div id='reqSASAreaDiv'>
-                Minimum Required SAS Surface Area: <input type="number" id="result-reqSasSurfArea" readonly
-                    placeholder="square foot"><br>
-            </div>
-            <div id='trenchSurfaceAreaDiv' style="display:none">
-                Surface Area per Trench: <input type="number" id='result-trenchSurfaceArea' readonly
-                    placeholder="square foot"><br>
-            </div>
-            <div id='trenchNumDiv' style="display:none">
-                Minumum Required Number of Trenches: <input type="number" id='result-trenchNum' readonly><br>
-            </div>
-            <div id='minimumFieldWidthDiv' style="display:none">
-                Minimum Required Field Width: <input type="number" id='result-minimumFieldWidth' readonly
-                    placeholder="square foot"><br>
-            </div>
-            <div id='surfaceAreaDiv'>
-                Overal Provided SAS Surface Area: <input type="number" id='result-overallSurfaceArea' readonly
-                    placeholder="square foot"><br>
-            </div>
-        </fieldset>
-    </section>
-    <!-- </form> -->
-    <section>
-    <!-- <form id="pressureNetworkForm"> -->
-        <fieldset id="pressureNetworkFieldset">
-            <legend>
-                Pressure Network Sizing:
-            </legend>
-            <div>
-                Lateral Spacing: <input type="number" id="UserInput-latSpacing" required placeholder="feet"
-                    onchange="validateLatSpacing()" min="0"><br>
-            </div>
-            <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
-            <button id='button-networkLayoutForm-runProgram' onclick="sasNetworkLayout()"> Run Program </button>
-        </fieldset>
-    </section>
+        </div>
     </form>
 </body>
 <footer>
@@ -115,6 +195,8 @@
     <script src="createTrenchOptions.js">
     </script>
     <script src="createSoilClassOptions.js">
+    </script>
+    <script src="createLatSizeOptions.js">
     </script>
     <script src="SASBot.js">
     </script>

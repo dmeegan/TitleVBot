@@ -7,17 +7,17 @@ let perfDia = 0.25
 let perfSpacing = 5
 let roughCoeff = 150
 let manifoldType = 'Center'
-let sasAreaLength = 130
+let trenchLength = 130
 let trenchNum = 19
 let trenchHeight = 2
 
 // The following switch statement determines the total lateral length (latLength) based on whether the manifold is location in the center ('Center') or the end ('End') of the SAS.
 switch (manifoldType){
     case 'Center':
-        latLength = sasAreaLength / 2
+        latLength = trenchLength / 2
         break;
     case 'End':
-        latLength = sasAreaLength
+        latLength = trenchLength
         break;
 }
 

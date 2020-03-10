@@ -81,8 +81,7 @@ function sasNetworkLayout() {
         document.getElementById('trenchNumDiv').style.display = 'initial';
         document.getElementById('result-trenchNum').value = trenchNum();
         document.getElementById('trenchNumDiv').style.display = 'initial';
-        document.getElementById('result-minimumSASAreaWidth').value = overallSasAreaWidthTrench();
-        document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaTrenches();  
+        document.getElementById('result-overallSurfaceArea').value = provSasSurfaceAreaTrenches();  
     } else if (fieldOrTrenches == 'Field') {
 
         // The following function calculates the required width of the field (reqFieldWidth).
@@ -90,9 +89,9 @@ function sasNetworkLayout() {
 
         const provSasSurfaceAreaField = () => reqFieldWidth() * sasAreaLength;
 
-        // document.getElementById('minimumFieldWidthDiv').style.display = 'initial';
-        document.getElementById('result-minimumSASAreaWidth').value = reqFieldWidth();
-        document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaField();
+        document.getElementById('minimumFieldWidthDiv').style.display = 'initial';
+        document.getElementById('result-minimumFieldWidth').value = reqFieldWidth();
+        document.getElementById('result-overallSurfaceArea').value = provSasSurfaceAreaField();
     }
 
     // if (fieldOrTrenches == 'Trenches') {
