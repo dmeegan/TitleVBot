@@ -66,7 +66,7 @@
                             <br>
                         </div>
                         <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
-                        <button id='button-networkLayoutForm-runProgram' onclick="sasNetworkLayout()"> Size My SAS
+                        <button id='button-networkLayoutForm-runProgram' type="button" onclick="sasNetworkLayout()"> Size My SAS
                         </button>
                     </fieldset>
                     <!-- </form>
@@ -114,15 +114,15 @@
                         </div>
                         <div class="formDiv">
                             Desired Distal Head: <input type="number" id="UserInput-distalHead" required
-                                placeholder="feet" min="0" step="0.5"><br>
+                            onblur="validateDistalHead()" placeholder="feet" min="0" step="0.5"><br>
                         </div>
                         <div class="formDiv">
                             Desired Perforation Spacing: <input type="number" id="UserInput-perfSpacing" required
-                                placeholder="feet" min="0" step="0.5"><br>
+                            onblur="validatePerfSpacing()" placeholder="feet" min="0" max="5" step="0.5"><br>
                         </div>
                         <div class="formDiv">
                             Desired Perforation Diameter: <input type="number" id="UserInput-perfDia" required
-                                placeholder="inches" min="0.25" step="0.01"><br>
+                            onblur="validatePerfDia()" placeholder="inches" min="0.25" step="0.01"><br>
                         </div>
                         <div class="formDiv">
                             Are you using an end manifold or center manifold? <select type="text"
@@ -142,7 +142,7 @@
                             </select>
                         </div>
                         <div class="formDiv">
-                            Desired Lateral Size: <select type="text" id="UserInput-latSize" required>
+                            Desired Lateral Size: <select type="text" id="UserInput-latSize" required onblur="createLatSizeOptions()">
                                 <option value="" style="display:initial"></option>1, 1.25, 1.5, 2, 3, 4
                                 <option value="1" style="display:none"> 1" </option>
                                 <option value="1.25" style="display:none"> 1-1/4" </option>
@@ -153,7 +153,7 @@
                             </select><br>
                         </div>
                         <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
-                        <button id='button-networkLayoutForm-runProgram' onclick="sasNetworkLayout()"> Run Program
+                        <button id='button-networkLayoutForm-runProgram' type="button" onclick="sasNetworkLayout()"> Run Program
                         </button>
                     </fieldset>
                     <fieldset id="pressureNetworkResultsFieldset" class="resultFieldset">
@@ -190,7 +190,7 @@
     </form>
 </body>
 <footer>
-    <script src="networkLayoutFormValidation.js">
+    <script src="TitleVBotFormValidation.js">
     </script>
     <script src="createTrenchOptions.js">
     </script>

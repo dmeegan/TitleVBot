@@ -71,7 +71,7 @@ function createLatSizeOptions() {
         latDiaIterator++
     } while (latDeltaHead > latTargetHeadloss())
 
-    document.getElementById("UserInput-latSize").selectedIndex = '0'
+    // document.getElementById("UserInput-latSize").selectedIndex = '0'
     document.getElementById("UserInput-latSize").options.item(1).setAttribute("style", "display:none");
     document.getElementById("UserInput-latSize").options.item(2).setAttribute("style", "display:none");
     document.getElementById("UserInput-latSize").options.item(3).setAttribute("style", "display:none");
@@ -81,7 +81,7 @@ function createLatSizeOptions() {
     
     switch (minimumLatDia) {
         case 1:
-        document.getElementById("UserInput-latSize").selectedIndex = '1'
+        // document.getElementById("UserInput-latSize").selectedIndex = '1'
         document.getElementById("UserInput-latSize").options.item(1).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(2).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(3).setAttribute("style", "display:initial");
@@ -90,7 +90,7 @@ function createLatSizeOptions() {
         document.getElementById("UserInput-latSize").options.item(6).setAttribute("style", "display:initial");
         break;
         case 1.25:
-        document.getElementById("UserInput-latSize").selectedIndex = '2'
+        // document.getElementById("UserInput-latSize").selectedIndex = '2'
         document.getElementById("UserInput-latSize").options.item(2).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(3).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(4).setAttribute("style", "display:initial");
@@ -98,25 +98,25 @@ function createLatSizeOptions() {
         document.getElementById("UserInput-latSize").options.item(6).setAttribute("style", "display:initial");
         break;
         case 1.5:
-        document.getElementById("UserInput-latSize").selectedIndex = '3'
+        // document.getElementById("UserInput-latSize").selectedIndex = '3'
         document.getElementById("UserInput-latSize").options.item(3).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(4).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(5).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(6).setAttribute("style", "display:initial");
         break;
         case 2:
-        document.getElementById("UserInput-latSize").selectedIndex = '4'
+        // document.getElementById("UserInput-latSize").selectedIndex = '4'
         document.getElementById("UserInput-latSize").options.item(4).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(5).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(6).setAttribute("style", "display:initial");
         break;
         case 3:
-        document.getElementById("UserInput-soilClass").selectedIndex = '5'
+        // document.getElementById("UserInput-soilClass").selectedIndex = ''
         document.getElementById("UserInput-latSize").options.item(5).setAttribute("style", "display:initial");
         document.getElementById("UserInput-latSize").options.item(6).setAttribute("style", "display:initial");
         break;
         case 4:
-        document.getElementById("UserInput-soilClass").selectedIndex = '6'
+        // document.getElementById("UserInput-soilClass").selectedIndex = ''
         document.getElementById("UserInput-latSize").options.item(6).setAttribute("style", "display:initial");
         break;
 }
