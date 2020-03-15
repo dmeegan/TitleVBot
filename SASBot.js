@@ -11,7 +11,7 @@ function sasNetworkLayout() {
     // The following arrays show the long term acceptance rates (LTAR) for each soil class (SoilClass). The order of the terms in the arrays are based on the percolation rate (percRate).
     const soilClassI = [0.74, 0.70, 0.68, 0.66, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a']
     const soilClassII = [0.60, 0.60, 0.60, 0.60, 0.60, 0.56, 0.53, 0.40, 0.33, 'n/a', 'n/a', 'n/a']
-    const soilClassIII = ['n/a', 'n/a', 'n/a', 'n/a', 0.37, 0.34, 0.33, 0.29, 0.25, 0.15]
+    const soilClassIII = ['n/a', 'n/a', 'n/a', 'n/a', 'n/a', 0.37, 0.34, 0.33, 0.29, 0.25, 0.20, 0.15]
     const soilClassIV = ['n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 0.20, 0.15]
 
     // The following if statement determines which long term acceptance rate (LTAR) in the soil class arrays to read
@@ -21,9 +21,9 @@ function sasNetworkLayout() {
         soilClassIterator = Math.ceil(percRate - 5)
     } else if (percRate < 30) {
         soilClassIterator = 3 + Math.ceil(((percRate - 8) / 5))
-    } else if (percRate < 60) {
+    } else if (percRate <= 60) {
         soilClassIterator = 8 + Math.ceil(((percRate - 30) / 10))
-    }
+    } 
 
     // The following switch statement determines the LTAR using the percolation rate (percRate) and the soil class (soilClass)
     switch (soilClass) {

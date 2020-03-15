@@ -27,8 +27,8 @@ function createSoilClassOptions() {
         document.getElementById("UserInput-soilClass").options.item(3).setAttribute("style", "display:initial");
         document.getElementById("UserInput-soilClass").options.item(4).setAttribute("style", "display:initial");
     } else if (percRate > 60) {
-        document.getElementById("UserInput-soilClass").selectedIndex = '0'
         alert("Invalid Input: Per Title V section 15.242, the maximum percolation rate is 60 inches per hour")
+        document.getElementById("UserInput-soilClass").selectedIndex = '0'
+        document.getElementById('UserInput-percRate').value = '';
     }
-
 }

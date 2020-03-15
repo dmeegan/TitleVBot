@@ -85,7 +85,7 @@ function validatePerfSpacing() {
 
 function validatePerfDia() {
   var perfDia = +document.getElementById('UserInput-perfDia').value
-  if (perfDia <= 0.125) {
+  if (perfDia < 0.125) {
     alert("Invalid Input: Per the Title V Pressure Distribution Guidance, the minimum perforation diameter is 0.125 inches (1/8 inch)");
     document.getElementById('UserInput-perfDia').value = 0.125;
   } else if (perfDia > 0.625) {

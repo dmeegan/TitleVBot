@@ -1,13 +1,15 @@
-function createLatSizeOptions() {
+function createManiSizeOptions() {
 
-    const perfDia = +document.getElementById('UserInput-perfDia').value
     const manifoldType = document.getElementById('UserInput-manifoldType').value
     const distalHead = +document.getElementById('UserInput-distalHead').value
     const sasAreaLength = +document.getElementById("UserInput-sasAreaLength").value
     const sasAreaWidth = +document.getElementById('result-minimumSASAreaWidth').value
     const latSpacing = +document.getElementById("UserInput-latSpacing").value
     const pipeMaterial = document.getElementById("UserInput-pipeMaterial").value
+    const perfDia = +document.getElementById("UserInput-perfDia").value
     const perfSpacing = +document.getElementById("UserInput-perfSpacing").value
+
+
 
     // The following switch statement determines the total lateral length (latLength) based on whether the manifold is location in the center ('Center') or the end ('End') of the SAS.
     switch (pipeMaterial) {
@@ -35,13 +37,12 @@ function createLatSizeOptions() {
     // The following switch statement determines the total number of laterals (latNum) based on whether the manifold is location in the center ('Center') or the end ('End') of the SAS.
     switch (manifoldType) {
         case 'Center':
-            latNum = 2 * Math.ceil((sasAreaWidth / latSpacing))
+            latNum = 2 * (sasAreaWidth / latSpacing)
             break;
         case 'End':
-            latNum = Math.ceil((sasAreaWidth / latSpacing))
+            latNum = (sasAreaWidth / latSpacing)
             break;
     }
-
 
     // This function calculates the perforation discharge rate (perfDis) using the perforation diameter (perfDia) and in-line distal head (distalHead)
     const perfDis = () => 11.79 * (Math.pow(perfDia, 2)) * (Math.sqrt(distalHead))
@@ -49,28 +50,45 @@ function createLatSizeOptions() {
     // This function calucates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
     const perfNum = () => Math.floor((latLength / perfSpacing))
 
-    // This function calculates the target headloss across the laterals, using the desired distal head
-    const latTargetHeadloss = () => 0.21 * distalHead
+    // This function calculates the lateral discharge rate (Q) using the perforation discharge rate (perfDis) and the number of total number of perforations per lateral (N) */
+    const latDis = () => perfDis() * perfNum()
 
-    let latSizes = [1, 1.25, 1.5, 2, 3, 4]
+    // The following switch statement determines the total discharge rate per trench (maniSegDis) based on whether the manifold is location in the center ('Center') or the end ('End') of the SAS.
+    switch (manifoldType) {
+        case 'Center':
+            maniSegDis = 2 * latDis()
+            break;
+        case 'End':
+            maniSegDis = latDis()
+            break;
+    }
 
-    let latDiaIterator = 0
-    let latDeltaHead = 0
-    let latOptionSelector = document.getElementById("UserInput-latSize");
+    const maniSegNum = () => (sasAreaWidth / latSpacing)
 
+
+
+    let maniFlowIterator = 0
+    let sumManiFrictionLoss = 0
     do {
-        let perfFlowIterator = 0
-        let latSumHeadLoss = 0
-        do {
-            const latDownStreamFlow = () => perfDis() * (perfNum() - perfFlowIterator)
-            const latHeadLoss = () => perfSpacing * Math.pow((3.55 * latDownStreamFlow()) / (roughCoeff * (Math.pow((latSizes[latDiaIterator]), 2.63))), 1.85)
-            latSumHeadLoss += latHeadLoss()
-            perfFlowIterator++
-        } while (perfFlowIterator < (perfNum() + 1))
-        const latPressureEndHeadLoss = () => perfSpacing * Math.pow((3.55 * perfDis() * perfNum()) / (roughCoeff * (Math.pow((latSizes[latDiaIterator]), 2.63))), 1.85);
-        latDeltaHead = latSumHeadLoss - latPressureEndHeadLoss();
-        minimumLatDia = latSizes[latDiaIterator];
-        latOptionSelector.options[latDiaIterator].style.display = "none";
-        latDiaIterator++;
-    } while (latDeltaHead > latTargetHeadloss())
+        const maniDownStreamFlow = () => maniSegDis * (maniSegNum() - maniFlowIterator)
+        const maniSegFrictionFactor = () => 0.00098 * Math.pow(maniDownStreamFlow(), 1.85)
+        const maniSegFrictionLoss = () => latSpacing * maniSegFrictionFactor()
+        sumManiFrictionLoss += maniSegFrictionLoss()
+        maniFlowIterator++
+    } while (maniFlowIterator < maniSegNum())
+
+    const minimumManiDia = () => Math.ceil(Math.pow((sumManiFrictionLoss / (0.1 * distalHead)), 0.21))
+
+    const maniSizes = [1, 1.25, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18]
+
+    // The following do while loop, chooses the nominal manifold size to use, based on the minimum manifold size (useManiDia) and the available nominal manifold sizes (maniSizes)
+    let maniSizeDifference = 100
+    let maniOptionSelector = document.getElementById("UserInput-maniSize");
+    let maniSizeIterator = 13;
+    while(maniSizeDifference > 1) {
+        maniSizeDifference = maniSizes[maniSizeIterator] - minimumManiDia();
+        useManiDia = maniSizes[maniSizeIterator];
+        maniOptionSelector.options[maniSizeIterator+1].style.display = "initial";
+        maniSizeIterator--;
+    }   
 }

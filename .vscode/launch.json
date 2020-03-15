@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/SASBotFormValidation.js",
+            "program": "${workspaceFolder}/createManiSizeOptions.js",
             "skipFiles": [
                 "<node_internals>/**"
             ]

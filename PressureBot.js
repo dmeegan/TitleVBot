@@ -100,12 +100,14 @@ do {
     maniSizeIterator--
     } while (maniSizeDifference > 0) 
 
+    alert(maniSizeIterator)
+
 
 // The following function calulcates the total piping volume of the manifold (maniPipingVolume) in gallons, based on the number of trenches (trenchNum) and the lateral spacing(latSpacing).
 const maniPipingVolume = () => 7.48 * Math.PI * Math.pow((useManiDia / 24),2) * trenchNum * latSpacing
 
 
-
+console.log(sumManiFrictionLoss)
 
 
 console.log(latPipingVolume())

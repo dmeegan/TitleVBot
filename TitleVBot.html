@@ -66,7 +66,8 @@
                             <br>
                         </div>
                         <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
-                        <button id='button-networkLayoutForm-runProgram' type="button" onclick="sasNetworkLayout()"> Size My SAS
+                        <button id='button-networkLayoutForm-runProgram' type="button" onclick="sasNetworkLayout()">
+                            Size My SAS
                         </button>
                     </fieldset>
                     <!-- </form>
@@ -110,19 +111,19 @@
                         </legend>
                         <div class="formDiv">
                             Lateral Spacing: <input type="number" id="UserInput-latSpacing" required placeholder="feet"
-                                onblur="validateLatSpacing()" min="0"><br>
+                                onchange="validateLatSpacing()" min="0"><br>
                         </div>
                         <div class="formDiv">
                             Desired Distal Head: <input type="number" id="UserInput-distalHead" required
-                            onblur="validateDistalHead()" placeholder="feet" min="0" step="0.5"><br>
+                                onchange="validateDistalHead()" placeholder="feet" min="0" step="0.5"><br>
                         </div>
                         <div class="formDiv">
                             Desired Perforation Spacing: <input type="number" id="UserInput-perfSpacing" required
-                            onblur="validatePerfSpacing()" placeholder="feet" min="0" max="5" step="0.5"><br>
+                                onchange="validatePerfSpacing()" placeholder="feet" min="0" max="5" step="0.5"><br>
                         </div>
                         <div class="formDiv">
                             Desired Perforation Diameter: <input type="number" id="UserInput-perfDia" required
-                            onblur="validatePerfDia()" placeholder="inches" min="0.25" step="0.01"><br>
+                                onchange="validatePerfDia()" placeholder="inches" min="0.125" max="0.625" step="0.01"><br>
                         </div>
                         <div class="formDiv">
                             Are you using an end manifold or center manifold? <select type="text"
@@ -133,8 +134,7 @@
                             </select>
                         </div>
                         <div class="formDiv">
-                            What type of material is your piping? <select type="text" id="UserInput-pipeMaterial"
-                                onblur="createLatSizeOptions()"><br>
+                            What type of material is your piping? <select type="text" id="UserInput-pipeMaterial"><br>
                                 <option value=''></option>
                                 <option value='pvc'>polyvinyl chloride (PVC)</option>
                                 <option value='hdpe'>high density polyethylene (HDPE)</option>
@@ -142,18 +142,39 @@
                             </select>
                         </div>
                         <div class="formDiv">
-                            Desired Lateral Size: <select type="text" id="UserInput-latSize" required onblur="createLatSizeOptions()">
-                                <option value="" style="display:initial"></option>1, 1.25, 1.5, 2, 3, 4
+                            Desired Lateral Size: <select type="text" id="UserInput-latSize" required
+                                onclick="createLatSizeOptions()">
+                                <option value="" style="display:initial"></option>
+                                <option value="1" style="display:initial"> 1" </option>
+                                <option value="1.25" style="display:initial"> 1-1/4" </option>
+                                <option value="1.5" style="display:initial"> 1-1/2" </option>
+                                <option value="2" style="display:initial"> 2" </option>
+                                <option value="3" style="display:initial"> 3" </option>
+                                <option value="4" style="display:initial"> 4" </option>
+                            </select><br>
+                        </div>
+                        <div class="formDiv">
+                            Desired manifold Size:
+                            <select type="text" id="UserInput-maniSize" required onclick="createManiSizeOptions()">
+                                <option value="" style="display:initial"></option>
                                 <option value="1" style="display:none"> 1" </option>
                                 <option value="1.25" style="display:none"> 1-1/4" </option>
                                 <option value="1.5" style="display:none"> 1-1/2" </option>
                                 <option value="2" style="display:none"> 2" </option>
                                 <option value="3" style="display:none"> 3" </option>
                                 <option value="4" style="display:none"> 4" </option>
-                            </select><br>
+                                <option value="5" style="display:none"> 5" </option>
+                                <option value="6" style="display:none"> 6" </option>
+                                <option value="8" style="display:none"> 8" </option>
+                                <option value="10" style="display:none"> 10" </option>
+                                <option value="12" style="display:none"> 12" </option>
+                                <option value="14" style="display:none"> 14" </option>
+                                <option value="16" style="display:none"> 16" </option>
+                                <option value="18" style="display:none"> 18" </option>
+                                </select><br>
                         </div>
                         <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
-                        <button id='button-networkLayoutForm-runProgram' type="button" onclick="sasNetworkLayout()"> Run Program
+                        <button id='button-networkLayoutForm-runProgram' type="button" onclick="sasNetworkLayout()"> Size My Pressure Network
                         </button>
                     </fieldset>
                     <fieldset id="pressureNetworkResultsFieldset" class="resultFieldset">
@@ -197,6 +218,8 @@
     <script src="createSoilClassOptions.js">
     </script>
     <script src="createLatSizeOptions.js">
+    </script>
+    <script src="createManiSizeOptions.js">
     </script>
     <script src="SASBot.js">
     </script>
