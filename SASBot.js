@@ -75,12 +75,8 @@ function sasNetworkLayout() {
 
         const provSasSurfaceAreaTrenches = () => trenchNum() * trenchSurfaceArea()
 
-        
-        document.getElementById('trenchSurfaceAreaDiv').style.display = 'initial';
         document.getElementById('result-trenchSurfaceArea').value = trenchSurfaceArea();
-        document.getElementById('trenchNumDiv').style.display = 'initial';
         document.getElementById('result-trenchNum').value = trenchNum();
-        document.getElementById('trenchNumDiv').style.display = 'initial';
         document.getElementById('result-minimumSASAreaWidth').value = overallSasAreaWidthTrench();
         document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaTrenches();  
     } else if (fieldOrTrenches == 'Field') {

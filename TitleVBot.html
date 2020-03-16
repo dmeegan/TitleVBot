@@ -123,7 +123,8 @@
                         </div>
                         <div class="formDiv">
                             Desired Perforation Diameter: <input type="number" id="UserInput-perfDia" required
-                                onchange="validatePerfDia()" placeholder="inches" min="0.125" max="0.625" step="0.01"><br>
+                                onchange="validatePerfDia()" placeholder="inches" min="0.125" max="0.625"
+                                step="0.01"><br>
                         </div>
                         <div class="formDiv">
                             Are you using an end manifold or center manifold? <select type="text"
@@ -154,7 +155,7 @@
                             </select><br>
                         </div>
                         <div class="formDiv">
-                            Desired manifold Size:
+                            Desired Manifold Size:
                             <select type="text" id="UserInput-maniSize" required onclick="createManiSizeOptions()">
                                 <option value="" style="display:initial"></option>
                                 <option value="1" style="display:none"> 1" </option>
@@ -171,21 +172,48 @@
                                 <option value="14" style="display:none"> 14" </option>
                                 <option value="16" style="display:none"> 16" </option>
                                 <option value="18" style="display:none"> 18" </option>
-                                </select><br>
+                            </select><br>
                         </div>
-                        <button id='button-networkLayoutForm-cancel' type="reset"> Cancel </button>
-                        <button id='button-networkLayoutForm-runProgram' type="button" onclick="sasNetworkLayout()"> Size My Pressure Network
+                        <button id='button-networkLayoutForm-cancel' type="button" onclick="clearPressureNetworkForm()"> Cancel </button>
+                        <button id='button-networkLayoutForm-runProgram' type="button" onclick="pressureNetworkSizing()">
+                            Size My Pressure Network
                         </button>
                     </fieldset>
                     <fieldset id="pressureNetworkResultsFieldset" class="resultFieldset">
                         <legend>
                             Pressure Network Sizing Results:
                         </legend>
-                        <!-- <div id='LTARDiv' class="formDiv">
-                        Long Term Acceptance Rate(LTAR): <input type="number" id="result-LTAR" readonly
-                            placeholder="gallons per day per square foot"><br>
-                    </div>
-                    <div id='reqSASAreaDiv' class="formDiv">
+                        <div class="formDiv">
+                            Number of Perforation: <input type="number" id="result-perfNum" readonly><br>
+                        </div>
+                        <div class="formDiv">
+                            Number of Laterals: <input type="number" id="result-latNum" readonly><br>
+                        </div>
+                        <div class="formDiv">
+                            Perforation Discharge Rate: <input type="number" id="result-perfDis" readonly
+                                placeholder="gallons per minute"><br>
+                        </div>
+                        <div class="formDiv">
+                            Lateral Discharge Rate: <input type="number" id="result-latDis" readonly
+                                placeholder="gallons per minute"><br>
+                        </div>
+                        <div class="formDiv">
+                            Minimum Pump Discharge Rate: <input type="number" id="result-latDis" readonly
+                                placeholder="gallons per minute"><br>
+                        </div>
+                        <div class="formDiv">
+                            Lateral Piping Volume: <input type="number" id="result-latPipingVol" readonly
+                                placeholder="gallons"><br>
+                        </div>
+                        <div class="formDiv">
+                            Minimum Dosing Volume: <input type="number" id="result-minDoseVol" readonly
+                                placeholder="gallons"><br>
+                        </div>
+                        <div class="formDiv">
+                            Maximum Dosing Volume: <input type="number" id="result-maxDoseVol" readonly
+                                placeholder="gallons"><br>
+                        </div>
+                        <!-- <div id='reqSASAreaDiv' class="formDiv">
                         Minimum Required SAS Surface Area: <input type="number" id="result-reqSasSurfArea" readonly
                             placeholder="square foot"><br>
                     </div>
@@ -222,6 +250,8 @@
     <script src="createManiSizeOptions.js">
     </script>
     <script src="SASBot.js">
+    </script>
+    <script src="pressureNetworkBot.js">
     </script>
 </footer>
 

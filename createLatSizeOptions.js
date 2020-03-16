@@ -42,12 +42,15 @@ function createLatSizeOptions() {
             break;
     }
 
+    document.getElementById('result-latNum').value = latNum;
 
     // This function calculates the perforation discharge rate (perfDis) using the perforation diameter (perfDia) and in-line distal head (distalHead)
     const perfDis = () => 11.79 * (Math.pow(perfDia, 2)) * (Math.sqrt(distalHead))
+    document.getElementById('result-perfDis').value = perfDis();
 
     // This function calucates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
     const perfNum = () => Math.floor((latLength / perfSpacing))
+    document.getElementById('result-perfNum').value = perfNum();
 
     // This function calculates the target headloss across the laterals, using the desired distal head
     const latTargetHeadloss = () => 0.21 * distalHead
