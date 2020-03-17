@@ -7,17 +7,17 @@ let perfDia = 0.25
 let perfSpacing = 5
 let roughCoeff = 150
 let manifoldType = 'Center'
-let trenchLength = 130
+let sasAreaLength = 130
 let trenchNum = 19
 let trenchHeight = 2
 
 // The following switch statement determines the total lateral length (latLength) based on whether the manifold is location in the center ('Center') or the end ('End') of the SAS.
 switch (manifoldType){
     case 'Center':
-        latLength = trenchLength / 2
+        latLength = sasAreaLength / 2
         break;
     case 'End':
-        latLength = trenchLength
+        latLength = sasAreaLength
         break;
 }
 
@@ -100,12 +100,14 @@ do {
     maniSizeIterator--
     } while (maniSizeDifference > 0) 
 
+    alert(maniSizeIterator)
+
 
 // The following function calulcates the total piping volume of the manifold (maniPipingVolume) in gallons, based on the number of trenches (trenchNum) and the lateral spacing(latSpacing).
 const maniPipingVolume = () => 7.48 * Math.PI * Math.pow((useManiDia / 24),2) * trenchNum * latSpacing
 
 
-
+console.log(sumManiFrictionLoss)
 
 
 console.log(latPipingVolume())
