@@ -32,6 +32,8 @@ function createLatSizeOptions() {
             break;
     }
 
+    document.getElementById('result-latLength').value = latLength;
+
     // The following switch statement determines the total number of laterals (latNum) based on whether the manifold is location in the center ('Center') or the end ('End') of the SAS.
     switch (manifoldType) {
         case 'Center':
@@ -46,11 +48,15 @@ function createLatSizeOptions() {
 
     // This function calculates the perforation discharge rate (perfDis) using the perforation diameter (perfDia) and in-line distal head (distalHead)
     const perfDis = () => 11.79 * (Math.pow(perfDia, 2)) * (Math.sqrt(distalHead))
-    document.getElementById('result-perfDis').value = perfDis();
+    document.getElementById('result-perfDis').value = perfDis().toFixed(2);
 
     // This function calucates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
     const perfNum = () => Math.floor((latLength / perfSpacing))
     document.getElementById('result-perfNum').value = perfNum();
+
+    // This function calucates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
+    const latDis = () => perfDis() * perfNum()
+    document.getElementById('result-latDis').value = latDis().toFixed(2);
 
     // This function calculates the target headloss across the laterals, using the desired distal head
     const latTargetHeadloss = () => 0.21 * distalHead
@@ -73,7 +79,7 @@ function createLatSizeOptions() {
         const latPressureEndHeadLoss = () => perfSpacing * Math.pow((3.55 * perfDis() * perfNum()) / (roughCoeff * (Math.pow((latSizes[latDiaIterator]), 2.63))), 1.85);
         latDeltaHead = latSumHeadLoss - latPressureEndHeadLoss();
         minimumLatDia = latSizes[latDiaIterator];
-        latOptionSelector.options[latDiaIterator].style.display = "none";
         latDiaIterator++;
+        latOptionSelector.options[latDiaIterator].style.display = "none";
     } while (latDeltaHead > latTargetHeadloss())
 }

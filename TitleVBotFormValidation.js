@@ -6,6 +6,17 @@ function validateDesignFlow() {
   }
 }
 
+// function validateFieldOrTrenches() {
+//   var designFlowValue = +document.getElementById('UserInput-designFlow').value
+//   var fieldOrTrenchesValue = document.getElementById("UserInput-fieldOrTrenches").value
+//   if (designFlowValue >= 5000 && fieldOrTrenchesValue == 'Field') {
+//     alert("Invalid Input: Per Title V section 15.252, the maximum design flow for bed or field configuration is 5,000 gallons per day");
+//     document.getElementById("UserInput-fieldOrTrenches").value = 'Trenches';
+//   }
+// }
+
+
+
 function validateTrenchWidth() {
   var trenchWidthValue = +document.getElementById('UserInput-trenchWidth').value
   if (trenchWidthValue < 2) {

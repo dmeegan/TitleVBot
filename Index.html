@@ -144,7 +144,7 @@
                         </div>
                         <div class="formDiv">
                             Desired Lateral Size: <select type="text" id="UserInput-latSize" required
-                                onclick="createLatSizeOptions()">
+                                onfocus="createLatSizeOptions()">
                                 <option value="" style="display:initial"></option>
                                 <option value="1" style="display:initial"> 1" </option>
                                 <option value="1.25" style="display:initial"> 1-1/4" </option>
@@ -156,26 +156,26 @@
                         </div>
                         <div class="formDiv">
                             Desired Manifold Size:
-                            <select type="text" id="UserInput-maniSize" required onclick="createManiSizeOptions()">
+                            <select type="text" id="UserInput-maniSize" required onfocus="createManiSizeOptions()">
                                 <option value="" style="display:initial"></option>
-                                <option value="1" style="display:none"> 1" </option>
-                                <option value="1.25" style="display:none"> 1-1/4" </option>
-                                <option value="1.5" style="display:none"> 1-1/2" </option>
-                                <option value="2" style="display:none"> 2" </option>
-                                <option value="3" style="display:none"> 3" </option>
-                                <option value="4" style="display:none"> 4" </option>
-                                <option value="5" style="display:none"> 5" </option>
-                                <option value="6" style="display:none"> 6" </option>
-                                <option value="8" style="display:none"> 8" </option>
-                                <option value="10" style="display:none"> 10" </option>
-                                <option value="12" style="display:none"> 12" </option>
-                                <option value="14" style="display:none"> 14" </option>
-                                <option value="16" style="display:none"> 16" </option>
-                                <option value="18" style="display:none"> 18" </option>
+                                <option value="1" style="display:initial"> 1" </option>
+                                <option value="1.25" style="display:initial"> 1-1/4" </option>
+                                <option value="1.5" style="display:intial"> 1-1/2" </option>
+                                <option value="2" style="display:intial"> 2" </option>
+                                <option value="3" style="display:intial"> 3" </option>
+                                <option value="4" style="display:intial"> 4" </option>
+                                <option value="5" style="display:intial"> 5" </option>
+                                <option value="6" style="display:intial"> 6" </option>
+                                <option value="8" style="display:intial"> 8" </option>
+                                <option value="10" style="display:intial"> 10" </option>
+                                <option value="12" style="display:intial"> 12" </option>
+                                <option value="14" style="display:intial"> 14" </option>
+                                <option value="16" style="display:intial"> 16" </option>
+                                <option value="18" style="display:intial"> 18" </option>
                             </select><br>
                         </div>
                         <button id='button-networkLayoutForm-cancel' type="button" onclick="clearPressureNetworkForm()"> Cancel </button>
-                        <button id='button-networkLayoutForm-runProgram' type="button" onclick="pressureNetworkSizing()">
+                        <button id='button-networkLayoutForm-pressureNetworkButton' type="button" onclick="pressureNetworkSizing()">
                             Size My Pressure Network
                         </button>
                     </fieldset>
@@ -184,21 +184,24 @@
                             Pressure Network Sizing Results:
                         </legend>
                         <div class="formDiv">
-                            Number of Perforation: <input type="number" id="result-perfNum" readonly><br>
-                        </div>
-                        <div class="formDiv">
-                            Number of Laterals: <input type="number" id="result-latNum" readonly><br>
+                            Number of Perforation per Lateral: <input type="number" id="result-perfNum" readonly><br>
                         </div>
                         <div class="formDiv">
                             Perforation Discharge Rate: <input type="number" id="result-perfDis" readonly
                                 placeholder="gallons per minute"><br>
                         </div>
                         <div class="formDiv">
+                            Number of Laterals: <input type="number" id="result-latNum" readonly><br>
+                        </div>
+                        <div class="formDiv">
+                            Length of Laterals: <input type="number" id="result-latLength" readonly><br>
+                        </div>
+                        <div class="formDiv">
                             Lateral Discharge Rate: <input type="number" id="result-latDis" readonly
                                 placeholder="gallons per minute"><br>
                         </div>
                         <div class="formDiv">
-                            Minimum Pump Discharge Rate: <input type="number" id="result-latDis" readonly
+                            Minimum Pump Discharge Rate: <input type="number" id="result-minPumpDisRate" readonly
                                 placeholder="gallons per minute"><br>
                         </div>
                         <div class="formDiv">
@@ -213,25 +216,6 @@
                             Maximum Dosing Volume: <input type="number" id="result-maxDoseVol" readonly
                                 placeholder="gallons"><br>
                         </div>
-                        <!-- <div id='reqSASAreaDiv' class="formDiv">
-                        Minimum Required SAS Surface Area: <input type="number" id="result-reqSasSurfArea" readonly
-                            placeholder="square foot"><br>
-                    </div>
-                    <div id='trenchSurfaceAreaDiv' style="display:none" class="formDiv">
-                        Surface Area per Trench: <input type="number" id='result-trenchSurfaceArea' readonly
-                            placeholder="square foot"><br>
-                    </div>
-                    <div id='trenchNumDiv' style="display:none" class="formDiv">
-                        Minumum Required Number of Trenches: <input type="number" id='result-trenchNum' readonly><br>
-                    </div>
-                    <div id='SASWidthDiv' class="formDiv">
-                        Minimum SAS Area Width: <input type="number" id='result-minimumSASAreaWidth' readonly
-                            placeholder="feet"><br>
-                    </div>
-                    <div id='surfaceAreaDiv' class="formDiv">
-                        Provided SAS Surface Area: <input type="number" id='result-providedSurfaceArea' readonly
-                            placeholder="square foot"><br>
-                    </div> -->
                     </fieldset>
                 </div>
             </div>

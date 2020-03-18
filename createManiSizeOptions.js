@@ -10,6 +10,11 @@ function createManiSizeOptions() {
     const perfDia = +document.getElementById("UserInput-perfDia").value
     const perfSpacing = +document.getElementById("UserInput-perfSpacing").value
 
+     
+    // let maniClearSelector = document.getElementById("UserInput-maniSize");
+    // for (let o of maniClearSelector.options) {
+    //   o.style.display = "none";
+    // }
 
 
     // The following switch statement determines the total lateral length (latLength) based on whether the manifold is location in the center ('Center') or the end ('End') of the SAS.
@@ -82,14 +87,14 @@ function createManiSizeOptions() {
 
     const maniSizes = [1, 1.25, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18]
 
-    // The following do while loop, chooses the nominal manifold size to use, based on the minimum manifold size (useManiDia) and the available nominal manifold sizes (maniSizes)
-    let maniSizeDifference = 100
+    // The following while loop, chooses the nominal manifold size to use, based on the minimum manifold size (useManiDia) and the available nominal manifold sizes (maniSizes)
+    let maniSizeDifference = 1
     let maniOptionSelector = document.getElementById("UserInput-maniSize");
-    let maniSizeIterator = 13;
-    while(maniSizeDifference > 1) {
-        maniSizeDifference = maniSizes[maniSizeIterator] - minimumManiDia();
+    let maniSizeIterator = 0;
+    while(maniSizeDifference > 0) {
+        maniSizeDifference =  minimumManiDia() - maniSizes[maniSizeIterator];
         useManiDia = maniSizes[maniSizeIterator];
-        maniOptionSelector.options[maniSizeIterator+1].style.display = "initial";
-        maniSizeIterator--;
+        maniOptionSelector.options[maniSizeIterator].style.display = "none";
+        maniSizeIterator++;
     }   
 }
