@@ -6,22 +6,83 @@
     padding: 5px;
 }
 
-.resultFieldset {
-    /* display: flex; */
-    background-color: #eefafc;
+/* input {
+    background-color: #f0f0f0;
+} */
+
+
+form {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+select {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.backgroundImageClass {
+    position: relative;
+   }
+
+.backgroundImageClass::after {
+    content: "";
+    background-image: url("/Background Image/IMG_6341.jpg");
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    z-index: -1;   
+   }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 5px;
+}
+
+.inputDiv {
+    padding: 20px;
+    background-color: #ffffff95;
+    border-radius: 20px;
+    margin: 10px;
+    width: 45%;
+    /* z-index: 1; */
+ }
+
+.resultDiv {
+    padding: 20px;
+    background-color: #a2ddff95;
+    border-radius: 20px;
+    margin: 10px;
+    width: 45%;
 } 
 
 .flexCol {
+    padding: 10px;
     display: flex;
     flex-direction: column;
 }
 
 .flexRow {
+    padding: 10px;
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
 }
 
-fieldset{
-    width: 45%;
+legend {
+    font-weight: 600;
+    padding: 10px;
 }
+
+/* fieldset{
+    width: 45%;
+} */

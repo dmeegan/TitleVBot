@@ -11,13 +11,15 @@
     <!-- <div class="topnav">
         <a class="active" href="#home">Home</a>
     </div> -->
+    <div class="backgroundImageClass">
+    
     <form id="networkLayoutForm">
         <div class='formFlexContainer'>
             <div class='flexCol'>
                 <div class='flexRow'>
-                    <fieldset id="networkLayoutFieldset">
+                    <div id="networkLayoutDiv" class="inputDiv">
                         <legend>
-                            Soil Absorption System Sizing Input:
+                            Soil Absorption System Sizing Input
                         </legend>
                         <div class="formDiv">
                             Design Flow: <input type="number" id="UserInput-designFlow" required
@@ -69,12 +71,12 @@
                         <button id='button-networkLayoutForm-runProgram' type="button" onclick="sasNetworkLayout()">
                             Size My SAS
                         </button>
-                    </fieldset>
+                    </div>
                     <!-- </form>
     <form id="networkLayoutResultForm"> -->
-                    <fieldset id="networkLayoutResultsFieldset" class="resultFieldset">
+                    <div id="networkLayoutResultsDiv" class="resultDiv">
                         <legend>
-                            Soil Absorption System Sizing Results:
+                            Soil Absorption System Sizing Results
                         </legend>
                         <div id='LTARDiv' class="formDiv">
                             Long Term Acceptance Rate(LTAR): <input type="number" id="result-LTAR" readonly
@@ -100,14 +102,14 @@
                             Provided SAS Surface Area: <input type="number" id='result-providedSurfaceArea' readonly
                                 placeholder="square foot"><br>
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
                 <!-- </form> -->
                 <div class='flexRow'>
                     <!-- <form id="pressureNetworkForm"> -->
-                    <fieldset id="pressureNetworkFieldset">
+                    <div id="pressureNetworkDiv" class="inputDiv">
                         <legend>
-                            Pressure Network Sizing Input:
+                            Pressure Network Sizing Input
                         </legend>
                         <div class="formDiv">
                             Lateral Spacing: <input type="number" id="UserInput-latSpacing" required placeholder="feet"
@@ -178,10 +180,10 @@
                         <button id='button-networkLayoutForm-pressureNetworkButton' type="button" onclick="pressureNetworkSizing()">
                             Size My Pressure Network
                         </button>
-                    </fieldset>
-                    <fieldset id="pressureNetworkResultsFieldset" class="resultFieldset">
+                    </div>
+                    <div id="pressureNetworkResultsDiv" class="resultDiv">
                         <legend>
-                            Pressure Network Sizing Results:
+                            Pressure Network Sizing Results
                         </legend>
                         <div class="formDiv">
                             Number of Perforation per Lateral: <input type="number" id="result-perfNum" readonly><br>
@@ -216,11 +218,12 @@
                             Maximum Dosing Volume: <input type="number" id="result-maxDoseVol" readonly
                                 placeholder="gallons"><br>
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
+</div>
 </body>
 <footer>
     <script src="TitleVBotFormValidation.js">
