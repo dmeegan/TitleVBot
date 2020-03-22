@@ -3,7 +3,7 @@ function createLatSizeOptions() {
     const perfDia = +document.getElementById('UserInput-perfDia').value
     const manifoldType = document.getElementById('UserInput-manifoldType').value
     const distalHead = +document.getElementById('UserInput-distalHead').value
-    const sasAreaLength = +document.getElementById("UserInput-sasAreaLength").value
+    const sasAreaLength = +document.getElementById("result-recLength").value
     const sasAreaWidth = +document.getElementById('result-minimumSASAreaWidth').value
     const latSpacing = +document.getElementById("UserInput-latSpacing").value
     const pipeMaterial = document.getElementById("UserInput-pipeMaterial").value

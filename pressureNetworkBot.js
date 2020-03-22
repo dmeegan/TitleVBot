@@ -5,6 +5,7 @@ function pressureNetworkSizing() {
     const latNum = +document.getElementById('result-latNum').value
     const latDia = +document.getElementById('UserInput-latSize').value
     const latLength = +document.getElementById('result-latLength').value
+   
 
     // The following function calculates the total piping volume of that laterals (latPipingVolume) in gallons, based on the number of laterals, and the length of laterals.
     const latPipingVolume = () => Math.ceil(7.48 * (Math.PI * Math.pow((latDia / 24), 2) * latNum * latLength));

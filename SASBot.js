@@ -5,6 +5,7 @@ function sasNetworkLayout() {
     const sasAreaLength = +document.getElementById('UserInput-sasAreaLength').value
     const percRate = +document.getElementById('UserInput-percRate').value
     const soilClass = document.getElementById('UserInput-soilClass').value
+    const altBed = document.getElementById('UserInput-altBed').value
 
     // The following arrays show the long term acceptance rates (LTAR) for each soil class (SoilClass). The order of the terms in the arrays are based on the percolation rate (percRate).
     const soilClassI = [0.74, 0.70, 0.68, 0.66, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a']
@@ -21,7 +22,7 @@ function sasNetworkLayout() {
         soilClassIterator = 3 + Math.ceil(((percRate - 8) / 5))
     } else if (percRate <= 60) {
         soilClassIterator = 8 + Math.ceil(((percRate - 30) / 10))
-    } 
+    }
 
     // The following switch statement determines the LTAR using the percolation rate (percRate) and the soil class (soilClass)
     switch (soilClass) {
@@ -45,19 +46,38 @@ function sasNetworkLayout() {
     document.getElementById('result-LTAR').value = LTAR;
     document.getElementById('result-reqSasSurfArea').value = reqSasSurfArea();
 
+
     if (fieldOrTrenches == 'Trenches') {
         trenchWidth = +document.getElementById('UserInput-trenchWidth').value
         trenchHeight = +document.getElementById('UserInput-trenchHeight').value
         reserveAreaBetweenTrenches = document.getElementById('UserInput-reserveAreaBetweenTrenches').value
 
+        
         // The following function calculates the surface area per linear foot of trench (trenchSurfaceAreaPerFoot) based on the trench hight (trenchHeight) and the trench width (trenchWidth).
         const trenchSurfaceAreaPerFoot = () => 2 * trenchHeight + trenchWidth
 
         // The following function calulcates the total surface area per trenc (trenchSurfaceArea) based on the surface area per linear foot (trenchSurfaceAreaPerFoot) and the trench length (trenchLength).
         const trenchSurfaceArea = () => trenchSurfaceAreaPerFoot() * sasAreaLength
 
-        // The following function calculates the required number of trenches (trenchNum) to achieve the required total SAS surface area (reqSasSurfArea).
-        const trenchNum = () => Math.ceil((reqSasSurfArea() / trenchSurfaceArea()))
+        // The following function calculates the required number of trenches (rectrenchNum) to achieve the required total SAS surface area (reqSasSurfArea).
+        const minTrenchNum = () => Math.ceil(reqSasSurfArea() / trenchSurfaceArea())
+
+
+        switch (altBed) {
+            case 'Yes':
+                recTrenchNum = 2 * Math.ceil((reqSasSurfArea() / trenchSurfaceArea()) / 2);
+                recTrenchLength = Math.ceil(reqSasSurfArea() / (recTrenchNum * trenchSurfaceAreaPerFoot()));
+                recTrenchSurfaceArea = trenchSurfaceAreaPerFoot() * recTrenchLength
+                break;
+            case 'No':
+                recTrenchNum = Math.ceil(minTrenchNum());
+                recTrenchLength = Math.ceil(reqSasSurfArea() / (recTrenchNum * trenchSurfaceAreaPerFoot()));
+                recTrenchSurfaceArea = trenchSurfaceAreaPerFoot() * recTrenchLength
+                break;
+        }
+
+        document.getElementById('result-recLength').value = recTrenchLength;
+        document.getElementById('result-recTrenchSurfaceArea').value = recTrenchSurfaceArea;
 
         switch (reserveAreaBetweenTrenches) {
             case 'Yes':
@@ -68,15 +88,30 @@ function sasNetworkLayout() {
                 break;
         }
 
-        // The following function calculates the overall width of the SAS (sasAreaWidth) based on the number of trenches (trenchNum) and the trench width (trenchWidth).
-        const overallSasAreaWidthTrench = () => trenchNum() * trenchWidth + (trenchNum() - 1) * reqTrenchSeparation
 
-        const provSasSurfaceAreaTrenches = () => trenchNum() * trenchSurfaceArea()
 
-        document.getElementById('result-trenchSurfaceArea').value = trenchSurfaceArea();
-        document.getElementById('result-trenchNum').value = trenchNum();
-        document.getElementById('result-minimumSASAreaWidth').value = overallSasAreaWidthTrench();
-        document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaTrenches();  
+        // The following function calculates the overall width of the SAS (sasAreaWidth) based on the number of trenches (rectrenchNum) and the trench width (trenchWidth).
+        const overallSasAreaWidthTrench = () => recTrenchNum * trenchWidth + (recTrenchNum - 1) * reqTrenchSeparation
+
+        const provSasSurfaceAreaTrenches = () => recTrenchNum * recTrenchSurfaceArea;
+
+        // document.getElementById('result-trenchSurfaceArea').value = trenchSurfaceArea();
+
+        document.getElementById('result-minTrenchNum').value = minTrenchNum()
+
+        switch (altBed) {
+            case 'Yes':
+                document.getElementById('result-recTrenchNum').value = recTrenchNum / 2;
+                document.getElementById('result-minimumSASAreaWidth').value = overallSasAreaWidthTrench() / 2;
+                document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaTrenches();
+                break;
+            case 'No':
+                document.getElementById('result-recTrenchNum').value = rectrenchNum;
+                document.getElementById('result-minimumSASAreaWidth').value = overallSasAreaWidthTrench();
+                document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaTrenches();
+                break;
+        }
+
     } else if (fieldOrTrenches == 'Field') {
 
         // The following function calculates the required width of the field (reqFieldWidth).
@@ -85,7 +120,15 @@ function sasNetworkLayout() {
         const provSasSurfaceAreaField = () => reqFieldWidth() * sasAreaLength;
 
         // document.getElementById('minimumFieldWidthDiv').style.display = 'initial';
-        document.getElementById('result-minimumSASAreaWidth').value = reqFieldWidth();
+        switch (altBed) {
+            case 'Yes':
+                document.getElementById('result-minimumSASAreaWidth').value = reqFieldWidth() / 2;
+                break;
+            case 'No':
+                document.getElementById('result-minimumSASAreaWidth').value = reqFieldWidth();
+                break;
+        }
+        document.getElementById('result-recLength').value = sasAreaLength;
         document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaField();
-    }  
+    }
 }

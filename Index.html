@@ -31,8 +31,7 @@
                                 <option value=''></option>
                                 <option value='Trenches'>Trenches</option>
                                 <option value='Field'>Field</option>
-                            </select>
-                            <br>
+                            </select><br>
                         </div>
                         <div id='trenchWidthDiv' style="display:none" class="formDiv">
                             Trench Width: <input type="number" id="UserInput-trenchWidth" required placeholder="feet"
@@ -50,8 +49,15 @@
                             </select>
                         </div>
                         <div class="formDiv">
-                            Desired SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required
+                            Desired Maximum SAS Area Length: <input type="number" id="UserInput-sasAreaLength" required
                                 placeholder="feet" onchange="validateDesiredLength()" min="0" max="100"><br>
+                        </div>
+                        <div class="formDiv">
+                            Are you using an alternating bed system? <select type="text"
+                                id="UserInput-altBed" onchange="createAltBedOptions()"><br>
+                                <option value='Yes'>Yes</option>
+                                <option value='No'>No</option>
+                            </select><br>
                         </div>
                         <div class="formDiv">
                             Percolation Rate: <input type="number" id="UserInput-percRate" required
@@ -86,20 +92,28 @@
                             Minimum Required SAS Surface Area: <input type="number" id="result-reqSasSurfArea" readonly
                                 placeholder="square foot"><br>
                         </div>
-                        <div id='trenchSurfaceAreaDiv' style="display:none" class="formDiv">
-                            Surface Area per Trench: <input type="number" id='result-trenchSurfaceArea' readonly
-                                placeholder="square foot"><br>
-                        </div>
-                        <div id='trenchNumDiv' style="display:none" class="formDiv">
-                            Minumum Required Number of Trenches: <input type="number" id='result-trenchNum'
+                        <div id='minTrenchNumDiv' style="display:none" class="formDiv">
+                            Minumum Required Number of Trenches: <input type="number" id='result-minTrenchNum'
                                 readonly><br>
                         </div>
+                        <div id='recTrenchNumDiv' style="display:none" class="formDiv">
+                            Provided Number of Trenches per Area: <input type="number" id='result-recTrenchNum'
+                                readonly><br>
+                        </div>
+                        <div id='trenchSurfaceAreaDiv' style="display:none" class="formDiv">
+                            Surface Area per Trench: <input type="number" id='result-recTrenchSurfaceArea' readonly
+                                placeholder="square foot"><br>
+                        </div>
+                        <div id='recLengthDiv' class="formDiv">
+                            Provided SAS Area Length: <input type="number" id='result-recLength'
+                                readonly placeholder="feet"><br>
+                        </div>
                         <div id='SASWidthDiv' class="formDiv">
-                            Minimum SAS Area Width: <input type="number" id='result-minimumSASAreaWidth' readonly
+                            Provided Width per Area: <input type="number" id='result-minimumSASAreaWidth' readonly
                                 placeholder="feet"><br>
                         </div>
                         <div id='surfaceAreaDiv' class="formDiv">
-                            Provided SAS Surface Area: <input type="number" id='result-providedSurfaceArea' readonly
+                            Overall Provided SAS Surface Area: <input type="number" id='result-providedSurfaceArea' readonly
                                 placeholder="square foot"><br>
                         </div>
                     </div>
@@ -229,6 +243,8 @@
     <script src="TitleVBotFormValidation.js">
     </script>
     <script src="createTrenchOptions.js">
+    </script>
+    <script src="createAltBedOptions.js">
     </script>
     <script src="createSoilClassOptions.js">
     </script>
