@@ -9,12 +9,12 @@ function createTrenchOptions() {
     var fieldOrTrenches = document.getElementById('UserInput-fieldOrTrenches').value;
     switch (fieldOrTrenches) {
         case 'Trenches':
-            document.getElementById('trenchWidthDiv').style.display = 'initial';
-            document.getElementById('trenchHeightDiv').style.display = 'initial';
-            document.getElementById('reserveBetweenTrenchesDiv').style.display = 'initial';
-            document.getElementById('trenchSurfaceAreaDiv').style.display = 'initial';
-            document.getElementById('minTrenchNumDiv').style.display = 'initial';
-            document.getElementById('recTrenchNumDiv').style.display = 'initial';
+            document.getElementById('trenchWidthDiv').style.display = 'block';
+            document.getElementById('trenchHeightDiv').style.display = 'block';
+            document.getElementById('reserveBetweenTrenchesDiv').style.display = 'block';
+            document.getElementById('trenchSurfaceAreaDiv').style.display = 'block';
+            document.getElementById('minTrenchNumDiv').style.display = 'block';
+            document.getElementById('recTrenchNumDiv').style.display = 'block';
             break;
         case 'Field':
             break;
