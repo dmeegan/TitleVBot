@@ -7,7 +7,7 @@ function validateDesignFlow() {
     document.getElementById('UserInput-fieldOrTrenches').options[1].style.display = 'block';
     document.getElementById('UserInput-fieldOrTrenches').options[2].style.display = 'block';
   } else if (designFlowValue >= 5000) {
-    alert("Invalid Input: Per Title V section 15.252, the maximum design flow for bed or field configuration is 5,000 gallons per day");
+    alert("Per Title V section 15.252, the maximum design flow for bed or field configuration is 5,000 gallons per day. I have assumed that you will be using trenches");
     document.getElementById('UserInput-fieldOrTrenches').selectedIndex = '1';
     document.getElementById('UserInput-fieldOrTrenches').options[2].style.display = "none";
     createTrenchOptions()
