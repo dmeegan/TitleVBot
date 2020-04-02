@@ -129,8 +129,6 @@ function calcDesignFlow() {
 
     const addFlow = () => flowUnitAddNumber * unitAddFlow;
 
-    alert(comUseTypeIndex)
-
     if (resUseTypeIndex == '1' && baseFlow() < 440) {
         baseFlowAdjustment = 440 - baseFlow();
         addFlowAdjustment = 0;
