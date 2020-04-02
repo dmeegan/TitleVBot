@@ -10,13 +10,6 @@ function createManiSizeOptions() {
     const perfDia = +document.getElementById("UserInput-perfDia").value
     const perfSpacing = +document.getElementById("UserInput-perfSpacing").value
 
-     
-    // let maniClearSelector = document.getElementById("UserInput-maniSize");
-    // for (let o of maniClearSelector.options) {
-    //   o.style.display = "none";
-    // }
-
-
     // The following switch statement determines the total lateral length (latLength) based on whether the manifold is location in the center ('Center') or the end ('End') of the SAS.
     switch (pipeMaterial) {
         case 'pvc':
@@ -53,7 +46,7 @@ function createManiSizeOptions() {
     // This function calculates the perforation discharge rate (perfDis) using the perforation diameter (perfDia) and in-line distal head (distalHead)
     const perfDis = () => 11.79 * (Math.pow(perfDia, 2)) * (Math.sqrt(distalHead))
 
-    // This function calucates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
+    // This function calculates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
     const perfNum = () => Math.floor((latLength / perfSpacing))
 
     // This function calculates the lateral discharge rate (Q) using the perforation discharge rate (perfDis) and the number of total number of perforations per lateral (N) */

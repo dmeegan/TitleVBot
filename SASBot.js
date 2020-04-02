@@ -56,10 +56,10 @@ function sasNetworkLayout() {
         // The following function calculates the surface area per linear foot of trench (trenchSurfaceAreaPerFoot) based on the trench hight (trenchHeight) and the trench width (trenchWidth).
         const trenchSurfaceAreaPerFoot = () => 2 * trenchHeight + trenchWidth
 
-        // The following function calulcates the total surface area per trenc (trenchSurfaceArea) based on the surface area per linear foot (trenchSurfaceAreaPerFoot) and the trench length (trenchLength).
+        // The following function calculates the total surface area per trench (trenchSurfaceArea) based on the surface area per linear foot (trenchSurfaceAreaPerFoot) and the trench length (trenchLength).
         const trenchSurfaceArea = () => trenchSurfaceAreaPerFoot() * sasAreaLength
 
-        // The following function calculates the required number of trenches (rectrenchNum) to achieve the required total SAS surface area (reqSasSurfArea).
+        // The following function calculates the required number of trenches (minTrenchNum) to achieve the required total SAS surface area (reqSasSurfArea).
         const minTrenchNum = () => Math.ceil(reqSasSurfArea() / trenchSurfaceArea())
 
 
@@ -90,7 +90,7 @@ function sasNetworkLayout() {
 
 
 
-        // The following function calculates the overall width of the SAS (sasAreaWidth) based on the number of trenches (rectrenchNum) and the trench width (trenchWidth).
+        // The following function calculates the overall width of the SAS (sasAreaWidth) based on the number of trenches (recTrenchNum) and the trench width (trenchWidth).
         const overallSasAreaWidthTrench = () => recTrenchNum * trenchWidth + (recTrenchNum - 1) * reqTrenchSeparation
 
         const provSasSurfaceAreaTrenches = () => recTrenchNum * recTrenchSurfaceArea;
@@ -106,7 +106,7 @@ function sasNetworkLayout() {
                 document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaTrenches();
                 break;
             case 'No':
-                document.getElementById('result-recTrenchNum').value = rectrenchNum;
+                document.getElementById('result-recTrenchNum').value = recTrenchNum;
                 document.getElementById('result-minimumSASAreaWidth').value = overallSasAreaWidthTrench();
                 document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaTrenches();
                 break;

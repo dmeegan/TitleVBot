@@ -50,11 +50,11 @@ function createLatSizeOptions() {
     const perfDis = () => 11.79 * (Math.pow(perfDia, 2)) * (Math.sqrt(distalHead))
     document.getElementById('result-perfDis').value = perfDis().toFixed(2);
 
-    // This function calucates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
+    // This function calculates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
     const perfNum = () => Math.floor((latLength / perfSpacing))
     document.getElementById('result-perfNum').value = perfNum();
 
-    // This function calucates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
+    // This function calculates the total number of perforations per lateral (perfNum) using the lateral length (latLength) and perforation spacing (perfSpacing)
     const latDis = () => perfDis() * perfNum()
     document.getElementById('result-latDis').value = latDis().toFixed(2);
 

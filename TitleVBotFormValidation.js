@@ -1,7 +1,23 @@
+function validateFlowUnitNumber() {
+  var flowUnitNumberValue = +document.getElementById("UserInput-flowUnitNumber").value
+  if (flowUnitNumberValue <= 0) {
+    alert("Invalid Input: Please enter a positive non-zero value in gallons per day");
+    document.getElementById("UserInput-flowUnitNumber").value = '';
+  } 
+}
+
+function validateFlowUnitAddNumber() {
+  var flowUnitAddNumberValue = +document.getElementById("UserInput-flowUnitAddNumber").value
+  if (flowUnitAddNumberValue <= 0) {
+    alert("Invalid Input: Please enter a positive non-zero value in gallons per day");
+    document.getElementById("UserInput-flowUnitAddNumber").value = '';
+  } 
+}
+
 function validateDesignFlow() {
   var designFlowValue = +document.getElementById('UserInput-designFlow').value
   if (designFlowValue <= 0) {
-    alert("Invalid Input: Your dsign flow should be positive non-zero value in gallons per day");
+    alert("Invalid Input: Your design flow should be positive non-zero value in gallons per day");
     document.getElementById('UserInput-designFlow').value = '';
   } else if (designFlowValue < 5000) {
     document.getElementById('UserInput-fieldOrTrenches').options[1].style.display = 'block';
