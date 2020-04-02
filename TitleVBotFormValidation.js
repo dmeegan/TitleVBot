@@ -119,14 +119,3 @@ function validatePerfDia() {
     document.getElementById('UserInput-perfDia').value = 0.625;
 }
 }
-
-function clearPressureNetworkForm() {
-  document.getElementById('UserInput-latSpacing').value = '';
-  document.getElementById('UserInput-perfSpacing').value = '';
-  document.getElementById('UserInput-perfDia').value = '';
-  document.getElementById("UserInput-manifoldType").selectedIndex = '0';
-  document.getElementById("UserInput-pipeMaterial").selectedIndex = '0';
-  document.getElementById("UserInput-latSize").selectedIndex = '0';
-  document.getElementById("UserInput-maniSize").selectedIndex = '0';
-
-}

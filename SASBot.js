@@ -52,7 +52,7 @@ function sasNetworkLayout() {
         trenchHeight = +document.getElementById('UserInput-trenchHeight').value
         reserveAreaBetweenTrenches = document.getElementById('UserInput-reserveAreaBetweenTrenches').value
 
-        
+
         // The following function calculates the surface area per linear foot of trench (trenchSurfaceAreaPerFoot) based on the trench hight (trenchHeight) and the trench width (trenchWidth).
         const trenchSurfaceAreaPerFoot = () => 2 * trenchHeight + trenchWidth
 
@@ -131,4 +131,31 @@ function sasNetworkLayout() {
         document.getElementById('result-recLength').value = sasAreaLength;
         document.getElementById('result-providedSurfaceArea').value = provSasSurfaceAreaField();
     }
+}
+
+function clearSasNetworkLayout() {
+    document.getElementById('UserInput-designFlow').value = '';
+    document.getElementById('UserInput-fieldOrTrenches').value = '';
+    document.getElementById('UserInput-sasAreaLength').value = '';
+    document.getElementById('UserInput-percRate').value = '';
+    document.getElementById('UserInput-soilClass').value = '';
+    document.getElementById('UserInput-altBed').value = '';
+    document.getElementById('result-recTrenchNum').value = '';
+    document.getElementById('result-minimumSASAreaWidth').value = '';
+    document.getElementById('result-providedSurfaceArea').value = '';
+    document.getElementById('result-recLength').value = '';
+    document.getElementById('result-recTrenchSurfaceArea').value = '';
+
+    document.getElementById("UserInput-soilClass").selectedIndex = '0'
+    document.getElementById("UserInput-soilClass").options.item(1).setAttribute("style", "display:none");
+    document.getElementById("UserInput-soilClass").options.item(2).setAttribute("style", "display:none");
+    document.getElementById("UserInput-soilClass").options.item(3).setAttribute("style", "display:none");
+    document.getElementById("UserInput-soilClass").options.item(4).setAttribute("style", "display:none");
+
+    document.getElementById('trenchWidthDiv').style.display = 'none';
+    document.getElementById('trenchHeightDiv').style.display = 'none';
+    document.getElementById('reserveBetweenTrenchesDiv').style.display = 'none';
+    document.getElementById('trenchSurfaceAreaDiv').style.display = 'none';
+    document.getElementById('minTrenchNumDiv').style.display = 'none';
+    document.getElementById('recTrenchNumDiv').style.display = 'none';
 }
