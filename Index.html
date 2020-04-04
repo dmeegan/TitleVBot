@@ -160,11 +160,11 @@
                             </legend>
                             <div class="formDiv">
                                 Design Flow: <input type="number" id="UserInput-designFlow" required
-                                    placeholder="gallons per day" onchange="validateDesignFlow()" min="0"><br>
+                                    placeholder="gallons per day" oninput="validateDesignFlow()" min="0"><br>
                             </div>
                             <div class="formDiv">
                                 Is your Soil Absorption System a field or Trenches? <select type="text"
-                                    id="UserInput-fieldOrTrenches" onclick="createTrenchOptions()"><br>
+                                    id="UserInput-fieldOrTrenches" oninput="createTrenchOptions()"><br>
                                     <option value=''></option>
                                     <option value='Trenches' style="display:initial">Trenches</option>
                                     <option value='Field' style="display:initial">Field</option>
@@ -172,11 +172,11 @@
                             </div>
                             <div id='trenchWidthDiv' style="display:none" class="formDiv">
                                 Trench Width: <input type="number" id="UserInput-trenchWidth" required
-                                    placeholder="feet" onchange="validateTrenchWidth()" min="2" max="3"><br>
+                                    placeholder="feet" oninput="validateTrenchWidth()" min="2" max="3"><br>
                             </div>
                             <div id='trenchHeightDiv' style="display:none" class="formDiv">
                                 Trench Height: <input type="number" id="UserInput-trenchHeight" required
-                                    placeholder="feet" onchange="validateTrenchHeight()" min="1/2" max="2"><br>
+                                    placeholder="feet" oninput="validateTrenchHeight()" min="1/2" max="2"><br>
                             </div>
                             <div id='reserveBetweenTrenchesDiv' style="display:none" class="formDiv">
                                 Is the reserve area between the trenches? <select type="text"
@@ -192,7 +192,7 @@
                             </div>
                             <div class="formDiv">
                                 Are you using an alternating bed system? <select type="text" id="UserInput-altBed"
-                                    onchange="createAltBedOptions()"><br>
+                                    oninput="createAltBedOptions()"><br>
                                     <option value='Yes'>Yes</option>
                                     <option value='No'>No</option>
                                 </select><br>
