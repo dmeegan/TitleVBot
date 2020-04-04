@@ -87,7 +87,7 @@ function createManiSizeOptions() {
     while(maniSizeDifference > 0) {
         maniSizeDifference =  minimumManiDia() - maniSizes[maniSizeIterator];
         useManiDia = maniSizes[maniSizeIterator];
-        maniOptionSelector.options[maniSizeIterator].style.display = "none";
+        maniOptionSelector.options[maniSizeIterator].disabled = true;
         maniSizeIterator++;
     }   
 }

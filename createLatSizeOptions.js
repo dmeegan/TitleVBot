@@ -80,6 +80,6 @@ function createLatSizeOptions() {
         latDeltaHead = latSumHeadLoss - latPressureEndHeadLoss();
         minimumLatDia = latSizes[latDiaIterator];
         latDiaIterator++;
-        latOptionSelector.options[latDiaIterator].style.display = "none";
+        latOptionSelector.options[latDiaIterator].disabled = true;
     } while (latDeltaHead > latTargetHeadloss())
 }

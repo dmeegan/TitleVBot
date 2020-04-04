@@ -77,12 +77,16 @@ function validateLatSpacing() {
     var reserveBetweenTrenches = document.getElementById('UserInput-reserveAreaBetweenTrenches').value
     if (reserveBetweenTrenches == 'Yes') {
       typicalLatSpacing = (trenchWidthValue) + (3 * trenchWidthValue)
-      alert("Your lateral spacing was outside ouf your trenches. I've adjusted it to be centered on your trenches");
+      if (latSpacing != typicalLatSpacing) {
+      alert("Your lateral spacing was outside of your trenches. I've adjusted it to be centered on your trenches");
       document.getElementById('UserInput-latSpacing').value = typicalLatSpacing
+      }
     } else if (reserveBetweenTrenches == 'No') {
       typicalLatSpacing = (trenchWidthValue) + (2 * trenchWidthValue)
-      alert("Your lateral spacing was outside ouf your trenches. I've adjusted it to be centered on your trenches");
+      if (latSpacing != typicalLatSpacing) {
+      alert("Your lateral spacing was outside of your trenches. I've adjusted it to be centered on your trenches");
       document.getElementById('UserInput-latSpacing').value = typicalLatSpacing
+      }
     }
   } else if (fieldOrTrenches == 'Field' && latSpacing > 6) {
     alert("Invalid Input: Per Title V section 15.252, the maximum spacing between laterals in a field is 6 feet");
