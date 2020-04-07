@@ -79,8 +79,7 @@ button {
 .flexCol {
     padding: 10px;
     display: flex;
-    /* flex-direction: column; */
-    flex-flow: column;
+    flex-direction: column;
 }
 
 
@@ -90,8 +89,6 @@ button {
     /* flex-direction: row; */
     flex-flow: wrap;
 }
-
-
 
 
 legend {
