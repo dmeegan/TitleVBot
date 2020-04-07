@@ -75,20 +75,23 @@ button {
     border-style: hidden;
 } 
 
-@media only screen and (max-width: 600px) {
+
 .flexCol {
     padding: 10px;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    flex-flow: column;
 }
-}
+
 
 .flexRow {
     padding: 10px;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     flex-flow: wrap;
 }
+
+
 
 
 legend {
