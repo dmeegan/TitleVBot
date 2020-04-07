@@ -3,7 +3,13 @@
 }
 
 .formDiv {
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    clear: both;
+}
+
+.formLabel {
+    margin-bottom: 5px;
 }
 
 
@@ -30,7 +36,7 @@ option {
 .backgroundImageClass::after {
     content: "";
     background-image: url("/Background Image/IMG_5249.jpg");
-    opacity: 0.8;
+    opacity: 1;
     top: 0;
     left: 0;
     bottom: 0;
@@ -50,27 +56,31 @@ button {
     margin: 5px;
 }
 
-.inputDiv {
+.inputFieldset {
     padding: 20px;
     background-color: #ffffff95;
     border-radius: 20px;
     margin: 10px;
     width: 45%;
+    border-style: hidden;
     /* z-index: 1; */
  }
 
-.resultDiv {
+.resultFieldset{
     padding: 20px;
     background-color: #a2ddff95;
     border-radius: 20px;
     margin: 10px;
     width: 45%;
+    border-style: hidden;
 } 
 
+@media only screen and (max-width: 600px) {
 .flexCol {
     padding: 10px;
     display: flex;
     flex-direction: column;
+}
 }
 
 .flexRow {
@@ -80,11 +90,10 @@ button {
     flex-flow: wrap;
 }
 
-legend {
-    font-weight: 600;
-    padding: 10px;
-}
 
-/* fieldset{
-    width: 45%;
-} */
+legend {
+    font-weight: 700;
+    padding-bottom: 5px;
+    float: left;
+    
+}

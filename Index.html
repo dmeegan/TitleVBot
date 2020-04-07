@@ -17,13 +17,15 @@
             <div class='formFlexContainer'>
                 <div class='flexCol'>
                     <div class='flexRow'>
-                        <div id="designFlowFormDiv" class="inputDiv">
+                        <fieldset id="designFlowFormFieldset" class="inputFieldset">
                             <legend>
                                 Design Flow Calculation Input
                             </legend>
                             <div class="formDiv">
-                                Type of Establishment <select type="text" id="UserInput-establishmentType"
-                                    oninput="createUseTypeOptions()" onfocus="createUseTypeOptions()"><br>
+                                <label for="UserInput-establishmentType" class="formLabel"> Type of Establishment
+                                </label><br>
+                                <select type="text" id="UserInput-establishmentType" oninput="createUseTypeOptions()"
+                                    onfocus="createUseTypeOptions()"><br>
                                     <option value=''></option>
                                     <option value='Residential'>Residential</option>
                                     <option value='Commercial'>Commercial</option>
@@ -31,8 +33,8 @@
                                 </select><br>
                             </div>
                             <div id="resUseTypeDiv" style="display:none" class="formDiv">
-                                Type of Use <select type="text" id="UserInput-resUseType"
-                                    oninput="createUnitFlowOptions()"><br>
+                                <label for="UserInput-resUseType" class="formLabel"> Type of Use </label><br>
+                                <select type="text" id="UserInput-resUseType" oninput="createUnitFlowOptions()"><br>
                                     <option value='0'></option>
                                     <option value='1'>Bed & Breakfast, without restaurant open to the public</option>
                                     <option value='2'>Bed & Breakfast, with restaurant open to the public</option>
@@ -50,8 +52,8 @@
                                 </select><br>
                             </div>
                             <div id="comUseTypeDiv" style="display:none" class="formDiv">
-                                Type of Use <select type="text" id="UserInput-comUseType"
-                                    oninput="createUnitFlowOptions()"><br>
+                                <label for="UserInput-comUseType" class="formLabel"> Type of Use </label><br>
+                                <select type="text" id="UserInput-comUseType" oninput="createUnitFlowOptions()"><br>
                                     <option value='0'></option>
                                     <option value='1'>Airport</option>
                                     <option value='2'>Barber Shop/Beauty Salon</option>
@@ -86,8 +88,8 @@
                                 </select><br>
                             </div>
                             <div id="instUseTypeDiv" style="display:none" class="formDiv">
-                                Type of Use <select type="text" id="UserInput-instUseType"
-                                    oninput="createUnitFlowOptions()"><br>
+                                <label for="UserInput-instUseType" class="formLabel"> Type of Use </label><br>
+                                <select type="text" id="UserInput-instUseType" oninput="createUnitFlowOptions()"><br>
                                     <option value='0'></option>
                                     <option value='1'>Place of worship, without kitchen</option>
                                     <option value='2'>Place of worship, with kitchen</option>
@@ -103,8 +105,8 @@
                                 </select><br>
                             </div>
                             <div id="schoolUseTypeDiv" style="display:none" class="formDiv">
-                                Type of Use <select type="text" id="UserInput-schoolUseType"
-                                    oninput="createUnitFlowOptions()"><br>
+                                <label for="UserInput-schoolUseType" class="formLabel"> Type of Use </label><br>
+                                <select type="text" id="UserInput-schoolUseType" oninput="createUnitFlowOptions()"><br>
                                     <option value='0'></option>
                                     <option value='1'>Elementary School, without cafeteria, gymnasium or showers
                                     </option>
@@ -121,89 +123,102 @@
                                 </select><br>
                             </div>
                             <div id="flowUnitDiv" style="display:none" class="formDiv">
-                                Number of <span id="flowUnitLabelSpan"></span>: <input type="text"
-                                    id="UserInput-flowUnitNumber" onblur="validateFlowUnitNumber()"><br>
+                                <label for="UserInput-flowUnitNumber" class="formLabel"> Number of <span
+                                        id="flowUnitLabelSpan"></span> </label><br>
+                                <input type="text" id="UserInput-flowUnitNumber" onblur="validateFlowUnitNumber()"><br>
                             </div>
                             <div id="flowUnitAddDiv" style="display:none" class="formDiv">
-                                Number of <span id="flowUnitAddLabelSpan"></span>: <input type="text"
-                                    id="UserInput-flowUnitAddNumber" onblur="validateFlowUnitAddNumber()"><br>
+                                <label for="UserInput-flowUnitAddNumber" class="formLabel"> Number of <span
+                                        id="flowUnitAddLabelSpan"></span> </label><br>
+                                <input type="text" id="UserInput-flowUnitAddNumber"
+                                    onblur="validateFlowUnitAddNumber()"><br>
                             </div>
-                            <button id='button-designFlowForm-cancel' type="button" onclick="clearCalcDesignForm()"> Cancel </button>
+                            <button id='button-designFlowForm-cancel' type="button" onclick="clearCalcDesignForm()">
+                                Cancel </button>
                             <button id='button-designFlowForm-runProgram' type="button" onclick="calcDesignFlow()">
                                 Calculate My Design Flow
                             </button>
-                        </div>
+                        </fieldset>
                         <!-- </form>
     <form id="networkLayoutResultForm"> -->
-                        <div id="networkLayoutResultsDiv" class="resultDiv">
+                        <fieldset id="networkLayoutResultsFieldset" class="resultFieldset">
                             <legend>
                                 Design Flow Calculation Results
                             </legend>
                             <div class="formDiv">
-                                Flow per <span id="result-flowUnitLabelSpan"></span>: <input type="number" id="result-flowUnit" readonly
-                                    placeholder="gallons per day"><br>
+                                <label for="result-flowUnit" class="formLabel"> Flow per <span
+                                        id="result-flowUnitLabelSpan"></span> </label><br>
+                                <input type="number" id="result-flowUnit" readonly placeholder="gallons per day"><br>
                             </div>
                             <div class="formDiv" id="result-flowUnitAddDiv" style="display: none;">
-                                Flow per <span id="result-flowUnitAddLabelSpan"></span>: <input type="number" id="result-flowUnitAdd" readonly
-                                    placeholder="gallons per day"><br>
+                                <label for="result-flowUnitAdd" class="formLabel"> Flow per <span
+                                        id="result-flowUnitAddLabelSpan"></span> </label><br>
+                                <input type="number" id="result-flowUnitAdd" readonly placeholder="gallons per day"><br>
                             </div>
                             <div class="formDiv">
-                                Total Design Flow: <input type="number" id="result-designFlow" readonly
-                                    placeholder="gallons per day"><br>
+                                <label for="result-designFlow" class="formLabel"> Total Design Flow </label><br>
+                                <input type="number" id="result-designFlow" readonly placeholder="gallons per day"><br>
                             </div>
-                        </div>
+                        </fieldset>
                     </div>
                     <div class='flexRow'>
-                        <div id="networkLayoutDiv" class="inputDiv">
+                        <fieldset id="networkLayoutFieldset" class="inputFieldset">
                             <legend>
                                 Soil Absorption System Sizing Input
                             </legend>
                             <div class="formDiv">
-                                Design Flow: <input type="number" id="UserInput-designFlow" required
-                                    placeholder="gallons per day" oninput="validateDesignFlow()" min="0"><br>
+                                <label for="UserInput-designFlow" class="formLabel"> Design Flow </label><br>
+                                <input type="number" id="UserInput-designFlow" required placeholder="gallons per day"
+                                    oninput="validateDesignFlow()" min="0"><br>
                             </div>
                             <div class="formDiv">
-                                Is your Soil Absorption System a field or Trenches? <select type="text"
-                                    id="UserInput-fieldOrTrenches" oninput="createTrenchOptions()"><br>
+                                <label for="UserInput-fieldOrTrenches" class="formLabel"> Is your Soil Absorption System a field or
+                                    Trenches? </label><br>
+                                <select type="text" id="UserInput-fieldOrTrenches" oninput="createTrenchOptions()"><br>
                                     <option value=''></option>
                                     <option value='Trenches'>Trenches</option>
                                     <option value='Field'>Field</option>
                                 </select><br>
                             </div>
                             <div id='trenchWidthDiv' style="display:none" class="formDiv">
-                                Trench Width: <input type="number" id="UserInput-trenchWidth" required
-                                    placeholder="feet" oninput="validateTrenchWidth()" min="2" max="3"><br>
+                                <label for="UserInput-trenchWidth" class="formLabel"> Trench Width </label><br>
+                                <input type="number" id="UserInput-trenchWidth" required placeholder="feet"
+                                    oninput="validateTrenchWidth()" min="2" max="3"><br>
                             </div>
                             <div id='trenchHeightDiv' style="display:none" class="formDiv">
-                                Trench Height: <input type="number" id="UserInput-trenchHeight" required
-                                    placeholder="feet" oninput="validateTrenchHeight()" min="1/2" max="2"><br>
+                                <label for="UserInput-trenchHeight" class="formLabel"> Trench Height </label><br>
+                                <input type="number" id="UserInput-trenchHeight" required placeholder="feet"
+                                    oninput="validateTrenchHeight()" min="1/2" max="2"><br>
                             </div>
                             <div id='reserveBetweenTrenchesDiv' style="display:none" class="formDiv">
-                                Is the reserve area between the trenches? <select type="text"
-                                    id="UserInput-reserveAreaBetweenTrenches"><br>
+                                <label for="UserInput-reserveAreaBetweenTrenches" class="formLabel"> Is the reserve area between the
+                                    trenches? </label><br>
+                                <select type="text" id="UserInput-reserveAreaBetweenTrenches"><br>
                                     <option value="Yes"> Yes </option>
                                     <option value="No"> No </option>
                                 </select>
                             </div>
                             <div class="formDiv">
-                                Desired Maximum SAS Area Length: <input type="number" id="UserInput-sasAreaLength"
-                                    required placeholder="feet" onchange="validateDesiredLength()" min="0"
-                                    max="100"><br>
+                                <label for="UserInput-sasAreaLength" class="formLabel"> Desired Maximum SAS Area Length </label><br>
+                                <input type="number" id="UserInput-sasAreaLength" required placeholder="feet"
+                                    onchange="validateDesiredLength()" min="0" max="100"><br>
                             </div>
                             <div class="formDiv">
-                                Are you using an alternating bed system? <select type="text" id="UserInput-altBed"
-                                    oninput="createAltBedOptions()"><br>
+                                <label for="UserInput-altBed" class="formLabel"> Are you using an alternating bed system? </label><br>
+                                <select type="text" id="UserInput-altBed" oninput="createAltBedOptions()"><br>
                                     <option value='Yes'>Yes</option>
                                     <option value='No'>No</option>
                                 </select><br>
                             </div>
                             <div class="formDiv">
-                                Percolation Rate: <input type="number" id="UserInput-percRate" required
-                                    placeholder="inches per hour" onchange="createSoilClassOptions()"><br>
+                                <label for="UserInput-percRate" class="formLabel"> Percolation Rate </label><br>
+                                <input type="number" id="UserInput-percRate" required placeholder="inches per hour"
+                                    onchange="createSoilClassOptions()"><br>
                             </div>
                             <div class="formDiv">
-                                Soil Class: <select type="text" id="UserInput-soilClass" required>
-                                    <option value="" ></option>
+                                <label for="UserInput-soilClass" class="formLabel"> Soil Class </label><br>
+                                <select type="text" id="UserInput-soilClass" required>
+                                    <option value=""></option>
                                     <option value="I" disabled> I </option>
                                     <option value="II" disabled> II </option>
                                     <option value="III" disabled> III </option>
@@ -211,86 +226,94 @@
                                 </select>
                                 <br>
                             </div>
-                            <button id='button-networkLayoutForm-cancel' type="button" onclick="clearSasNetworkLayout()"> Cancel </button>
+                            <button id='button-networkLayoutForm-cancel' type="button"
+                                onclick="clearSasNetworkLayout()"> Cancel </button>
                             <button id='button-networkLayoutForm-runProgram' type="button" onclick="sasNetworkLayout()">
                                 Size My SAS
                             </button>
-                        </div>
+                        </fieldset>
                         <!-- </form>
     <form id="networkLayoutResultForm"> -->
-                        <div id="networkLayoutResultsDiv" class="resultDiv">
+                        <fieldset id="networkLayoutResultsFieldset" class="resultFieldset">
                             <legend>
                                 Soil Absorption System Sizing Results
                             </legend>
                             <div id='LTARDiv' class="formDiv">
-                                Long Term Acceptance Rate(LTAR): <input type="number" id="result-LTAR" readonly
-                                    placeholder="gallons per day per SF"><br>
+                                <label for="result-LTAR" class="formLabel"> Long Term Acceptance Rate(LTAR) </label><br>
+                                <input type="number" id="result-LTAR" readonly placeholder="gallons per day per SF"><br>
                             </div>
                             <div id='reqSASAreaDiv' class="formDiv">
-                                Minimum Required SAS Surface Area: <input type="number" id="result-reqSasSurfArea"
-                                    readonly placeholder="square foot"><br>
+                                <label for="result-reqSasSurfArea" class="formLabel"> Minimum Required SAS Surface Area </label><br>
+                                <input type="number" id="result-reqSasSurfArea" readonly placeholder="square foot"><br>
                             </div>
                             <div id='minTrenchNumDiv' style="display:none" class="formDiv">
-                                Minimum Required Number of Trenches: <input type="number" id='result-minTrenchNum'
-                                    readonly><br>
+                                <label for='result-minTrenchNum' class="formLabel"> Minimum Required Number of Trenches </label><br>
+                                <input type="number" id='result-minTrenchNum' readonly><br>
                             </div>
                             <div id='recTrenchNumDiv' style="display:none" class="formDiv">
-                                Provided Number of Trenches per Area: <input type="number" id='result-recTrenchNum'
-                                    readonly><br>
+                                <label for='result-recTrenchNum' class="formLabel"> Provided Number of Trenches per Area </label><br>
+                                <input type="number" id='result-recTrenchNum' readonly><br>
                             </div>
                             <div id='trenchSurfaceAreaDiv' style="display:none" class="formDiv">
-                                Surface Area per Trench: <input type="number" id='result-recTrenchSurfaceArea' readonly
+                                <label for='result-recTrenchSurfaceArea' class="formLabel"> Surface Area per Trench </label><br>
+                                <input type="number" id='result-recTrenchSurfaceArea' readonly
                                     placeholder="square foot"><br>
                             </div>
                             <div id='recLengthDiv' class="formDiv">
-                                Provided SAS Area Length: <input type="number" id='result-recLength' readonly
-                                    placeholder="feet"><br>
+                                <label for='result-recLength' class="formLabel"> Provided SAS Area Length </label><br>
+                                <input type="number" id='result-recLength' readonly placeholder="feet"><br>
                             </div>
                             <div id='SASWidthDiv' class="formDiv">
-                                Provided Width per Area: <input type="number" id='result-minimumSASAreaWidth' readonly
-                                    placeholder="feet"><br>
+                                <label for='result-minimumSASAreaWidth' class="formLabel"> Provided Width per Area </label><br>
+                                <input type="number" id='result-minimumSASAreaWidth' readonly placeholder="feet"><br>
                             </div>
                             <div id='surfaceAreaDiv' class="formDiv">
-                                Overall Provided SAS Surface Area: <input type="number" id='result-providedSurfaceArea'
-                                    readonly placeholder="square foot"><br>
+                                <label for='result-providedSurfaceArea' class="formLabel"> Overall Provided SAS Surface Area </label><br>
+                                <input type="number" id='result-providedSurfaceArea' readonly
+                                    placeholder="square foot"><br>
                             </div>
-                        </div>
+                        </fieldset>
                     </div>
                     <!-- </form> -->
                     <div class='flexRow'>
                         <!-- <form id="pressureNetworkForm"> -->
-                        <div id="pressureNetworkDiv" class="inputDiv">
+                        <fieldset id="pressureNetworkFieldset" class="inputFieldset">
                             <legend>
                                 Pressure Network Sizing Input
                             </legend>
                             <div class="formDiv">
-                                Lateral Spacing: <input type="number" id="UserInput-latSpacing" required
-                                    placeholder="feet" onchange="validateLatSpacing()" min="0"><br>
+                                <label for="UserInput-latSpacing" class="formLabel"> Lateral Spacing </label><br>
+                                <input type="number" id="UserInput-latSpacing" required placeholder="feet"
+                                    onchange="validateLatSpacing()" min="0"><br>
                             </div>
                             <div class="formDiv">
-                                Desired Distal Head: <input type="number" id="UserInput-distalHead" required
-                                    onchange="validateDistalHead()" placeholder="feet" min="0" step="0.5"><br>
+                                <label for="UserInput-distalHead" class="formLabel"> Desired Distal Head </label><br>
+                                <input type="number" id="UserInput-distalHead" required onchange="validateDistalHead()"
+                                    placeholder="feet" min="0" step="0.5"><br>
                             </div>
                             <div class="formDiv">
-                                Desired Perforation Spacing: <input type="number" id="UserInput-perfSpacing" required
+                                <label for="UserInput-perfSpacing" class="formLabel"> Desired Perforation Spacing </label><br>
+                                <input type="number" id="UserInput-perfSpacing" required
                                     onchange="validatePerfSpacing()" placeholder="feet" min="0" max="5" step="0.5"><br>
                             </div>
                             <div class="formDiv">
-                                Desired Perforation Diameter: <input type="number" id="UserInput-perfDia" required
-                                    onchange="validatePerfDia()" placeholder="inches" min="0.125" max="0.625"
-                                    step="0.01"><br>
+                                <label for="UserInput-perfDia" class="formLabel"> Desired Perforation Diameter </label><br>
+                                <input type="number" id="UserInput-perfDia" required onchange="validatePerfDia()"
+                                    placeholder="inches" min="0.125" max="0.625" step="0.01"><br>
                             </div>
                             <div class="formDiv">
-                                Are you using an end manifold or center manifold? <select type="text"
-                                    id="UserInput-manifoldType"><br>
+                                <label for="UserInput-manifoldType" class="formLabel"> Are you using an end manifold or center manifold?
+                                </label><br>
+                                <select type="text" id="UserInput-manifoldType"><br>
                                     <option value=''></option>
                                     <option value='End'>End</option>
                                     <option value='Center'>Center</option>
                                 </select>
                             </div>
                             <div class="formDiv">
-                                What type of material is your lateral piping? <select type="text"
-                                    id="UserInput-pipeMaterial"><br>
+                                <label for="UserInput-pipeMaterial" class="formLabel"> What type of material is your lateral piping?
+                                </label><br>
+                                <select type="text" id="UserInput-pipeMaterial"><br>
                                     <option value=''></option>
                                     <option value='pvc'>polyvinyl chloride (PVC)</option>
                                     <option value='hdpe'>high density polyethylene (HDPE)</option>
@@ -298,8 +321,8 @@
                                 </select>
                             </div>
                             <div class="formDiv">
-                                Desired Lateral Size: <select type="text" id="UserInput-latSize" required
-                                    onfocus="createLatSizeOptions()">
+                                <label for="UserInput-latSize" class="formLabel"> Desired Lateral Size </label><br>
+                                <select type="text" id="UserInput-latSize" required onfocus="createLatSizeOptions()">
                                     <option value="" style="display:block"></option>
                                     <option value="1" style="display:block"> 1" </option>
                                     <option value="1.25" style="display:block"> 1-1/4" </option>
@@ -310,7 +333,7 @@
                                 </select><br>
                             </div>
                             <div class="formDiv">
-                                Desired Manifold Size:
+                                <label for="UserInput-maniSize" class="formLabel"> Desired Manifold Size </label><br>
                                 <select type="text" id="UserInput-maniSize" required onfocus="createManiSizeOptions()">
                                     <option value="" style="display:block"></option>
                                     <option value="1" style="display:block"> 1" </option>
@@ -335,46 +358,53 @@
                                 onclick="pressureNetworkSizing()">
                                 Size My Pressure Network
                             </button>
-                        </div>
-                        <div id="pressureNetworkResultsDiv" class="resultDiv">
+                        </fieldset>
+                        <fieldset id="pressureNetworkResultsFieldset" class="resultFieldset">
                             <legend>
                                 Pressure Network Sizing Results
                             </legend>
                             <div class="formDiv">
-                                Number of Perforation per Lateral: <input type="number" id="result-perfNum"
-                                    readonly><br>
+                                <label for="result-perfNum" class="formLabel"> Number of Perforation per Lateral </label><br>
+                                <input type="number" id="result-perfNum" readonly><br>
                             </div>
                             <div class="formDiv">
-                                Perforation Discharge Rate: <input type="number" id="result-perfDis" readonly
+                                <label for="result-perfDis" class="formLabel"> Perforation Discharge Rate </label><br>
+                                <input type="number" id="result-perfDis" readonly placeholder="gallons per minute"><br>
+                            </div>
+                            <div class="formDiv">
+                                <label for="result-latNum" class="formLabel"> Number of Laterals </label><br>
+                                <input type="number" id="result-latNum" readonly><br>
+                            </div>
+                            <div class="formDiv">
+                                <label for="result-latLength" class="formLabel"> Length of Laterals </label><br>
+                                <input type="number" id="result-latLength" readonly><br>
+                            </div>
+                            <div class="formDiv">
+                                <label for="result-latDis" class="formLabel"> Lateral Discharge Rate </label><br>
+                                <input type="number" id="result-latDis" readonly
                                     placeholder="gallons per minute"><br>
                             </div>
                             <div class="formDiv">
-                                Number of Laterals: <input type="number" id="result-latNum" readonly><br>
-                            </div>
-                            <div class="formDiv">
-                                Length of Laterals: <input type="number" id="result-latLength" readonly><br>
-                            </div>
-                            <div class="formDiv">
-                                Lateral Discharge Rate: <input type="number" id="result-latDis" readonly
+                                <label for="result-minPumpDisRate" class="formLabel"> Minimum Pump Discharge Rate </label><br>
+                                <input type="number" id="result-minPumpDisRate" readonly
                                     placeholder="gallons per minute"><br>
                             </div>
                             <div class="formDiv">
-                                Minimum Pump Discharge Rate: <input type="number" id="result-minPumpDisRate" readonly
-                                    placeholder="gallons per minute"><br>
-                            </div>
-                            <div class="formDiv">
-                                Lateral Piping Volume: <input type="number" id="result-latPipingVol" readonly
+                                <label for="result-latPipingVol" class="formLabel"> Lateral Piping Volume </label><br>
+                                <input type="number" id="result-latPipingVol" readonly
                                     placeholder="gallons"><br>
                             </div>
                             <div class="formDiv">
-                                Minimum Dosing Volume: <input type="number" id="result-minDoseVol" readonly
+                                <label for="result-minDoseVol" class="formLabel"> Minimum Dosing Volume </label><br>
+                                <input type="number" id="result-minDoseVol" readonly
                                     placeholder="gallons"><br>
                             </div>
                             <div class="formDiv">
-                                Maximum Dosing Volume: <input type="number" id="result-maxDoseVol" readonly
+                                <label for="result-maxDoseVol" class="formLabel"> Maximum Dosing Volume </label><br>
+                               <input type="number" id="result-maxDoseVol" readonly
                                     placeholder="gallons"><br>
                             </div>
-                        </div>
+                        </fieldset>
                     </div>
                 </div>
             </div>
