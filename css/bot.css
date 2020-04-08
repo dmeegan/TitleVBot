@@ -12,21 +12,8 @@
     margin-bottom: 5px;
 }
 
-
-input {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-form {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-select {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-option {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body, input, form, select, option, button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   
 }
 
 .backgroundImageClass {
@@ -47,13 +34,9 @@ option {
     z-index: -1;   
    }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 button {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .inputFieldset {
@@ -74,7 +57,6 @@ button {
     width: 45%;
     border-style: hidden;
 } 
-
 
 .flexCol {
     padding: 10px;
