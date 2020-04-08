@@ -44,7 +44,11 @@ button {
     background-color: #ffffff95;
     border-radius: 20px;
     margin: 10px;
-    width: 45%;
+    /* flex-basis: 500px;
+    flex-grow: 1; */
+    /* width: 40vw; */
+    flex: 1 1 350px;
+    /* min-width: 500px; */
     border-style: hidden;
     /* z-index: 1; */
  }
@@ -54,21 +58,44 @@ button {
     background-color: #a2ddff95;
     border-radius: 20px;
     margin: 10px;
-    width: 45%;
+    /* width: 40vw; */
+    flex: 1 1 350px;
+    /* flex-basis: 500px;
+    flex-grow: 1; */
+    /* min-width: 500px; */
     border-style: hidden;
 } 
 
+/* @media (max-width=500px) {
+.inputFieldset {
+    padding: 20px;
+    background-color: #ffffff95;
+    border-radius: 20px;
+    width: 100%;
+    border-style: hidden;
+ }
+
+.resultFieldset{
+    padding: 20px;
+    background-color: #a2ddff95;
+    border-radius: 20px;
+    width: 100%;
+    border-style: hidden;
+} 
+} */
+
 .flexCol {
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     flex-direction: column;
 }
 
 
 .flexRow {
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     /* flex-direction: row; */
+    /* width: 100vw; */
     flex-flow: wrap;
 }
 
