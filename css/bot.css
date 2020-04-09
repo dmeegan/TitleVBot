@@ -10,6 +10,7 @@
 
 .formLabel {
     margin-bottom: 5px;
+    font-weight: 480;
 }
 
 body, input, form, select, option, button {
@@ -23,7 +24,8 @@ body, input, form, select, option, button {
 .backgroundImageClass::after {
     content: "";
     background-image: url("/Background Image/IMG_5249.jpg");
-    opacity: 1;
+    /* opacity: 1; */
+    filter: contrast(0.8);
     top: 0;
     left: 0;
     bottom: 0;
@@ -41,9 +43,10 @@ button {
 
 .inputFieldset {
     padding: 20px;
-    background-color: #ffffff95;
+    background-color: #ffffff99;
     border-radius: 20px;
     margin: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     /* flex-basis: 500px;
     flex-grow: 1; */
     /* width: 40vw; */
@@ -55,9 +58,10 @@ button {
 
 .resultFieldset{
     padding: 20px;
-    background-color: #a2ddff95;
+    background-color: #a2ddff99;
     border-radius: 20px;
     margin: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     /* width: 40vw; */
     flex: 1 1 350px;
     /* flex-basis: 500px;
@@ -105,4 +109,39 @@ legend {
     padding-bottom: 5px;
     float: left;
     
+}
+
+input, option, select {
+    line-height: 23px;
+    height: 23px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #91929299;
+    margin-top: 2px;
+}
+
+input, option, select::placeholder {
+    padding-inline-start: 5px;
+}
+
+button {
+    line-height: 30px;
+    height: 30px;
+    background-color: #97a1f3;
+    font-weight: 500;
+    border-style: hidden;
+    border-radius: 5px;
+    color: white;
+    padding-inline-start: 15px;
+    padding-inline-end: 15px;
+    margin-inline-start: 5px;
+    margin-inline-end: 5px;
+    transition-property: all 0.3s;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }

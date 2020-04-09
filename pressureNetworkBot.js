@@ -5,7 +5,7 @@ function pressureNetworkSizing() {
     const latNum = +document.getElementById('result-latNum').value
     const latDia = +document.getElementById('UserInput-latSize').value
     const latLength = +document.getElementById('result-latLength').value
-   
+
 
     // The following function calculates the total piping volume of that laterals (latPipingVolume) in gallons, based on the number of laterals, and the length of laterals.
     const latPipingVolume = () => Math.ceil(7.48 * (Math.PI * Math.pow((latDia / 24), 2) * latNum * latLength));
@@ -33,4 +33,14 @@ function clearPressureNetworkForm() {
     document.getElementById("UserInput-pipeMaterial").selectedIndex = '0';
     document.getElementById("UserInput-latSize").selectedIndex = '0';
     document.getElementById("UserInput-maniSize").selectedIndex = '0';
-  }
+
+    document.getElementById("result-perfNum").value = '';
+    document.getElementById("result-perfDis").value = '';
+    document.getElementById("result-latNum").value = '';
+    document.getElementById("result-latLength").value = '';
+    document.getElementById("result-latDis").value = '';
+    document.getElementById("result-minPumpDisRate").value = '';
+    document.getElementById("result-latPipingVol").value = '';
+    document.getElementById("result-minDoseVol").value = '';
+    document.getElementById("result-maxDoseVol").value = '';
+}
