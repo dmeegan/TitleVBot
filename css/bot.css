@@ -119,6 +119,7 @@ input, option, select {
     border-width: 1px;
     border-color: #91929299;
     margin-top: 2px;
+    -webkit-appearance: none;
 }
 
 input, option, select::placeholder {
@@ -139,6 +140,7 @@ button {
     margin-inline-end: 5px;
     transition-property: all 0.3s;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    -webkit-appearance: none;
 }
 
 button:active {
