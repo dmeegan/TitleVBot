@@ -140,6 +140,9 @@ function clearSasNetworkLayout() {
     document.getElementById('UserInput-percRate').value = '';
     document.getElementById('UserInput-soilClass').value = '';
     document.getElementById('UserInput-altBed').value = '';
+
+    document.getElementById('result-LTAR').value = '';
+    document.getElementById("result-reqSasSurfArea").value = '';
     document.getElementById('result-recTrenchNum').value = '';
     document.getElementById('result-minimumSASAreaWidth').value = '';
     document.getElementById('result-providedSurfaceArea').value = '';
