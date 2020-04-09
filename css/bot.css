@@ -43,7 +43,7 @@ button {
 
 .inputFieldset {
     padding: 20px;
-    background-color: #ffffff99;
+    background-color: #ddddddd5;
     border-radius: 20px;
     margin: 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
@@ -58,7 +58,7 @@ button {
 
 .resultFieldset{
     padding: 20px;
-    background-color: #a2ddff99;
+    background-color: #a2ddffd5;
     border-radius: 20px;
     margin: 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
