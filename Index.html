@@ -146,19 +146,19 @@
                             <legend>
                                 Design Flow Calculation Results
                             </legend>
-                            <div class="formDiv">
+                            <div class="formDiv" id="result-flowUnitDiv">
                                 <label for="result-flowUnit" class="formLabel"> Flow per <span
                                         id="result-flowUnitLabelSpan"></span> </label><br>
-                                <input type="number" id="result-flowUnit" readonly placeholder="gallons per day"><br>
+                                <span class="resultSpan"><output type="number" id="result-flowUnit"></output> gallons per day</span><br>
                             </div>
                             <div class="formDiv" id="result-flowUnitAddDiv" style="display: none;">
                                 <label for="result-flowUnitAdd" class="formLabel"> Flow per <span
                                         id="result-flowUnitAddLabelSpan"></span> </label><br>
-                                <input type="number" id="result-flowUnitAdd" readonly placeholder="gallons per day"><br>
+                                <span class="resultSpan"><output  type="number" id="result-flowUnitAdd"></output> gallons per day</span><br>
                             </div>
                             <div class="formDiv">
                                 <label for="result-designFlow" class="formLabel"> Total Design Flow </label><br>
-                                <input type="number" id="result-designFlow" readonly placeholder="gallons per day"><br>
+                                <span class="resultSpan"><output type="number" id="result-designFlow"></output> gallons per day</span><br>
                             </div>
                         </fieldset>
                     </div>
@@ -239,39 +239,37 @@
                             <legend>
                                 Soil Absorption System Sizing Results
                             </legend>
-                            <div id='LTARDiv' class="formDiv">
+                            <div id='result-LTARDiv' class="formDiv">
                                 <label for="result-LTAR" class="formLabel"> Long Term Acceptance Rate(LTAR) </label><br>
-                                <input type="number" id="result-LTAR" readonly placeholder="gallons per day per SF"><br>
+                                <span class="resultSpan"><output type="number" id="result-LTAR"></output> gallons per day per SF</span><br>
                             </div>
-                            <div id='reqSASAreaDiv' class="formDiv">
+                            <div id='result-reqSASAreaDiv' class="formDiv">
                                 <label for="result-reqSasSurfArea" class="formLabel"> Minimum Required SAS Surface Area </label><br>
-                                <input type="number" id="result-reqSasSurfArea" readonly placeholder="square foot"><br>
+                                <span class="resultSpan"><output type="number" id="result-reqSasSurfArea"></output> square feet</span><br>
                             </div>
-                            <div id='minTrenchNumDiv' style="display:none" class="formDiv">
+                            <div id='result-minTrenchNumDiv' style="display:none" class="formDiv">
                                 <label for='result-minTrenchNum' class="formLabel"> Minimum Required Number of Trenches </label><br>
-                                <input type="number" id='result-minTrenchNum' readonly><br>
+                                <span class="resultSpan"><output type="number" id='result-minTrenchNum'></span><br>
                             </div>
-                            <div id='recTrenchNumDiv' style="display:none" class="formDiv">
+                            <div id='result-recTrenchNumDiv' style="display:none" class="formDiv">
                                 <label for='result-recTrenchNum' class="formLabel"> Provided Number of Trenches per Area </label><br>
-                                <input type="number" id='result-recTrenchNum' readonly><br>
+                                <span class="resultSpan"><output type="number" id='result-recTrenchNum'></output></span><br>
                             </div>
-                            <div id='trenchSurfaceAreaDiv' style="display:none" class="formDiv">
+                            <div id='result-trenchSurfaceAreaDiv' style="display:none" class="formDiv">
                                 <label for='result-recTrenchSurfaceArea' class="formLabel"> Surface Area per Trench </label><br>
-                                <input type="number" id='result-recTrenchSurfaceArea' readonly
-                                    placeholder="square foot"><br>
+                                <span class="resultSpan"><output type="number" id='result-recTrenchSurfaceArea'></output> square feet</span><br>
                             </div>
-                            <div id='recLengthDiv' class="formDiv">
+                            <div id='result-recLengthDiv' class="formDiv">
                                 <label for='result-recLength' class="formLabel"> Provided SAS Area Length </label><br>
-                                <input type="number" id='result-recLength' readonly placeholder="feet"><br>
+                                <span class="resultSpan"><output type="number" id='result-recLength'></output> feet</span><br>
                             </div>
-                            <div id='SASWidthDiv' class="formDiv">
+                            <div id='result-SASWidthDiv' class="formDiv">
                                 <label for='result-minimumSASAreaWidth' class="formLabel"> Provided Width per Area </label><br>
-                                <input type="number" id='result-minimumSASAreaWidth' readonly placeholder="feet"><br>
+                                <span class="resultSpan"><output type="number" id='result-minimumSASAreaWidth'></output> feet</span><br>
                             </div>
-                            <div id='surfaceAreaDiv' class="formDiv">
+                            <div id='result-surfaceAreaDiv' class="formDiv">
                                 <label for='result-providedSurfaceArea' class="formLabel"> Overall Provided SAS Surface Area </label><br>
-                                <input type="number" id='result-providedSurfaceArea' readonly
-                                    placeholder="square foot"><br>
+                                <span class="resultSpan"><output type="number" id='result-providedSurfaceArea'></output> square feet</span><br>
                             </div>
                         </fieldset>
                     </div>
@@ -366,44 +364,39 @@
                             </legend>
                             <div class="formDiv">
                                 <label for="result-perfNum" class="formLabel"> Number of Perforation per Lateral </label><br>
-                                <input type="number" id="result-perfNum" readonly><br>
+                                <span class="resultSpan"><output type="number" id="result-perfNum"></output></span><br>
                             </div>
                             <div class="formDiv">
                                 <label for="result-perfDis" class="formLabel"> Perforation Discharge Rate </label><br>
-                                <input type="number" id="result-perfDis" readonly placeholder="gallons per minute"><br>
+                                <span class="resultSpan"><output type="number" id="result-perfDis"></output> gallons per minute</span><br>
                             </div>
                             <div class="formDiv">
                                 <label for="result-latNum" class="formLabel"> Number of Laterals </label><br>
-                                <input type="number" id="result-latNum" readonly><br>
+                                <span class="resultSpan"><output type="number" id="result-latNum"></output></span><br>
                             </div>
                             <div class="formDiv">
                                 <label for="result-latLength" class="formLabel"> Length of Laterals </label><br>
-                                <input type="number" id="result-latLength" readonly><br>
+                                <span class="resultSpan"><output type="number" id="result-latLength"></output> feet</span><br>
                             </div>
                             <div class="formDiv">
                                 <label for="result-latDis" class="formLabel"> Lateral Discharge Rate </label><br>
-                                <input type="number" id="result-latDis" readonly
-                                    placeholder="gallons per minute"><br>
+                                <span class="resultSpan"><output type="number" id="result-latDis"></output> gallons per minute</span><br>
                             </div>
                             <div class="formDiv">
                                 <label for="result-minPumpDisRate" class="formLabel"> Minimum Pump Discharge Rate </label><br>
-                                <input type="number" id="result-minPumpDisRate" readonly
-                                    placeholder="gallons per minute"><br>
+                                <span class="resultSpan"><output type="number" id="result-minPumpDisRate"></output> gallons per minute</span><br>
                             </div>
                             <div class="formDiv">
                                 <label for="result-latPipingVol" class="formLabel"> Lateral Piping Volume </label><br>
-                                <input type="number" id="result-latPipingVol" readonly
-                                    placeholder="gallons"><br>
+                                <span class="resultSpan"><output type="number" id="result-latPipingVol"></output> gallons</span><br>
                             </div>
                             <div class="formDiv">
                                 <label for="result-minDoseVol" class="formLabel"> Minimum Dosing Volume </label><br>
-                                <input type="number" id="result-minDoseVol" readonly
-                                    placeholder="gallons"><br>
+                                <span class="resultSpan"><output type="number" id="result-minDoseVol"></output> gallons</span><br>
                             </div>
                             <div class="formDiv">
                                 <label for="result-maxDoseVol" class="formLabel"> Maximum Dosing Volume </label><br>
-                               <input type="number" id="result-maxDoseVol" readonly
-                                    placeholder="gallons"><br>
+                                <span class="resultSpan"><output type="number" id="result-maxDoseVol"></output> gallons</span><br>
                             </div>
                         </fieldset>
                     </div>

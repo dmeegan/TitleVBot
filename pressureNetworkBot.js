@@ -27,6 +27,7 @@ function pressureNetworkSizing() {
 
 function clearPressureNetworkForm() {
     document.getElementById('UserInput-latSpacing').value = '';
+    document.getElementById('UserInput-distalHead').value = '';
     document.getElementById('UserInput-perfSpacing').value = '';
     document.getElementById('UserInput-perfDia').value = '';
     document.getElementById("UserInput-manifoldType").selectedIndex = '0';

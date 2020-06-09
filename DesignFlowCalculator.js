@@ -213,5 +213,4 @@ function clearCalcDesignForm() {
     document.getElementById("flowUnitAddDiv").style.display = 'none';
     document.getElementById("result-flowUnitAddDiv").style.display = 'none';
     document.getElementById("flowUnitDiv").style.display = 'none';
-    document.getElementById("result-flowUnitDiv").style.display = 'none';
 }
