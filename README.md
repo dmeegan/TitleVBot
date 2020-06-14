@@ -5,7 +5,6 @@ Title V Bot is a web application to help you design septic systems in accordance
 ## Demo
 
 ![](./media/TitleVBot.gif)
-<img src="./media/TitleVBot.gif" alt="Title V Bot Demo" width="100%"/>
 
 ## Overview
 
