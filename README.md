@@ -12,3 +12,17 @@ The Title V Bot application guides the user through the necessary design procedu
 
 The program is built in such a way that many options and calculations are dependent on previous user inputs and selections. For instance, per the Title V regulations a percolation rate of 20 inches per hour can only be either Soil Class II or Soil Class III. Therefore, when a user inputs a 20 in/hr percolation rate, the Soil Class options for Class I and IV are automatically disabled.
 
+## Built With
+
+* Javascript (ES6)
+* HTML5
+* CSS3
+
+## Authors
+
+* **Daniel Meegan** - [dmeegan](https://github.com/dmeegan)
+
+## Contact
+
+* **Email:**  dn_meegan@yahoo.com
+* **Phone:**  774-722-1964
