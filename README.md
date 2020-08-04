@@ -8,7 +8,7 @@ Title V Bot is a web application to help you design septic systems in accordance
 
 ## Overview
 
-The Title V Bot application guides the user through the necessary design procedure for a typical septic system. Built in alerts serve the purpose of notifying the user of any inputs that may be against the regulations. Having built in edge cases make the program a good tool for teaching someone who may not be too familiar with the regulations.
+The Title V Bot application guides the user through the necessary design procedure for a typical septic system. Built in alerts serve the purpose of notifying the user of any inputs that may be against the regulations. Having built in edge cases make the application a good tool for teaching someone who may not be too familiar with the regulations.
 
 The program is built in such a way that many options and calculations are dependent on previous user inputs and selections. For instance, per the Title V regulations a percolation rate of 20 inches per hour can only be either Soil Class II or Soil Class III. Therefore, when a user inputs a 20 in/hr percolation rate, the Soil Class options for Class I and IV are automatically disabled.
 
