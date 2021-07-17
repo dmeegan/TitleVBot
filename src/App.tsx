@@ -16,6 +16,22 @@ const App = () => {
     setProjectState({ ...projectState, ...updatedProperties });
   };
 
+  //   // The following switch statement determines the LTAR using the percolation rate (percRate) and the soil class (soilClass)
+  //   switch (soilClass) {
+  //     case 'I':
+  //         LTAR = soilClassI[soilClassIterator]
+  //         break;
+  //     case 'II':
+  //         LTAR = soilClassII[soilClassIterator]
+  //         break;
+  //     case 'III':
+  //         LTAR = soilClassIII[soilClassIterator]
+  //         break;
+  //     case 'IV':
+  //         LTAR = soilClassIV[soilClassIterator]
+  //         break;
+  // }
+
   return (
     <div className="App">
       <Grid container spacing={2} direction="column">

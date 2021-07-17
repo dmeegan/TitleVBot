@@ -21,3 +21,19 @@ export class ProjectState {
   useSecondaryUnitValue?: number;
   flowRate: number = 0;
 }
+
+export interface fieldType {
+  id: number;
+  description: string;
+}
+
+export interface SoilClass {
+  id: number;
+  numeral: string;
+  description: string;
+  acceptanceRates: LTAR[];
+}
+
+type NOT_APPLICABLE = "n/a";
+
+type LTAR = number | NOT_APPLICABLE;

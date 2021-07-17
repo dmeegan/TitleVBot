@@ -11,7 +11,7 @@ import {
 import {
   uses as tempUses,
   establishments as tempEstablishments,
-} from "../../../tempData/tempData";
+} from "../../../tempData/tempUseData";
 import { Establishment, Use, ProjectState } from "../../../types";
 
 interface DesignFlowInputCardProps {
