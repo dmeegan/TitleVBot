@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { InputCard } from "../../../styles/styledComponents";
 import {
   Grid,
   Select,
@@ -65,7 +64,7 @@ export const DesignFlowInputCard = ({
   };
 
   return (
-    <InputCard elevation={0}>
+    <div className="p-4 rounded-md">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <FormControl style={{ width: "100%" }}>
@@ -161,6 +160,6 @@ export const DesignFlowInputCard = ({
           </Grid>
         )}
       </Grid>
-    </InputCard>
+    </div>
   );
 };

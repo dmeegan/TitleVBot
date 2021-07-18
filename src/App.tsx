@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProjectState } from "./types";
+import "tailwindcss/tailwind.css";
 import { Grid } from "@material-ui/core";
-import { CustomGridContainer } from "./styles/styledComponents";
 import { DesignFlowInputCard } from "./components/DesignFlow/cards/designFlowInputCard";
 import { DesignFlowOutputCard } from "./components/DesignFlow/cards/designFlowOutputCard";
 
@@ -34,26 +34,23 @@ const App = () => {
 
   return (
     <div className="App">
-      <Grid container spacing={2} direction="column">
-        <CustomGridContainer
-          item
-          container
-          spacing={2}
-          xs={12}
-          sm={6}
-          alignItems="center"
-        >
-          <Grid item xs={12} sm={7}>
+      <div className="grid xs:grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="p-4 bg-white rounded-xl grid grid-cols-12 gap-4 items-center">
+          <div className="xs:col-span-12 sm:col-span-7">
             <DesignFlowInputCard
               projectState={projectState}
               handleUpdateProject={handleUpdateProject}
             />
-          </Grid>
-          <Grid item xs={12} sm={5}>
+          </div>
+          <div className="xs:col-span-12 sm:col-span-5">
             <DesignFlowOutputCard projectState={projectState} />
-          </Grid>
-        </CustomGridContainer>
-      </Grid>
+          </div>
+        </div>
+        {/* </CustomGridContainer> */}
+      </div>
+      {/* <Grid container spacing={2} direction="column">
+       
+      </Grid> */}
     </div>
   );
 };
