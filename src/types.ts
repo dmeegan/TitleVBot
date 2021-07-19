@@ -20,9 +20,15 @@ export class ProjectState {
   usePrimaryUnitValue: number = 0;
   useSecondaryUnitValue?: number;
   flowRate: number = 0;
+  soilClass: SoilClass | null = null;
+  ltar: LTAR | null = null;
+  percRate: number | null = null;
+  fieldTypeId: number | null = null;
+  sasMaxLength: number | null = null;
+  isAlternatingBed: boolean = true;
 }
 
-export interface fieldType {
+export interface FieldType {
   id: number;
   description: string;
 }
@@ -34,6 +40,6 @@ export interface SoilClass {
   acceptanceRates: LTAR[];
 }
 
-type NOT_APPLICABLE = "n/a";
+export type NOT_APPLICABLE = "n/a";
 
-type LTAR = number | NOT_APPLICABLE;
+export type LTAR = number | NOT_APPLICABLE;

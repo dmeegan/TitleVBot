@@ -1,4 +1,9 @@
-import { SoilClass } from "../types";
+import { FieldType, SoilClass } from "../types";
+
+export const tempFieldTypes: FieldType[] = [
+  { id: 0, description: "Trenches" },
+  { id: 1, description: "Bed" },
+];
 
 export const soilClasses: SoilClass[] = [
   {
