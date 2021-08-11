@@ -1,13 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import {
-  Grid,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  TextField,
-} from "@material-ui/core";
+import { Flex, FormControl, Select, FormLabel, Input } from "@chakra-ui/react";
+
 import {
   uses as tempUses,
   establishments as tempEstablishments,
@@ -65,102 +59,94 @@ export const DesignFlowInputCard = ({
   };
 
   return (
-    <div className="p-4 rounded-md">
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <FormControl style={{ width: "100%" }}>
-            <InputLabel shrink id="establishment-type-select-label">
-              Type of Establishment
-            </InputLabel>
-            <Select
-              labelId="establishment-type-select-label"
-              id="establishment-type-select"
-              value={
-                projectState.establishmentTypeId !== null
-                  ? projectState.establishmentTypeId
-                  : ""
-              }
-              onChange={(event) => {
-                let establishmentIdSelected = event.target.value as number;
-                let updatedProperties = {
-                  establishmentTypeId: establishmentIdSelected,
-                };
-                handleUpdateProject(updatedProperties);
-              }}
-            >
-              {establishments.map((establishment, i) => (
-                <MenuItem key={i} value={establishment.establishmentTypeId}>
-                  {establishment.description}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
-        {projectState.establishmentTypeId !== null && (
-          <Grid item xs={12}>
-            <FormControl style={{ width: "100%" }}>
-              <InputLabel shrink id="use-type-select-label">
-                Type of Use
-              </InputLabel>
-              <Select
-                labelId="use-type-select-label"
-                id="use-type-select"
-                displayEmpty={true}
-                value={projectState.useId !== null ? projectState.useId : ""}
-                onChange={(event) => {
-                  let useIdSelected = event.target.value as number;
-                  let updatedProperties = {
-                    useId: useIdSelected,
-                  };
-                  handleUpdateProject(updatedProperties);
-                }}
-              >
-                {uses.map((use, i) => (
-                  <MenuItem key={i} value={use.useId}>
-                    {use.description}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-        )}
-        {currentUse && (
-          <Grid item xs={12}>
-            <TextField
-              type="number"
-              value={projectState.usePrimaryUnitValue}
-              label={`Number of ${currentUse.primaryUnit}`}
-              onChange={(event) => {
-                let primaryUnitInputValue = parseInt(
-                  event.target.value
-                ) as number;
-                let updatedProperties = {
-                  usePrimaryUnitValue: primaryUnitInputValue,
-                };
-                handleUpdateProject(updatedProperties);
-              }}
-            />
-          </Grid>
-        )}
-        {currentUse?.secondaryUnit && (
-          <Grid item xs={12}>
-            <TextField
-              type="number"
-              value={projectState.useSecondaryUnitValue || ""}
-              label={`Number of ${currentUse.secondaryUnit}`}
-              onChange={(event) => {
-                let secondaryUnitInputValue = parseInt(
-                  event.target.value
-                ) as number;
-                let updatedProperties = {
-                  useSecondaryUnitValue: secondaryUnitInputValue,
-                };
-                handleUpdateProject(updatedProperties);
-              }}
-            />
-          </Grid>
-        )}
-      </Grid>
-    </div>
+    <Flex p={4} direction="column" width="100%">
+      <FormControl width="100%">
+        <FormLabel id="establishment-type-select-label">
+          Type of Establishment
+        </FormLabel>
+        <Select
+          labelId="establishment-type-select-label"
+          id="establishment-type-select"
+          width="max"
+          value={
+            projectState.establishmentTypeId !== null
+              ? projectState.establishmentTypeId
+              : ""
+          }
+          onChange={(event) => {
+            let establishmentIdSelected = event.target
+              .value as unknown as number;
+            let updatedProperties = {
+              establishmentTypeId: establishmentIdSelected,
+            };
+            handleUpdateProject(updatedProperties);
+          }}
+        >
+          {establishments.map((establishment, i) => (
+            <option key={i} value={establishment.establishmentTypeId}>
+              {establishment.description}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
+      {projectState.establishmentTypeId !== null && (
+        <FormControl width="100%">
+          <FormLabel shrink id="use-type-select-label">
+            Type of Use
+          </FormLabel>
+          <Select
+            labelId="use-type-select-label"
+            id="use-type-select"
+            displayEmpty={true}
+            value={projectState.useId !== null ? projectState.useId : ""}
+            onChange={(event) => {
+              let useIdSelected = event.target.value as unknown as number;
+              let updatedProperties = {
+                useId: useIdSelected,
+              };
+              handleUpdateProject(updatedProperties);
+            }}
+          >
+            {uses.map((use, i) => (
+              <option key={i} value={use.useId}>
+                {use.description}
+              </option>
+            ))}
+          </Select>
+        </FormControl>
+      )}
+      {currentUse && (
+        <Input
+          type="number"
+          width="100%"
+          value={projectState.usePrimaryUnitValue}
+          label={`Number of ${currentUse.primaryUnit}`}
+          onChange={(event) => {
+            let primaryUnitInputValue = parseInt(event.target.value) as number;
+            let updatedProperties = {
+              usePrimaryUnitValue: primaryUnitInputValue,
+            };
+            handleUpdateProject(updatedProperties);
+          }}
+        />
+      )}
+      {currentUse?.secondaryUnit && (
+        <Input
+          type="number"
+          width="100%"
+          value={projectState.useSecondaryUnitValue || ""}
+          label={`Number of ${currentUse.secondaryUnit}`}
+          onChange={(event) => {
+            let secondaryUnitInputValue = parseInt(
+              event.target.value
+            ) as number;
+            let updatedProperties = {
+              useSecondaryUnitValue: secondaryUnitInputValue,
+            };
+            handleUpdateProject(updatedProperties);
+          }}
+        />
+      )}
+    </Flex>
   );
 };

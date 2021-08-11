@@ -1,17 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import {
-  Grid,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  TextField,
-  Switch,
-  FormLabel,
-  FormGroup,
-  FormControlLabel,
-} from "@material-ui/core";
 import { ProjectState } from "../../types";
 import { FieldType } from "../../types";
 import { tempFieldTypes } from "../../tempData/tempSASData";
@@ -44,7 +32,7 @@ export const SASInputCard = ({
 
   return (
     <div className="p-4 rounded-md">
-      <Grid container spacing={2}>
+      {/* <Grid container spacing={2}>
         <Grid item xs={12}>
           <FormControl style={{ width: "100%" }}>
             <InputLabel shrink id="field-type-select-label">
@@ -126,7 +114,7 @@ export const SASInputCard = ({
             }}
           />
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   );
 };

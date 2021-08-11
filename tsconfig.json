@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
+    "lib": ["es5", "DOM"],
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,7 +19,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ]
+  "files": ["src/index.tsx"],
+  "include": ["src"]
 }

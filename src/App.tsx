@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { NOT_APPLICABLE, ProjectState } from "./types";
-import "tailwindcss/tailwind.css";
 import { DesignFlowInputCard } from "./components/DesignFlow/cards/designFlowInputCard";
 import { DesignFlowOutputCard } from "./components/DesignFlow/cards/designFlowOutputCard";
+import { Flex, ChakraProvider } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 const App = () => {
   const [projectState, setProjectState] = useState<ProjectState>(
@@ -42,23 +43,32 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="grid xs:grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="p-4 bg-white rounded-xl grid grid-cols-12 gap-4 items-center">
-          <div className="xs:col-span-12 sm:col-span-7">
+      <ChakraProvider>
+        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+          <Flex
+            backgroundColor="#FFFFFF"
+            borderRadius="md"
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            w={{ base: "33%", xs: "100%" }}
+          >
             <DesignFlowInputCard
               projectState={projectState}
               handleUpdateProject={handleUpdateProject}
             />
-          </div>
-          <div className="xs:col-span-12 sm:col-span-5">
             <DesignFlowOutputCard projectState={projectState} />
-          </div>
-        </div>
-        <div className="p-4 bg-white rounded-xl grid grid-cols-12 gap-4 items-center">
-          <div className="xs:col-span-12 sm:col-span-7"></div>
-          <div className="xs:col-span-12 sm:col-span-5"></div>
-        </div>
-      </div>
+          </Flex>
+          <Flex
+            backgroundColor="#FFFFFF"
+            borderRadius="md"
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            w={{ base: "33%", xs: "100%" }}
+          ></Flex>
+        </Grid>
+      </ChakraProvider>
     </div>
   );
 };
