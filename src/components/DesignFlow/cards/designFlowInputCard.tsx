@@ -24,13 +24,25 @@ export const DesignFlowInputCard = ({
   const [establishments, setEstablishments] = useState<Establishment[]>([]);
 
   useEffect(() => {
-    const filteredUses = projectState.establishmentTypeId
-      ? tempUses.filter(
-          (use) => use.establishmentTypeId === projectState.establishmentTypeId
-        )
-      : tempUses;
-    setUses(filteredUses);
     setEstablishments(tempEstablishments);
+  }, []);
+
+  useEffect(() => {
+    console.log(
+      tempUses.filter(
+        (use) => use.establishmentTypeId === projectState.establishmentTypeId
+      )
+    );
+    const filteredUses =
+      tempUses.filter(
+        (use) => use.establishmentTypeId === projectState.establishmentTypeId
+      ) !== undefined
+        ? tempUses.filter(
+            (use) =>
+              use.establishmentTypeId === projectState.establishmentTypeId
+          )
+        : tempUses;
+    setUses(filteredUses);
   }, [projectState.establishmentTypeId]);
 
   useEffect(() => {
@@ -60,22 +72,20 @@ export const DesignFlowInputCard = ({
 
   return (
     <Flex p={4} direction="column" width="100%">
-      <FormControl width="100%">
+      <FormControl>
         <FormLabel id="establishment-type-select-label">
           Type of Establishment
         </FormLabel>
         <Select
-          labelId="establishment-type-select-label"
+          labelid="establishment-type-select-label"
           id="establishment-type-select"
-          width="max"
           value={
-            projectState.establishmentTypeId !== null
-              ? projectState.establishmentTypeId
-              : ""
+            projectState.establishmentTypeId || "Select a Establishment Type"
           }
           onChange={(event) => {
-            let establishmentIdSelected = event.target
-              .value as unknown as number;
+            let establishmentIdSelected = parseInt(
+              event.target.value
+            ) as unknown as number;
             let updatedProperties = {
               establishmentTypeId: establishmentIdSelected,
             };
@@ -90,17 +100,17 @@ export const DesignFlowInputCard = ({
         </Select>
       </FormControl>
       {projectState.establishmentTypeId !== null && (
-        <FormControl width="100%">
-          <FormLabel shrink id="use-type-select-label">
-            Type of Use
-          </FormLabel>
+        <FormControl>
+          <FormLabel id="use-type-select-label">Type of Use</FormLabel>
           <Select
-            labelId="use-type-select-label"
+            labelid="use-type-select-label"
             id="use-type-select"
-            displayEmpty={true}
-            value={projectState.useId !== null ? projectState.useId : ""}
+            value={projectState.useId || ""}
             onChange={(event) => {
-              let useIdSelected = event.target.value as unknown as number;
+              let useIdSelected = parseInt(
+                event.target.value
+              ) as unknown as number;
+              console.log(useIdSelected);
               let updatedProperties = {
                 useId: useIdSelected,
               };
@@ -116,36 +126,50 @@ export const DesignFlowInputCard = ({
         </FormControl>
       )}
       {currentUse && (
-        <Input
-          type="number"
-          width="100%"
-          value={projectState.usePrimaryUnitValue}
-          label={`Number of ${currentUse.primaryUnit}`}
-          onChange={(event) => {
-            let primaryUnitInputValue = parseInt(event.target.value) as number;
-            let updatedProperties = {
-              usePrimaryUnitValue: primaryUnitInputValue,
-            };
-            handleUpdateProject(updatedProperties);
-          }}
-        />
+        <FormControl>
+          <FormLabel id="use-primary-unit-value-input-label">
+            Number of {currentUse.primaryUnit}
+          </FormLabel>
+          <Input
+            id="use-primary-unit-value-input"
+            type="number"
+            width="100%"
+            value={projectState.usePrimaryUnitValue}
+            labelid="use-primary-unit-value-input-label"
+            onChange={(event) => {
+              let primaryUnitInputValue = parseInt(
+                event.target.value
+              ) as number;
+              let updatedProperties = {
+                usePrimaryUnitValue: primaryUnitInputValue,
+              };
+              handleUpdateProject(updatedProperties);
+            }}
+          />
+        </FormControl>
       )}
       {currentUse?.secondaryUnit && (
-        <Input
-          type="number"
-          width="100%"
-          value={projectState.useSecondaryUnitValue || ""}
-          label={`Number of ${currentUse.secondaryUnit}`}
-          onChange={(event) => {
-            let secondaryUnitInputValue = parseInt(
-              event.target.value
-            ) as number;
-            let updatedProperties = {
-              useSecondaryUnitValue: secondaryUnitInputValue,
-            };
-            handleUpdateProject(updatedProperties);
-          }}
-        />
+        <FormControl>
+          <FormLabel id="secondary-unit-value-input-label">
+            Number of {currentUse.secondaryUnit}
+          </FormLabel>
+          <Input
+            id="secondary-unit-value-input"
+            labelid="secondary-unit-value-input-label"
+            type="number"
+            width="100%"
+            value={projectState.useSecondaryUnitValue || ""}
+            onChange={(event) => {
+              let secondaryUnitInputValue = parseInt(
+                event.target.value
+              ) as number;
+              let updatedProperties = {
+                useSecondaryUnitValue: secondaryUnitInputValue,
+              };
+              handleUpdateProject(updatedProperties);
+            }}
+          />
+        </FormControl>
       )}
     </Flex>
   );

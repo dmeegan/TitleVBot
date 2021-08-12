@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { NOT_APPLICABLE, ProjectState } from "./types";
 import { DesignFlowInputCard } from "./components/DesignFlow/cards/designFlowInputCard";
 import { DesignFlowOutputCard } from "./components/DesignFlow/cards/designFlowOutputCard";
-import { Flex, ChakraProvider } from "@chakra-ui/react";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Flex, ChakraProvider, SimpleGrid } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
+import { SASInputCard } from "./components/SAS/SASInputCard";
 
 const App = () => {
   const [projectState, setProjectState] = useState<ProjectState>(
@@ -44,14 +45,13 @@ const App = () => {
   return (
     <div className="App">
       <ChakraProvider>
-        <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+        <SimpleGrid minChildWidth="350px" gap={6} height="100%">
           <Flex
             backgroundColor="#FFFFFF"
             borderRadius="md"
-            direction="row"
             alignItems="center"
             justifyContent="center"
-            w={{ base: "33%", xs: "100%" }}
+            minHeight={0.33 * window.innerHeight}
           >
             <DesignFlowInputCard
               projectState={projectState}
@@ -62,12 +62,16 @@ const App = () => {
           <Flex
             backgroundColor="#FFFFFF"
             borderRadius="md"
-            direction="row"
             alignItems="center"
             justifyContent="center"
-            w={{ base: "33%", xs: "100%" }}
-          ></Flex>
-        </Grid>
+            minHeight={0.33 * window.innerHeight}
+          >
+            <SASInputCard
+              projectState={projectState}
+              handleUpdateProject={handleUpdateProject}
+            />
+          </Flex>
+        </SimpleGrid>
       </ChakraProvider>
     </div>
   );
