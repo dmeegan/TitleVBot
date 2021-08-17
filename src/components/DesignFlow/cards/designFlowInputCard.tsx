@@ -1,6 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { Flex, FormControl, Select, FormLabel, Input } from "@chakra-ui/react";
+import {
+  FormControl,
+  Select,
+  FormLabel,
+  Input,
+  SimpleGrid,
+  Box,
+  Flex,
+} from "@chakra-ui/react";
 
 import {
   uses as tempUses,
@@ -28,11 +36,6 @@ export const DesignFlowInputCard = ({
   }, []);
 
   useEffect(() => {
-    console.log(
-      tempUses.filter(
-        (use) => use.establishmentTypeId === projectState.establishmentTypeId
-      )
-    );
     const filteredUses =
       tempUses.filter(
         (use) => use.establishmentTypeId === projectState.establishmentTypeId
@@ -71,7 +74,13 @@ export const DesignFlowInputCard = ({
   };
 
   return (
-    <Flex p={4} direction="column" width="100%">
+    <Flex
+      p={4}
+      width="100%"
+      height="100%"
+      justifyContent="flex-start"
+      direction="column"
+    >
       <FormControl>
         <FormLabel id="establishment-type-select-label">
           Type of Establishment
@@ -79,6 +88,7 @@ export const DesignFlowInputCard = ({
         <Select
           labelid="establishment-type-select-label"
           id="establishment-type-select"
+          placeholder="Select Establishment Type"
           value={
             projectState.establishmentTypeId || "Select a Establishment Type"
           }
@@ -100,12 +110,13 @@ export const DesignFlowInputCard = ({
         </Select>
       </FormControl>
       {projectState.establishmentTypeId !== null && (
-        <FormControl>
+        <FormControl paddingTop="1">
           <FormLabel id="use-type-select-label">Type of Use</FormLabel>
           <Select
             labelid="use-type-select-label"
             id="use-type-select"
             value={projectState.useId || ""}
+            placeholder="Select Use Type"
             onChange={(event) => {
               let useIdSelected = parseInt(
                 event.target.value
@@ -126,7 +137,7 @@ export const DesignFlowInputCard = ({
         </FormControl>
       )}
       {currentUse && (
-        <FormControl>
+        <FormControl paddingTop="1">
           <FormLabel id="use-primary-unit-value-input-label">
             Number of {currentUse.primaryUnit}
           </FormLabel>
@@ -149,7 +160,7 @@ export const DesignFlowInputCard = ({
         </FormControl>
       )}
       {currentUse?.secondaryUnit && (
-        <FormControl>
+        <FormControl paddingTop="1">
           <FormLabel id="secondary-unit-value-input-label">
             Number of {currentUse.secondaryUnit}
           </FormLabel>
@@ -158,7 +169,7 @@ export const DesignFlowInputCard = ({
             labelid="secondary-unit-value-input-label"
             type="number"
             width="100%"
-            value={projectState.useSecondaryUnitValue || ""}
+            value={projectState.useSecondaryUnitValue}
             onChange={(event) => {
               let secondaryUnitInputValue = parseInt(
                 event.target.value

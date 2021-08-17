@@ -9,15 +9,20 @@ export const DesignFlowOutputCard = ({
   projectState,
 }: DesignFlowOutputCardProps) => {
   return (
-    <Flex p={4} direction="column" alignItems="center" width="100%">
+    <Flex
+      p={4}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      width="100%"
+      borderRadius="md"
+      border="1px solid lightgrey"
+    >
       {projectState.flowRate !== null && (
-        <SimpleGrid
-          columns={[1, 1, 2]}
-          gap={1}
-          alignItems="center"
-          width="100%"
-        >
-          <Heading fontSize="1rem">Flow Rate:</Heading>
+        <SimpleGrid columns={[1, 1, 2]} gap={1} alignItems="center">
+          <Heading fontSize="1rem" wordBreak="keep-all">
+            Flow Rate:
+          </Heading>
           <Text>{projectState.flowRate || 0}</Text>
         </SimpleGrid>
       )}

@@ -1,13 +1,18 @@
-import { FieldType, SoilClass } from "../types";
+import { ConfigurationType, FieldType, SoilClass } from "../types";
 
 export const tempFieldTypes: FieldType[] = [
-  { id: 0, description: "Trenches" },
-  { id: 1, description: "Bed" },
+  { id: 1, description: "Trenches" },
+  { id: 2, description: "Bed" },
+];
+
+export const tempConfigurationTypes: ConfigurationType[] = [
+  { id: 1, description: "Alternating Bed System" },
+  { id: 2, description: "Single Bed System" },
 ];
 
 export const soilClasses: SoilClass[] = [
   {
-    id: 0,
+    id: 1,
     numeral: "I",
     description: "Sands, Loamy Sands",
     acceptanceRates: [
@@ -26,7 +31,7 @@ export const soilClasses: SoilClass[] = [
     ],
   },
   {
-    id: 1,
+    id: 2,
     numeral: "II",
     description: "Sandy Loams, Loams",
     acceptanceRates: [
@@ -45,7 +50,7 @@ export const soilClasses: SoilClass[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     numeral: "III",
     description: "Silt Loams, Sandy Clay Loams with less than 27% clay, Silt",
     acceptanceRates: [
@@ -64,7 +69,7 @@ export const soilClasses: SoilClass[] = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     numeral: "IV",
     description:
       "Clays, Silty Clay Loams, Sandy Clay Loams with 27% or more Clay, Clay Loams and Silty Clays",

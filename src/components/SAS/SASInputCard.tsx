@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { ProjectState } from "../../types";
+import { ProjectState, ProjectStateUpdateParam } from "../../types";
 import { FieldType } from "../../types";
 import { tempFieldTypes } from "../../tempData/tempSASData";
 import {
@@ -8,8 +8,10 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Radio,
+  RadioGroup,
   Select,
-  Switch,
+  Stack,
 } from "@chakra-ui/react";
 
 interface SASInputCardProps {
@@ -39,19 +41,24 @@ export const SASInputCard = ({
   }, [projectState.fieldTypeId, fieldTypes]);
 
   return (
-    <Flex p={4} direction="column" alignItems="center" width="100%">
+    <Flex
+      p={4}
+      width="100%"
+      height="100%"
+      justifyContent="flex-start"
+      direction="column"
+    >
       <FormControl>
         <FormLabel id="field-type-select-label">Field Type</FormLabel>
         <Select
           labelid="field-type-select-label"
           id="field-type-select"
-          value={
-            projectState.fieldTypeId !== null ? projectState.fieldTypeId : ""
-          }
+          value={projectState.fieldTypeId || ""}
+          placeholder="Select Field Type"
           onChange={(event) => {
-            let fieldTypeIdSelected = event.target.value as unknown as number;
-            let updatedProperties = {
-              establishmentTypeId: fieldTypeIdSelected,
+            let fieldTypeIdSelected = parseInt(event.target.value);
+            let updatedProperties: ProjectStateUpdateParam = {
+              fieldTypeId: fieldTypeIdSelected,
             };
             handleUpdateProject(updatedProperties);
           }}
@@ -82,19 +89,20 @@ export const SASInputCard = ({
         />
       </FormControl>
       <FormControl component="fieldset">
-        <FormLabel component="legend">
-          Are you using an Alternating Bed System?
-        </FormLabel>
-        <Switch
-          checked={projectState.isAlternatingBed}
-          onChange={(event) => {
-            let isAltBedSwitchValue = event.target.checked as boolean;
-            let updatedProperties = {
-              isAlternatingBed: isAltBedSwitchValue,
+        <RadioGroup
+          onChange={(valueSelected) => {
+            let updatedProperties: ProjectStateUpdateParam = {
+              bedConfigurationId: parseInt(valueSelected),
             };
             handleUpdateProject(updatedProperties);
           }}
-        />
+          value={projectState.bedConfigurationId}
+        >
+          <Stack direction="row">
+            <Radio value={1}>Alternating Bed</Radio>
+            <Radio value={2}>Single Bed</Radio>
+          </Stack>
+        </RadioGroup>
       </FormControl>
       <FormControl>
         <FormLabel id="perc-rate-input-label">Percolation Rate</FormLabel>

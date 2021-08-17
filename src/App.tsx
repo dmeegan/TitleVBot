@@ -1,19 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { NOT_APPLICABLE, ProjectState } from "./types";
+import { NOT_APPLICABLE, ProjectState, ProjectStateUpdateParam } from "./types";
 import { DesignFlowInputCard } from "./components/DesignFlow/cards/designFlowInputCard";
 import { DesignFlowOutputCard } from "./components/DesignFlow/cards/designFlowOutputCard";
 import { Flex, ChakraProvider, SimpleGrid } from "@chakra-ui/react";
-import { Grid } from "@chakra-ui/react";
 import { SASInputCard } from "./components/SAS/SASInputCard";
 
 const App = () => {
   const [projectState, setProjectState] = useState<ProjectState>(
     new ProjectState()
   );
-  const handleUpdateProject = (
-    updatedProperties: { [P in keyof ProjectState]?: ProjectState[P] }
-  ) => {
+  const handleUpdateProject = (updatedProperties: ProjectStateUpdateParam) => {
     setProjectState({ ...projectState, ...updatedProperties });
   };
 
@@ -52,6 +49,7 @@ const App = () => {
             alignItems="center"
             justifyContent="center"
             minHeight={0.33 * window.innerHeight}
+            p={4}
           >
             <DesignFlowInputCard
               projectState={projectState}
@@ -65,6 +63,7 @@ const App = () => {
             alignItems="center"
             justifyContent="center"
             minHeight={0.33 * window.innerHeight}
+            p={4}
           >
             <SASInputCard
               projectState={projectState}
