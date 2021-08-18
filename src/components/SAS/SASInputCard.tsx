@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
-import { ProjectState, ProjectStateUpdateParam } from "../../types";
-import { FieldType } from "../../types";
+import { useEffect } from "react";
+import { ProjectStateUpdateParam } from "../../types";
 import { tempFieldTypes } from "../../tempData/tempSASData";
 import {
   Flex,
@@ -13,32 +12,15 @@ import {
   Select,
   Stack,
 } from "@chakra-ui/react";
+import { useStore } from "../../store/store";
 
-interface SASInputCardProps {
-  projectState: ProjectState;
-  handleUpdateProject: (
-    updatedProperties: { [P in keyof ProjectState]?: ProjectState[P] }
-  ) => void;
-}
-
-export const SASInputCard = ({
-  projectState,
-  handleUpdateProject,
-}: SASInputCardProps) => {
-  const [fieldTypes, setFieldTypes] = useState<FieldType[]>([]);
-  const [currentFieldType, setCurrentFieldType] = useState<FieldType>();
+export const SASInputCard = () => {
+  const { projectState, updateProjectState, fieldTypes, handleSetFieldTypes } =
+    useStore();
 
   useEffect(() => {
-    setFieldTypes(tempFieldTypes);
+    handleSetFieldTypes(tempFieldTypes);
   }, []);
-
-  useEffect(() => {
-    if (!projectState.fieldTypeId) return;
-    let currentFieldType: FieldType = fieldTypes.find(
-      (fieldType) => fieldType.id === projectState.fieldTypeId
-    )!;
-    setCurrentFieldType(currentFieldType);
-  }, [projectState.fieldTypeId, fieldTypes]);
 
   return (
     <Flex
@@ -60,7 +42,7 @@ export const SASInputCard = ({
             let updatedProperties: ProjectStateUpdateParam = {
               fieldTypeId: fieldTypeIdSelected,
             };
-            handleUpdateProject(updatedProperties);
+            updateProjectState(updatedProperties);
           }}
         >
           {fieldTypes.map((fieldType, i) => (
@@ -70,7 +52,7 @@ export const SASInputCard = ({
           ))}
         </Select>
       </FormControl>
-      <FormControl>
+      <FormControl marginTop="1rem">
         <FormLabel id="max-sas-length-input-id">
           Maximum Desired SAS Length
         </FormLabel>
@@ -84,17 +66,17 @@ export const SASInputCard = ({
             let updatedProperties = {
               sasMaxLength: maxLengthInputValue,
             };
-            handleUpdateProject(updatedProperties);
+            updateProjectState(updatedProperties);
           }}
         />
       </FormControl>
-      <FormControl component="fieldset">
+      <FormControl marginTop="1rem">
         <RadioGroup
           onChange={(valueSelected) => {
             let updatedProperties: ProjectStateUpdateParam = {
               bedConfigurationId: parseInt(valueSelected),
             };
-            handleUpdateProject(updatedProperties);
+            updateProjectState(updatedProperties);
           }}
           value={projectState.bedConfigurationId}
         >
@@ -104,7 +86,7 @@ export const SASInputCard = ({
           </Stack>
         </RadioGroup>
       </FormControl>
-      <FormControl>
+      <FormControl marginTop="1rem">
         <FormLabel id="perc-rate-input-label">Percolation Rate</FormLabel>
         <Input
           id="perc-rate-input"
@@ -116,7 +98,7 @@ export const SASInputCard = ({
             let updatedProperties = {
               percRate: percRateInputValue,
             };
-            handleUpdateProject(updatedProperties);
+            updateProjectState(updatedProperties);
           }}
         />
       </FormControl>

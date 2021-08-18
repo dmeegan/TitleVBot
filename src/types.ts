@@ -18,7 +18,7 @@ export class ProjectState {
   establishmentTypeId: number | null = null;
   useId: number | null = null;
   usePrimaryUnitValue: number = 0;
-  useSecondaryUnitValue?: number = 0;
+  useSecondaryUnitValue?: number;
   flowRate: number = 0;
   soilClass: SoilClass | null = null;
   ltar: LTAR | null = null;

@@ -1,18 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { NOT_APPLICABLE, ProjectState, ProjectStateUpdateParam } from "./types";
+import { NOT_APPLICABLE, ProjectStateUpdateParam } from "./types";
 import { DesignFlowInputCard } from "./components/DesignFlow/cards/designFlowInputCard";
 import { DesignFlowOutputCard } from "./components/DesignFlow/cards/designFlowOutputCard";
 import { Flex, ChakraProvider, SimpleGrid } from "@chakra-ui/react";
 import { SASInputCard } from "./components/SAS/SASInputCard";
+import { useStore } from "./store/store";
 
 const App = () => {
-  const [projectState, setProjectState] = useState<ProjectState>(
-    new ProjectState()
-  );
-  const handleUpdateProject = (updatedProperties: ProjectStateUpdateParam) => {
-    setProjectState({ ...projectState, ...updatedProperties });
-  };
+  const { projectState, updateProjectState } = useStore();
 
   useEffect(() => {
     handleCalcAcceptanceRate();
@@ -35,7 +31,7 @@ const App = () => {
         useLtar = acceptanceRates[8 + Math.ceil((percRate - 30) / 10)];
       }
 
-      handleUpdateProject({ ltar: useLtar });
+      updateProjectState({ ltar: useLtar });
     }
   };
 
@@ -51,11 +47,8 @@ const App = () => {
             minHeight={0.33 * window.innerHeight}
             p={4}
           >
-            <DesignFlowInputCard
-              projectState={projectState}
-              handleUpdateProject={handleUpdateProject}
-            />
-            <DesignFlowOutputCard projectState={projectState} />
+            <DesignFlowInputCard />
+            <DesignFlowOutputCard />
           </Flex>
           <Flex
             backgroundColor="#FFFFFF"
@@ -65,10 +58,7 @@ const App = () => {
             minHeight={0.33 * window.innerHeight}
             p={4}
           >
-            <SASInputCard
-              projectState={projectState}
-              handleUpdateProject={handleUpdateProject}
-            />
+            <SASInputCard />
           </Flex>
         </SimpleGrid>
       </ChakraProvider>

@@ -1,13 +1,13 @@
 import { Use, Establishment } from "../types";
 
-export const establishments: Establishment[] = [
+export const tempEstablishments: Establishment[] = [
   { establishmentTypeId: 1, description: "Residential" },
   { establishmentTypeId: 2, description: "Commercial" },
   { establishmentTypeId: 3, description: "Institutional" },
   { establishmentTypeId: 4, description: "Schools" },
 ];
 
-export const uses: Use[] = [
+export const tempUses: Use[] = [
   {
     useId: 1,
     establishmentTypeId: 1,

@@ -1,38 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
-import {
-  FormControl,
-  Select,
-  FormLabel,
-  Input,
-  SimpleGrid,
-  Box,
-  Flex,
-} from "@chakra-ui/react";
+import { useEffect } from "react";
+import { FormControl, Select, FormLabel, Input, Flex } from "@chakra-ui/react";
 
-import {
-  uses as tempUses,
-  establishments as tempEstablishments,
-} from "../../../tempData/tempUseData";
-import { Establishment, Use, ProjectState } from "../../../types";
+import { tempUses, tempEstablishments } from "../../../tempData/tempUseData";
+import { Use } from "../../../types";
+import { useStore } from "../../../store/store";
 
-interface DesignFlowInputCardProps {
-  projectState: ProjectState;
-  handleUpdateProject: (
-    updatedProperties: { [P in keyof ProjectState]?: ProjectState[P] }
-  ) => void;
-}
-
-export const DesignFlowInputCard = ({
-  projectState,
-  handleUpdateProject,
-}: DesignFlowInputCardProps) => {
-  const [uses, setUses] = useState<Use[]>([]);
-  const [currentUse, setCurrentUse] = useState<Use | null>(null);
-  const [establishments, setEstablishments] = useState<Establishment[]>([]);
+export const DesignFlowInputCard = () => {
+  const {
+    handleSetEstablishments,
+    setUses,
+    establishments,
+    uses,
+    currentUse,
+    handleSetCurrentUse,
+    projectState,
+    updateProjectState,
+  } = useStore();
 
   useEffect(() => {
-    setEstablishments(tempEstablishments);
+    handleSetEstablishments(tempEstablishments);
   }, []);
 
   useEffect(() => {
@@ -51,7 +38,7 @@ export const DesignFlowInputCard = ({
   useEffect(() => {
     if (!projectState.useId) return;
     let currentUse: Use = uses.find((use) => use.useId === projectState.useId)!;
-    setCurrentUse(currentUse);
+    handleSetCurrentUse(currentUse);
   }, [projectState.useId, uses]);
 
   useEffect(() => {
@@ -70,7 +57,7 @@ export const DesignFlowInputCard = ({
     let updatedProperties = {
       flowRate: totalFlowValue,
     };
-    handleUpdateProject(updatedProperties);
+    updateProjectState(updatedProperties);
   };
 
   return (
@@ -99,7 +86,7 @@ export const DesignFlowInputCard = ({
             let updatedProperties = {
               establishmentTypeId: establishmentIdSelected,
             };
-            handleUpdateProject(updatedProperties);
+            updateProjectState(updatedProperties);
           }}
         >
           {establishments.map((establishment, i) => (
@@ -118,14 +105,13 @@ export const DesignFlowInputCard = ({
             value={projectState.useId || ""}
             placeholder="Select Use Type"
             onChange={(event) => {
-              let useIdSelected = parseInt(
+              const useIdSelected = parseInt(
                 event.target.value
               ) as unknown as number;
-              console.log(useIdSelected);
-              let updatedProperties = {
+              const updatedProperties = {
                 useId: useIdSelected,
               };
-              handleUpdateProject(updatedProperties);
+              updateProjectState(updatedProperties);
             }}
           >
             {uses.map((use, i) => (
@@ -148,13 +134,13 @@ export const DesignFlowInputCard = ({
             value={projectState.usePrimaryUnitValue}
             labelid="use-primary-unit-value-input-label"
             onChange={(event) => {
-              let primaryUnitInputValue = parseInt(
+              const primaryUnitInputValue = parseInt(
                 event.target.value
               ) as number;
-              let updatedProperties = {
+              const updatedProperties = {
                 usePrimaryUnitValue: primaryUnitInputValue,
               };
-              handleUpdateProject(updatedProperties);
+              updateProjectState(updatedProperties);
             }}
           />
         </FormControl>
@@ -169,15 +155,16 @@ export const DesignFlowInputCard = ({
             labelid="secondary-unit-value-input-label"
             type="number"
             width="100%"
-            value={projectState.useSecondaryUnitValue}
+            value={projectState?.useSecondaryUnitValue}
             onChange={(event) => {
-              let secondaryUnitInputValue = parseInt(
+              const secondaryUnitInputValue = parseInt(
                 event.target.value
               ) as number;
-              let updatedProperties = {
+
+              const updatedProperties = {
                 useSecondaryUnitValue: secondaryUnitInputValue,
               };
-              handleUpdateProject(updatedProperties);
+              updateProjectState(updatedProperties);
             }}
           />
         </FormControl>
