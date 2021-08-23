@@ -10,7 +10,7 @@ export const tempConfigurationTypes: ConfigurationType[] = [
   { id: 2, description: "Single Bed System" },
 ];
 
-export const soilClasses: SoilClass[] = [
+export const tempSoilClasses: SoilClass[] = [
   {
     id: 1,
     numeral: "I",

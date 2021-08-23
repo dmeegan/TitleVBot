@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { ProjectStateUpdateParam } from "../../types";
+import { ProjectStateUpdateParam, SoilClass } from "../../types";
 import { tempFieldTypes } from "../../tempData/tempSASData";
 import {
   Flex,
@@ -15,12 +15,29 @@ import {
 import { useStore } from "../../store/store";
 
 export const SASInputCard = () => {
-  const { projectState, updateProjectState, fieldTypes, handleSetFieldTypes } =
-    useStore();
+  const {
+    projectState,
+    updateProjectState,
+    fieldTypes,
+    handleSetFieldTypes,
+    setCurrentSoilClass,
+    soilClasses,
+  } = useStore();
 
   useEffect(() => {
     handleSetFieldTypes(tempFieldTypes);
   }, []);
+
+  useEffect(() => {
+    handleSetCurrentSoilClass();
+  }, [soilClasses, projectState.soilClassId]);
+  const handleSetCurrentSoilClass = () => {
+    if (!projectState.soilClassId) return;
+    let currentSoilClass: SoilClass = soilClasses.find(
+      (soilClass) => soilClass.id === projectState.soilClassId
+    )!;
+    setCurrentSoilClass(currentSoilClass);
+  };
 
   return (
     <Flex
@@ -101,6 +118,28 @@ export const SASInputCard = () => {
             updateProjectState(updatedProperties);
           }}
         />
+      </FormControl>
+      <FormControl marginTop="1rem">
+        <FormLabel id="soil-class-select-label">Soil Class</FormLabel>
+        <Select
+          labelid="soil-class-select-label"
+          id="soil-class-select"
+          value={projectState.fieldTypeId || ""}
+          placeholder="Select Soil Class"
+          onChange={(event) => {
+            let soilClassIdSelected = parseInt(event.target.value);
+            let updatedProperties: ProjectStateUpdateParam = {
+              soilClassId: soilClassIdSelected,
+            };
+            updateProjectState(updatedProperties);
+          }}
+        >
+          {soilClasses.map((fieldType, i) => (
+            <option key={i} value={fieldType.id}>
+              {fieldType.description}
+            </option>
+          ))}
+        </Select>
       </FormControl>
     </Flex>
   );

@@ -9,11 +9,11 @@ import { useStore } from "../../../store/store";
 export const DesignFlowInputCard = () => {
   const {
     handleSetEstablishments,
-    setUses,
+    setProjectUses,
     establishments,
-    uses,
-    currentUse,
-    handleSetCurrentUse,
+    projectUses,
+    currentProjectUse,
+    setCurrentProjectUse,
     projectState,
     updateProjectState,
   } = useStore();
@@ -25,38 +25,46 @@ export const DesignFlowInputCard = () => {
   useEffect(() => {
     const filteredUses =
       tempUses.filter(
-        (use) => use.establishmentTypeId === projectState.establishmentTypeId
+        (projectUse) =>
+          projectUse.establishmentTypeId === projectState.establishmentTypeId
       ) !== undefined
         ? tempUses.filter(
-            (use) =>
-              use.establishmentTypeId === projectState.establishmentTypeId
+            (projectUse) =>
+              projectUse.establishmentTypeId ===
+              projectState.establishmentTypeId
           )
         : tempUses;
-    setUses(filteredUses);
+    setProjectUses(filteredUses);
   }, [projectState.establishmentTypeId]);
 
   useEffect(() => {
     if (!projectState.useId) return;
-    let currentUse: Use = uses.find((use) => use.useId === projectState.useId)!;
-    handleSetCurrentUse(currentUse);
-  }, [projectState.useId, uses]);
+    let currentUse: Use = projectUses.find(
+      (projectUse) => projectUse.useId === projectState.useId
+    )!;
+    setCurrentProjectUse(currentUse);
+  }, [projectState.useId, projectUses]);
 
   useEffect(() => {
     handleCalcDesignFlow();
   }, [projectState.usePrimaryUnitValue, projectState.useSecondaryUnitValue]);
 
   const handleCalcDesignFlow = () => {
-    if (!currentUse) return;
-    const primaryFlowValue: number = currentUse
-      ? projectState.usePrimaryUnitValue * currentUse.primaryFlowRate
+    if (!currentProjectUse) return;
+    const primaryFlowValue: number = currentProjectUse
+      ? projectState.usePrimaryUnitValue * currentProjectUse.primaryFlowRate
       : 0;
-    const secondaryFlowValue: number = currentUse.secondaryFlowRate
-      ? projectState.usePrimaryUnitValue * currentUse.secondaryFlowRate
+
+    const secondaryFlowValue: number = currentProjectUse.secondaryFlowRate
+      ? projectState.usePrimaryUnitValue * currentProjectUse.secondaryFlowRate
       : 0;
+
     const totalFlowValue: number = primaryFlowValue + secondaryFlowValue;
+
     let updatedProperties = {
       flowRate: totalFlowValue,
     };
+
     updateProjectState(updatedProperties);
   };
 
@@ -114,18 +122,18 @@ export const DesignFlowInputCard = () => {
               updateProjectState(updatedProperties);
             }}
           >
-            {uses.map((use, i) => (
-              <option key={i} value={use.useId}>
-                {use.description}
+            {projectUses.map((projectUse, i) => (
+              <option key={i} value={projectUse.useId}>
+                {projectUse.description}
               </option>
             ))}
           </Select>
         </FormControl>
       )}
-      {currentUse && (
+      {currentProjectUse && (
         <FormControl paddingTop="1">
           <FormLabel id="use-primary-unit-value-input-label">
-            Number of {currentUse.primaryUnit}
+            Number of {currentProjectUse.primaryUnit}
           </FormLabel>
           <Input
             id="use-primary-unit-value-input"
@@ -145,10 +153,10 @@ export const DesignFlowInputCard = () => {
           />
         </FormControl>
       )}
-      {currentUse?.secondaryUnit && (
+      {currentProjectUse?.secondaryUnit && (
         <FormControl paddingTop="1">
           <FormLabel id="secondary-unit-value-input-label">
-            Number of {currentUse.secondaryUnit}
+            Number of {currentProjectUse.secondaryUnit}
           </FormLabel>
           <Input
             id="secondary-unit-value-input"

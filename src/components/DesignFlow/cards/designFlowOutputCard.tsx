@@ -1,57 +1,60 @@
-import { Heading, Text, Flex, SimpleGrid } from "@chakra-ui/react";
+import { Heading, Text, Flex } from "@chakra-ui/react";
 import { useStore } from "../../../store/store";
 
 export const DesignFlowOutputCard = () => {
-  const { projectState } = useStore();
+  const { projectState, currentProjectUse } = useStore();
 
   return (
-    <Flex
-      p={4}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      width="100%"
-      borderRadius="md"
-      border="1px solid lightgrey"
-    >
-      <SimpleGrid columns={[1, 1, 2]} gap={1} alignItems="center">
-        <Heading
-          fontSize="1rem"
-          wordBreak="keep-all"
-          height="100%"
-          paddingTop="1px"
-        >
-          Flow Per Primary Unit:
-        </Heading>
-        <Text>{projectState.usePrimaryUnitValue || 0}</Text>
-      </SimpleGrid>
-
-      {projectState.useSecondaryUnitValue && (
-        <SimpleGrid columns={[1, 1, 2]} gap={1} alignItems="center">
+    <Flex direction="column" width="100%">
+      <Heading fontSize="1.25rem" alignSelf="center">
+        Results
+      </Heading>
+      <Flex
+        p={4}
+        direction="column"
+        justifyContent="flex-start"
+        width="100%"
+        borderRadius="md"
+        border="1px solid lightgrey"
+      >
+        {currentProjectUse && (
+          <Flex alignItems="center">
+            <Heading
+              fontSize="1rem"
+              wordBreak="keep-all"
+              height="100%"
+              paddingRight="0.5rem"
+            >
+              Flow Per {currentProjectUse?.primaryUnit}:
+            </Heading>
+            <Text> {projectState.usePrimaryUnitValue || 0}</Text>
+          </Flex>
+        )}
+        {currentProjectUse && currentProjectUse?.secondaryUnit && (
+          <Flex alignItems="center">
+            <Heading
+              fontSize="1rem"
+              wordBreak="keep-all"
+              height="100%"
+              paddingRight="0.5rem"
+            >
+              Flow per {currentProjectUse?.secondaryUnit}:{" "}
+            </Heading>
+            <Text>{projectState.useSecondaryUnitValue || 0}</Text>
+          </Flex>
+        )}
+        <Flex alignItems="center">
           <Heading
             fontSize="1rem"
             wordBreak="keep-all"
             height="100%"
-            paddingTop="1px"
+            paddingRight="0.5rem"
           >
-            Flow Per Secondary Unit:
-          </Heading>
-          <Text>{projectState.useSecondaryUnitValue}</Text>
-        </SimpleGrid>
-      )}
-      {projectState.flowRate && (
-        <SimpleGrid columns={[1, 1, 2]} gap={1} alignItems="center">
-          <Heading
-            fontSize="1rem"
-            wordBreak="keep-all"
-            height="100%"
-            paddingTop="1px"
-          >
-            Flow Rate:
+            Total Design Flow Rate:
           </Heading>
           <Text>{projectState.flowRate || 0}</Text>
-        </SimpleGrid>
-      )}
+        </Flex>
+      </Flex>
     </Flex>
   );
 };
