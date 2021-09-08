@@ -1,21 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { NOT_APPLICABLE } from "./types";
 import { DesignFlowInputCard } from "./components/DesignFlow/cards/designFlowInputCard";
 import { DesignFlowOutputCard } from "./components/DesignFlow/cards/designFlowOutputCard";
 import { Flex, ChakraProvider, SimpleGrid } from "@chakra-ui/react";
 import { SASInputCard } from "./components/SAS/SASInputCard";
 import { useStore } from "./store/store";
+import { SASOutputCard } from "./components/SAS/SASOutputCard";
+import { LTAR } from "./types";
+import { Toaster } from "react-hot-toast";
+import { tempFieldTypes, tempSoilClasses } from "./tempData/tempSASData";
+import { tempEstablishments, tempUses } from "./tempData/tempUseData";
+import { tempConstraints } from "./tempData/tempErrorData";
 
 const App = () => {
-  const { projectState, updateProjectState, currentSoilClass } = useStore();
+  const {
+    projectState,
+    updateProjectState,
+    currentSoilClass,
+    setConstraintTypes,
+  } = useStore();
+
+  useEffect(() => {
+    setConstraintTypes(tempConstraints);
+  }, []);
 
   useEffect(() => {
     handleCalcAcceptanceRate();
   }, [projectState.soilClassId, projectState.percRate]);
 
   const handleCalcAcceptanceRate = () => {
-    let calcedLtar: number | null | NOT_APPLICABLE = null;
+    let calcedLtar: LTAR = null;
 
     if (projectState.percRate && projectState.soilClassId && currentSoilClass) {
       const { acceptanceRates } = currentSoilClass;
@@ -23,7 +37,7 @@ const App = () => {
 
       if (percRate < 5) {
         calcedLtar = acceptanceRates[0];
-      } else if (projectState.percRate < 8) {
+      } else if (percRate < 8) {
         calcedLtar = acceptanceRates[Math.ceil(percRate - 5)];
       } else if (percRate < 30) {
         calcedLtar = acceptanceRates[3 + Math.ceil((percRate - 8) / 5)];
@@ -37,6 +51,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Toaster position="top-center" />
       <ChakraProvider>
         <SimpleGrid minChildWidth="350px" gap={6} height="100%">
           <Flex
@@ -59,6 +74,7 @@ const App = () => {
             p={4}
           >
             <SASInputCard />
+            <SASOutputCard projectState={projectState} />
           </Flex>
         </SimpleGrid>
       </ChakraProvider>

@@ -1,13 +1,8 @@
-import { ConfigurationType, FieldType, SoilClass } from "../types";
+import { FieldType, SoilClass } from "../types";
 
 export const tempFieldTypes: FieldType[] = [
-  { id: 1, description: "Trenches" },
-  { id: 2, description: "Bed" },
-];
-
-export const tempConfigurationTypes: ConfigurationType[] = [
-  { id: 1, description: "Alternating Bed System" },
-  { id: 2, description: "Single Bed System" },
+  { id: 1, description: "Trenches", isTrenches: true },
+  { id: 2, description: "Bed", isTrenches: false },
 ];
 
 export const tempSoilClasses: SoilClass[] = [

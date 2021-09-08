@@ -8,7 +8,7 @@ import { useStore } from "../../../store/store";
 
 export const DesignFlowInputCard = () => {
   const {
-    handleSetEstablishments,
+    setEstablishments,
     setProjectUses,
     establishments,
     projectUses,
@@ -19,7 +19,8 @@ export const DesignFlowInputCard = () => {
   } = useStore();
 
   useEffect(() => {
-    handleSetEstablishments(tempEstablishments);
+    setProjectUses(tempUses);
+    setEstablishments(tempEstablishments);
   }, []);
 
   useEffect(() => {
@@ -62,7 +63,7 @@ export const DesignFlowInputCard = () => {
     const totalFlowValue: number = primaryFlowValue + secondaryFlowValue;
 
     let updatedProperties = {
-      flowRate: totalFlowValue,
+      minDesignFlowRate: totalFlowValue,
     };
 
     updateProjectState(updatedProperties);

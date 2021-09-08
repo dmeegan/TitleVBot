@@ -50,9 +50,9 @@ export const DesignFlowOutputCard = () => {
             height="100%"
             paddingRight="0.5rem"
           >
-            Total Design Flow Rate:
+            Minimum Design Flow Rate:
           </Heading>
-          <Text>{projectState.flowRate || 0}</Text>
+          <Text>{projectState.minDesignFlowRate || 0}</Text>
         </Flex>
       </Flex>
     </Flex>
