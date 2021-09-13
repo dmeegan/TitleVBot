@@ -9,7 +9,6 @@ import {
   SoilClass,
   Use,
 } from "../types";
-import { Toast } from "react-hot-toast/dist/core/types";
 import toast from "react-hot-toast";
 
 interface StoreProps {
@@ -17,6 +16,9 @@ interface StoreProps {
   setProjectUses: (returnedUses: Use[]) => void;
   currentProjectUse?: Use;
   setCurrentProjectUse: (selectedUse: Use) => void;
+
+  designFlowOutputActive: boolean;
+  setDesignFlowOutputActive: (isActive: boolean) => void;
 
   soilClasses: SoilClass[];
   setSoilClasses: (returnedSoilClasses: SoilClass[]) => void;
@@ -52,6 +54,11 @@ const store = (set: any, get: any): StoreProps => ({
   currentProjectUse: undefined,
   setCurrentProjectUse: (selectedProjectUse: Use) => {
     set({ currentProjectUse: selectedProjectUse });
+  },
+
+  designFlowOutputActive: false,
+  setDesignFlowOutputActive: (isActive: boolean) => {
+    set({ designFlowOutputActive: isActive });
   },
 
   soilClasses: [],

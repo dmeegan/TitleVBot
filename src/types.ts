@@ -29,7 +29,8 @@ export class ProjectState {
   useId: number | null = null;
   usePrimaryUnitValue: number = 0;
   useSecondaryUnitValue: number = 0;
-  minDesignFlowRate: number = 0;
+  minDesignFlowRate: number | null = null;
+  provDesignFlowRate: number = 0;
   soilClassId: number | null = null;
   ltar: LTAR = null;
   percRate: number | null = null;
@@ -40,18 +41,19 @@ export class ProjectState {
   SASMinFieldWidth: number | null = null;
   SASLength: number | null = null;
   SASFieldWidth: number | null = null;
-  SASProvidedSurfaceArea: number | null = null;
-  SASProvidedOverallWidth: number | null = null;
-  SASTrenchHeight: number | null = null;
-  SASTrenchWidth: number | null = null;
-  SASTrenchSurfaceAreaPerLF: number | null = null;
-  SASTrenchSurfaceAreaPerTrench: number | null = null;
+  SASProvSurfaceArea: number | null = null;
+  SASProvOverallWidth: number | null = null;
+  SASProvTrenchHeight: number | null = null;
+  SASProvTrenchWidth: number | null = null;
+  SASProvTrenchSurfaceAreaPerLF: number | null = null;
+  SASProvTrenchSurfaceAreaPerTrench: number | null = null;
   SASMinTrenches: number | null = null;
+  SASProvTrenches: number | null = null;
   SASIsTrenches: boolean = true;
   SASRecTrenchLength: number | null = null;
   SASRecTrenchSurfaceArea: number | null = null;
   SASReserveIsBetweenTrenches: boolean = true;
-  SASRequiredTrenchSeparation: number | null = null;
+  SASReqTrenchSeparation: number | null = null;
 }
 
 export type ProjectStateUpdateParam = {

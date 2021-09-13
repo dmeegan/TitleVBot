@@ -101,7 +101,7 @@ export const tempUses: Use[] = [
     establishmentTypeId: 1,
     description: "Housing for the Elderly",
     primaryFlowRate: 150,
-    primaryUnit: "two bedroom primaryUnits",
+    primaryUnit: "two bedroom units",
   },
 
   {

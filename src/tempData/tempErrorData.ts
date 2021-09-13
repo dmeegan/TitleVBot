@@ -12,7 +12,7 @@ export const tempConstraints: ConstraintType[] = [
   },
   {
     id: 2,
-    field: "SASTrenchWidth",
+    field: "SASProvTrenchWidth",
     value: 3,
     type: "maximum",
     unit: "feet",
@@ -21,7 +21,7 @@ export const tempConstraints: ConstraintType[] = [
   },
   {
     id: 3,
-    field: "SASTrenchWidth",
+    field: "SASProvTrenchWidth",
     value: 2,
     type: "minimum",
     unit: "feet",
@@ -30,7 +30,7 @@ export const tempConstraints: ConstraintType[] = [
   },
   {
     id: 4,
-    field: "SASTrenchHeight",
+    field: "SASProvTrenchHeight",
     value: 2,
     type: "maximum",
     unit: "feet",

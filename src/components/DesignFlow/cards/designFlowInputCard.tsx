@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { FormControl, Select, FormLabel, Input, Flex } from "@chakra-ui/react";
 
 import { tempUses, tempEstablishments } from "../../../tempData/tempUseData";
-import { Use } from "../../../types";
+import { ProjectStateUpdateParam, Use } from "../../../types";
 import { useStore } from "../../../store/store";
+import toast from "react-hot-toast";
 
 export const DesignFlowInputCard = () => {
   const {
@@ -16,6 +17,7 @@ export const DesignFlowInputCard = () => {
     setCurrentProjectUse,
     projectState,
     updateProjectState,
+    designFlowOutputActive,
   } = useStore();
 
   useEffect(() => {
@@ -47,32 +49,112 @@ export const DesignFlowInputCard = () => {
   }, [projectState.useId, projectUses]);
 
   useEffect(() => {
-    handleCalcDesignFlow();
+    handleMinCalcDesignFlow();
   }, [projectState.usePrimaryUnitValue, projectState.useSecondaryUnitValue]);
 
-  const handleCalcDesignFlow = () => {
-    if (!currentProjectUse) return;
-    const primaryFlowValue: number = currentProjectUse
-      ? projectState.usePrimaryUnitValue * currentProjectUse.primaryFlowRate
-      : 0;
+  const handleMinCalcDesignFlow = () => {
+    let calcdMinDesignFlow: number | null = null;
+    if (!currentProjectUse) {
+      let updatedProperties: ProjectStateUpdateParam = {
+        minDesignFlowRate: null,
+      };
+      updateProjectState(updatedProperties);
+      return;
+    }
+
+    const primaryFlowValue: number =
+      projectState.usePrimaryUnitValue !== undefined
+        ? projectState.usePrimaryUnitValue * currentProjectUse.primaryFlowRate
+        : 0;
 
     const secondaryFlowValue: number = currentProjectUse.secondaryFlowRate
       ? projectState.usePrimaryUnitValue * currentProjectUse.secondaryFlowRate
       : 0;
 
-    const totalFlowValue: number = primaryFlowValue + secondaryFlowValue;
+    calcdMinDesignFlow = primaryFlowValue + secondaryFlowValue;
 
-    let updatedProperties = {
-      minDesignFlowRate: totalFlowValue,
+    if (calcdMinDesignFlow === 0) return;
+    let updatedProperties: ProjectStateUpdateParam = {
+      minDesignFlowRate: calcdMinDesignFlow,
     };
 
     updateProjectState(updatedProperties);
   };
 
+  const handleSetEstablishment = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    let establishmentIdSelected = parseInt(
+      event.target.value
+    ) as unknown as number;
+    let updatedProperties: ProjectStateUpdateParam = {
+      establishmentTypeId: establishmentIdSelected,
+    };
+    updateProjectState(updatedProperties);
+  };
+
+  const handleSetUse = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const useIdSelected = parseInt(event.target.value) as unknown as number;
+    const updatedProperties: ProjectStateUpdateParam = {
+      useId: useIdSelected,
+    };
+    updateProjectState(updatedProperties);
+  };
+
+  const handleSetPrimaryUnitInputValue = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const primaryUnitInputValue =
+      event.target.value !== "" ? parseInt(event.target.value) : undefined;
+
+    const updatedProperties: ProjectStateUpdateParam = {
+      usePrimaryUnitValue: primaryUnitInputValue,
+    };
+    updateProjectState(updatedProperties);
+  };
+
+  const handleSetSecondaryUnitInputValue = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const secondaryUnitInputValue = parseInt(event.target.value) as number;
+
+    const updatedProperties: ProjectStateUpdateParam = {
+      useSecondaryUnitValue: secondaryUnitInputValue,
+    };
+    updateProjectState(updatedProperties);
+  };
+
+  const handleSetDesignFlowRate = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    let designFlowInputValue = parseInt(event.target.value) as number;
+    const updatedProperties: ProjectStateUpdateParam = {
+      provDesignFlowRate: designFlowInputValue,
+    };
+    updateProjectState(updatedProperties);
+  };
+
+  const handleValidateDesignFlow = () => {
+    if (!projectState.minDesignFlowRate) return;
+    let errorText: string = "";
+    if (projectState.provDesignFlowRate < projectState.minDesignFlowRate) {
+      errorText = `Please enter a design flow rate greater than or equal to ${projectState.minDesignFlowRate}.`;
+    } else if (!projectState.provDesignFlowRate) {
+      errorText = "Please enter a design flow rate.";
+    }
+    if (errorText !== "") {
+      toast.error(errorText);
+      const updatedProperties: ProjectStateUpdateParam = {
+        provDesignFlowRate: undefined,
+      };
+      updateProjectState(updatedProperties);
+    }
+  };
+
   return (
     <Flex
       p={4}
-      width="100%"
+      width={!designFlowOutputActive ? "50%" : "100%"}
       height="100%"
       justifyContent="flex-start"
       direction="column"
@@ -88,15 +170,7 @@ export const DesignFlowInputCard = () => {
           value={
             projectState.establishmentTypeId || "Select a Establishment Type"
           }
-          onChange={(event) => {
-            let establishmentIdSelected = parseInt(
-              event.target.value
-            ) as unknown as number;
-            let updatedProperties = {
-              establishmentTypeId: establishmentIdSelected,
-            };
-            updateProjectState(updatedProperties);
-          }}
+          onChange={handleSetEstablishment}
         >
           {establishments.map((establishment, i) => (
             <option key={i} value={establishment.establishmentTypeId}>
@@ -113,15 +187,7 @@ export const DesignFlowInputCard = () => {
             id="use-type-select"
             value={projectState.useId || ""}
             placeholder="Select Use Type"
-            onChange={(event) => {
-              const useIdSelected = parseInt(
-                event.target.value
-              ) as unknown as number;
-              const updatedProperties = {
-                useId: useIdSelected,
-              };
-              updateProjectState(updatedProperties);
-            }}
+            onChange={handleSetUse}
           >
             {projectUses.map((projectUse, i) => (
               <option key={i} value={projectUse.useId}>
@@ -142,15 +208,7 @@ export const DesignFlowInputCard = () => {
             width="100%"
             value={projectState.usePrimaryUnitValue}
             labelid="use-primary-unit-value-input-label"
-            onChange={(event) => {
-              const primaryUnitInputValue = parseInt(
-                event.target.value
-              ) as number;
-              const updatedProperties = {
-                usePrimaryUnitValue: primaryUnitInputValue,
-              };
-              updateProjectState(updatedProperties);
-            }}
+            onChange={handleSetPrimaryUnitInputValue}
           />
         </FormControl>
       )}
@@ -165,16 +223,23 @@ export const DesignFlowInputCard = () => {
             type="number"
             width="100%"
             value={projectState?.useSecondaryUnitValue}
-            onChange={(event) => {
-              const secondaryUnitInputValue = parseInt(
-                event.target.value
-              ) as number;
-
-              const updatedProperties = {
-                useSecondaryUnitValue: secondaryUnitInputValue,
-              };
-              updateProjectState(updatedProperties);
-            }}
+            onChange={handleSetSecondaryUnitInputValue}
+          />
+        </FormControl>
+      )}
+      {projectState.minDesignFlowRate && (
+        <FormControl paddingTop="1">
+          <FormLabel id="design-flow-input-label">
+            Design Flow Rate (GPD)
+          </FormLabel>
+          <Input
+            id="design-flow-input"
+            labelid="design-flow-input-label"
+            type="number"
+            width="100%"
+            value={projectState?.provDesignFlowRate}
+            onChange={handleSetDesignFlowRate}
+            onBlur={handleValidateDesignFlow}
           />
         </FormControl>
       )}

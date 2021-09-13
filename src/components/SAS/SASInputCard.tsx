@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ChangeEvent, ReactEventHandler, useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { ProjectStateUpdateParam, SoilClass } from "../../types";
 import { tempFieldTypes, tempSoilClasses } from "../../tempData/tempSASData";
 import {
@@ -49,7 +49,12 @@ export const SASInputCard = () => {
 
   // The following function calculates the required surface area of the SAS (reqSasSurfArea) based on the Long term acceptance rate (LTAR) and the design flow (designFLow).
   const handleCalReqSasSurfArea = () => {
-    if (!projectState.ltar || projectState.ltar === "n/a") return;
+    if (
+      !projectState.ltar ||
+      projectState.ltar === "n/a" ||
+      !projectState.minDesignFlowRate
+    )
+      return;
     const reqSF = Math.ceil(projectState.minDesignFlowRate / projectState.ltar);
     const updatedProperties: ProjectStateUpdateParam = {
       SASMinSurfaceArea: reqSF,
@@ -59,31 +64,32 @@ export const SASInputCard = () => {
 
   useEffect(() => {
     handleCalcTrenchSurfaceAreaPerFoot();
-  }, [projectState.SASTrenchHeight, projectState.SASTrenchWidth]);
+  }, [projectState.SASProvTrenchHeight, projectState.SASProvTrenchWidth]);
 
   // The following function calculates the surface area per linear foot of trench (trenchSurfaceAreaPerFoot) based on the trench hight (trenchHeight) and the trench width (trenchWidth).
   const handleCalcTrenchSurfaceAreaPerFoot = () => {
-    if (!projectState.SASTrenchHeight || !projectState.SASTrenchWidth) return;
+    if (!projectState.SASProvTrenchHeight || !projectState.SASProvTrenchWidth)
+      return;
     const SFPerLF =
-      2 * projectState.SASTrenchHeight + projectState.SASTrenchWidth;
+      2 * projectState.SASProvTrenchHeight + projectState.SASProvTrenchWidth;
     const updatedProperties: ProjectStateUpdateParam = {
-      SASTrenchSurfaceAreaPerLF: SFPerLF,
+      SASProvTrenchSurfaceAreaPerLF: SFPerLF,
     };
     updateProjectState(updatedProperties);
   };
 
   useEffect(() => {
     handleCalcSurfaceAreaPerTrench();
-  }, [projectState.SASLength, projectState.SASTrenchSurfaceAreaPerLF]);
+  }, [projectState.SASLength, projectState.SASProvTrenchSurfaceAreaPerLF]);
 
   // The following function calculates the total surface area per trench (trenchSurfaceArea) based on the surface area per linear foot (trenchSurfaceAreaPerFoot) and the trench length (trenchLength).
   const handleCalcSurfaceAreaPerTrench = () => {
-    if (!projectState.SASLength || !projectState.SASTrenchSurfaceAreaPerLF)
+    if (!projectState.SASLength || !projectState.SASProvTrenchSurfaceAreaPerLF)
       return;
     const surfaceAreaPerTrench =
-      projectState.SASTrenchSurfaceAreaPerLF * projectState.SASLength;
+      projectState.SASProvTrenchSurfaceAreaPerLF * projectState.SASLength;
     const updatedProperties: ProjectStateUpdateParam = {
-      SASTrenchSurfaceAreaPerTrench: surfaceAreaPerTrench,
+      SASProvTrenchSurfaceAreaPerTrench: surfaceAreaPerTrench,
     };
     updateProjectState(updatedProperties);
   };
@@ -92,7 +98,7 @@ export const SASInputCard = () => {
     handleCalcMinTrenchNum();
   }, [
     projectState.SASMinSurfaceArea,
-    projectState.SASProvidedSurfaceArea,
+    projectState.SASProvSurfaceArea,
     projectState.SASIsTrenches,
   ]);
 
@@ -106,28 +112,28 @@ export const SASInputCard = () => {
       updateProjectState(updatedProperties);
     } else {
       let minTrenches;
-      if (!projectState.SASTrenchSurfaceAreaPerTrench) return;
+      if (!projectState.SASProvTrenchSurfaceAreaPerTrench) return;
       if (projectState.SASIsAltBed) {
         minTrenches = Math.ceil(
           projectState.SASMinSurfaceArea /
-            projectState.SASTrenchSurfaceAreaPerTrench
+            projectState.SASProvTrenchSurfaceAreaPerTrench
         );
       } else {
         minTrenches =
           2 *
           Math.ceil(
             projectState.SASMinSurfaceArea /
-              projectState.SASTrenchSurfaceAreaPerTrench /
+              projectState.SASProvTrenchSurfaceAreaPerTrench /
               2
           );
       }
-      if (!projectState.SASTrenchSurfaceAreaPerLF) return;
+      if (!projectState.SASProvTrenchSurfaceAreaPerLF) return;
       const recTrenchLength = Math.ceil(
         projectState.SASMinSurfaceArea /
-          (minTrenches * projectState.SASTrenchSurfaceAreaPerLF)
+          (minTrenches * projectState.SASProvTrenchSurfaceAreaPerLF)
       );
       const recTrenchSurfaceArea =
-        projectState.SASTrenchSurfaceAreaPerLF * recTrenchLength;
+        projectState.SASProvTrenchSurfaceAreaPerLF * recTrenchLength;
       const updatedProperties: ProjectStateUpdateParam = {
         SASMinTrenches: minTrenches,
         SASRecTrenchLength: recTrenchLength,
@@ -139,18 +145,21 @@ export const SASInputCard = () => {
 
   useEffect(() => {
     handleReserveConfigurationSelect();
-  }, [projectState.SASTrenchWidth, projectState.SASReserveIsBetweenTrenches]);
+  }, [
+    projectState.SASProvTrenchWidth,
+    projectState.SASReserveIsBetweenTrenches,
+  ]);
 
   const handleReserveConfigurationSelect = () => {
     let reqTrenchSeparation: number;
-    if (!projectState.SASTrenchWidth) return;
+    if (!projectState.SASProvTrenchWidth) return;
     if (projectState.SASReserveIsBetweenTrenches) {
-      reqTrenchSeparation = 3 * projectState.SASTrenchWidth;
+      reqTrenchSeparation = 3 * projectState.SASProvTrenchWidth;
     } else {
-      reqTrenchSeparation = 2 * projectState.SASTrenchWidth;
+      reqTrenchSeparation = 2 * projectState.SASProvTrenchWidth;
     }
     const updatedProperties: ProjectStateUpdateParam = {
-      SASRequiredTrenchSeparation: reqTrenchSeparation,
+      SASReqTrenchSeparation: reqTrenchSeparation,
     };
     updateProjectState(updatedProperties);
   };
@@ -158,10 +167,10 @@ export const SASInputCard = () => {
   useEffect(() => {
     handleCalcWidths();
   }, [
-    projectState.SASTrenchHeight,
-    projectState.SASTrenchWidth,
+    projectState.SASProvTrenchHeight,
+    projectState.SASProvTrenchWidth,
     projectState.SASMinTrenches,
-    projectState.SASRequiredTrenchSeparation,
+    projectState.SASReqTrenchSeparation,
   ]);
 
   // The following function calculates the overall width of the SAS (sasAreaWidth) based on the number of trenches (recTrenchNum) and the trench width (trenchWidth).
@@ -170,22 +179,21 @@ export const SASInputCard = () => {
     if (projectState.SASIsTrenches) {
       if (
         !projectState.SASMinTrenches ||
-        !projectState.SASTrenchWidth ||
-        !projectState.SASRequiredTrenchSeparation ||
+        !projectState.SASProvTrenchWidth ||
+        !projectState.SASReqTrenchSeparation ||
         !projectState.SASRecTrenchSurfaceArea
       )
         return;
       const overallSasAreaWidthTrench =
-        projectState.SASMinTrenches * projectState.SASTrenchWidth +
-        (projectState.SASMinTrenches - 1) *
-          projectState.SASRequiredTrenchSeparation;
+        projectState.SASMinTrenches * projectState.SASProvTrenchWidth +
+        (projectState.SASMinTrenches - 1) * projectState.SASReqTrenchSeparation;
       if (projectState.SASIsAltBed) {
         SASOverallWidth = overallSasAreaWidthTrench / 2;
       } else {
         SASOverallWidth = overallSasAreaWidthTrench;
       }
       const updatedProperties: ProjectStateUpdateParam = {
-        SASProvidedOverallWidth: SASOverallWidth,
+        SASProvOverallWidth: SASOverallWidth,
       };
       updateProjectState(updatedProperties);
     } else {
@@ -205,11 +213,34 @@ export const SASInputCard = () => {
     }
   };
 
+  useEffect(() => {
+    handleCalcSurfaceArea();
+  }, [
+    projectState.SASIsTrenches,
+    projectState.SASProvTrenches,
+    projectState.SASProvTrenchSurfaceAreaPerTrench,
+  ]);
+
   const handleCalcSurfaceArea = () => {
-    if (!projectState.SASMinTrenches || !projectState.SASRecTrenchSurfaceArea)
-      return;
-    const provSasSurfaceAreaTrenches =
-      projectState.SASMinTrenches * projectState.SASRecTrenchSurfaceArea;
+    let provSurfaceArea: number = 0;
+    if (projectState.SASIsTrenches) {
+      if (
+        !projectState.SASProvTrenches ||
+        !projectState.SASProvTrenchSurfaceAreaPerTrench
+      )
+        return;
+      provSurfaceArea =
+        projectState.SASProvTrenches *
+        projectState.SASProvTrenchSurfaceAreaPerTrench;
+    } else {
+      if (!projectState.SASLength || !projectState.SASProvOverallWidth) return;
+      provSurfaceArea =
+        projectState.SASLength * projectState.SASProvOverallWidth;
+    }
+    const updatedProperties: ProjectStateUpdateParam = {
+      SASProvSurfaceArea: provSurfaceArea,
+    };
+    updateProjectState(updatedProperties);
   };
 
   const handleSelectFieldType = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -226,24 +257,26 @@ export const SASInputCard = () => {
 
   const handleSetTrenchWidth = (event: ChangeEvent<HTMLInputElement>) => {
     let trenchWidthInputValue = parseInt(event.target.value) as number;
-    if (handleValidateConstraint("SASTrenchWidth", trenchWidthInputValue)) {
+    if (handleValidateConstraint("SASProvTrenchWidth", trenchWidthInputValue)) {
       trenchWidthInputValue = 0;
       return;
     }
     const updatedProperties = {
-      SASTrenchWidth: trenchWidthInputValue,
+      SASProvTrenchWidth: trenchWidthInputValue,
     };
     updateProjectState(updatedProperties);
   };
 
   const handleSetTrenchHeight = (event: ChangeEvent<HTMLInputElement>) => {
     let trenchHeightInputValue = parseInt(event.target.value) as number;
-    if (handleValidateConstraint("SASTrenchHeight", trenchHeightInputValue)) {
+    if (
+      handleValidateConstraint("SASProvTrenchHeight", trenchHeightInputValue)
+    ) {
       trenchHeightInputValue = 0;
       return;
     }
     const updatedProperties = {
-      SASTrenchHeight: trenchHeightInputValue,
+      SASProvTrenchHeight: trenchHeightInputValue,
     };
     updateProjectState(updatedProperties);
   };
@@ -311,7 +344,7 @@ export const SASInputCard = () => {
               id="trench-width-input"
               labelid="trench-width-id"
               type="number"
-              value={projectState.SASTrenchWidth || undefined}
+              value={projectState.SASProvTrenchWidth || undefined}
               onChange={handleSetTrenchWidth}
             />
           </FormControl>
@@ -321,7 +354,7 @@ export const SASInputCard = () => {
               id="trench-height-input"
               labelid="trench-height-id"
               type="number"
-              value={projectState.SASTrenchHeight || undefined}
+              value={projectState.SASProvTrenchHeight || undefined}
               onChange={handleSetTrenchHeight}
             />
           </FormControl>

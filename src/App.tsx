@@ -8,8 +8,6 @@ import { useStore } from "./store/store";
 import { SASOutputCard } from "./components/SAS/SASOutputCard";
 import { LTAR } from "./types";
 import { Toaster } from "react-hot-toast";
-import { tempFieldTypes, tempSoilClasses } from "./tempData/tempSASData";
-import { tempEstablishments, tempUses } from "./tempData/tempUseData";
 import { tempConstraints } from "./tempData/tempErrorData";
 
 const App = () => {
@@ -18,7 +16,21 @@ const App = () => {
     updateProjectState,
     currentSoilClass,
     setConstraintTypes,
+    designFlowOutputActive,
+    setDesignFlowOutputActive,
   } = useStore();
+
+  useEffect(() => {
+    projectState.minDesignFlowRate ||
+    projectState.usePrimaryUnitValue ||
+    projectState.useSecondaryUnitValue
+      ? setDesignFlowOutputActive(true)
+      : setDesignFlowOutputActive(false);
+  }, [
+    projectState.minDesignFlowRate,
+    projectState.useSecondaryUnitValue,
+    projectState.usePrimaryUnitValue,
+  ]);
 
   useEffect(() => {
     setConstraintTypes(tempConstraints);
@@ -58,12 +70,12 @@ const App = () => {
             backgroundColor="#FFFFFF"
             borderRadius="md"
             alignItems="center"
-            justifyContent="center"
+            justifyContent="flex-start"
             minHeight={0.33 * window.innerHeight}
             p={4}
           >
             <DesignFlowInputCard />
-            <DesignFlowOutputCard />
+            {designFlowOutputActive && <DesignFlowOutputCard />}
           </Flex>
           <Flex
             backgroundColor="#FFFFFF"
