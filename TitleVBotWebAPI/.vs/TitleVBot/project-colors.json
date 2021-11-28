@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "89c796ee-57e9-4ff7-854b-f0030d64a2af": {
+      "ProjectGuid": "89c796ee-57e9-4ff7-854b-f0030d64a2af",
+      "DisplayName": "TitleVBotWebAPI",
+      "ColorIndex": 0
+    },
+    "469d32a9-c1f4-47e1-bcf0-59fb5e781da1": {
+      "ProjectGuid": "469d32a9-c1f4-47e1-bcf0-59fb5e781da1",
+      "DisplayName": "ClientApp",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}
