@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ChakraProvider, Flex, SimpleGrid } from "@chakra-ui/react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import dotenv from "dotenv";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { DesignFlowInputCard } from "./components/DesignFlow/cards/designFlowInputCard";
@@ -9,6 +11,8 @@ import { SASOutputCard } from "./components/SAS/SASOutputCard";
 import { useStore } from "./store/store";
 import { tempConstraints } from "./tempData/tempErrorData";
 import { LTAR } from "./types";
+
+let env = dotenv;
 
 const App = () => {
   const {

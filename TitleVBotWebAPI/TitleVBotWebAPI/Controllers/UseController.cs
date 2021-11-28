@@ -1,29 +1,26 @@
 ﻿using Dapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
-using TitleVBotWebAPI.LookupModels;
-using TitleVBotWebAPI.Models;
+using TitleVBotWebAPI.UseModels;
 using DapperParameters;
-using Microsoft.AspNetCore.Cors;
 
 namespace TitleVBotWebAPI.Controllers
 {
     [ApiController]
-    public class LookupController : ControllerBase
+    public class UseController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        public LookupController(IConfiguration configuration)
+        public UseController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        [Route("api/[controller]/uses")]
+        [Route("api/[controller]/list")]
         [HttpGet]
         public JsonResult GetUses()
         {
-            string proc = "dbo.PLookupUses";
+            string proc = "dbo.PUseLookup";
 
             string sqlDataSource = _configuration.GetConnectionString("TitleVBotCon");
             using var connection = new SqlConnection(sqlDataSource);
@@ -32,9 +29,10 @@ namespace TitleVBotWebAPI.Controllers
 
             return new JsonResult(new {data});
 
-        } 
-        
-        [Route("api/[controller]/uses/insert")]
+        }
+
+
+        [Route("api/[controller]/insert")]
         [HttpPost]
         public void InsertUses([FromBody] InsertUsesParams insertUsesParams)
         {
@@ -44,7 +42,7 @@ namespace TitleVBotWebAPI.Controllers
             using var connection = new SqlConnection(sqlDataSource);
 
             var queryParameters = new DynamicParameters();
-            if(insertUsesParams.uses.Count > 0 && insertUsesParams.uses != null)
+            if (insertUsesParams.uses.Count > 0 && insertUsesParams.uses != null)
             {
                 queryParameters.AddTable("@Uses", "T_Use", insertUsesParams.uses);
             }
@@ -52,5 +50,6 @@ namespace TitleVBotWebAPI.Controllers
             connection.Query(proc, queryParameters, commandType: CommandType.StoredProcedure);
 
         }
+
     }
 }

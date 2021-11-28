@@ -1,4 +1,4 @@
-﻿namespace TitleVBotWebAPI.LookupModels
+﻿namespace TitleVBotWebAPI.UseModels
 {
     public class Use
     {

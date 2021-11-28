@@ -11,7 +11,10 @@ builder.Services.AddCors(options =>
                       builder =>
                       {
                           builder.WithOrigins("*");
-                      });
+                          builder.AllowAnyHeader();
+                          builder.AllowAnyMethod();
+                          builder.SetIsOriginAllowed(origin => true);
+                    });
 });
 
 builder.Services.AddMvc(options =>

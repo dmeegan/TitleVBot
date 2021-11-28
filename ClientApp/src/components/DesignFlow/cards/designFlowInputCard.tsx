@@ -3,10 +3,11 @@ import { Flex, FormControl, FormLabel, Input, Select } from "@chakra-ui/react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useStore } from "../../../store/store";
-import { tempEstablishments } from "../../../tempData/tempUseData";
 import { ProjectStateUpdateParam, Use } from "../../../types";
-import { fetchConfig } from "../../../utilities/fetchUtil";
-
+import {
+  fetchEstablishmentTypesList,
+  fetchUseList,
+} from "../../../utilities/fetchUtil";
 
 export const DesignFlowInputCard = () => {
   const {
@@ -22,11 +23,12 @@ export const DesignFlowInputCard = () => {
   } = useStore();
 
   useEffect(() => {
-    Promise.all([fetchConfig<{}, Use[]>("http://localhost:7293/api/LookUp/uses/", "GET"
-    )]).then(([useRes])=>{
-      setProjectUses(useRes);
-      setEstablishments(tempEstablishments);}
-    )
+    Promise.all([fetchUseList(), fetchEstablishmentTypesList()]).then(
+      ([usesRes, estTypeRes]) => {
+        setProjectUses(usesRes);
+        setEstablishments(estTypeRes);
+      }
+    );
   }, []);
 
   useEffect(() => {

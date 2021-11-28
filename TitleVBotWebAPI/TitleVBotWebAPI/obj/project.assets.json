@@ -6958,11 +6958,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dn_me\\source\\repos\\TitleVBotBackend\\TitleVBotWebAPI\\TitleVBotWebAPI\\TitleVBotWebAPI.csproj",
+      "projectUniqueName": "C:\\repos\\TitleVBot\\TitleVBotWebAPI\\TitleVBotWebAPI\\TitleVBotWebAPI.csproj",
       "projectName": "TitleVBotWebAPI",
-      "projectPath": "C:\\Users\\dn_me\\source\\repos\\TitleVBotBackend\\TitleVBotWebAPI\\TitleVBotWebAPI\\TitleVBotWebAPI.csproj",
+      "projectPath": "C:\\repos\\TitleVBot\\TitleVBotWebAPI\\TitleVBotWebAPI\\TitleVBotWebAPI.csproj",
       "packagesPath": "C:\\Users\\dn_me\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dn_me\\source\\repos\\TitleVBotBackend\\TitleVBotWebAPI\\TitleVBotWebAPI\\obj\\",
+      "outputPath": "C:\\repos\\TitleVBot\\TitleVBotWebAPI\\TitleVBotWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dn_me\\AppData\\Roaming\\NuGet\\NuGet.Config",

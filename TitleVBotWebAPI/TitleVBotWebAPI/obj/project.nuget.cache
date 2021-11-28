@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lMQtEdANj1Z6WPzF8MP5BGbuCaT1z38k6Ox9TPkr0HLxgmd7OyP7NePNY5jlNxnE0Q/auY+9TuslE1OV3cXsJw==",
+  "dgSpecHash": "IeiGAg8Fm+4it2Nw3Bw+OIzlUABQvmj77+Yj2qBsBlm7PDeCOBc7HVltQJ0qxTa/fWgGf0sl4btqtn3wQInMmQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dn_me\\source\\repos\\TitleVBotBackend\\TitleVBotWebAPI\\TitleVBotWebAPI\\TitleVBotWebAPI.csproj",
+  "projectFilePath": "C:\\repos\\TitleVBot\\TitleVBotWebAPI\\TitleVBotWebAPI\\TitleVBotWebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dn_me\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\dn_me\\.nuget\\packages\\dapper.parameterextensions\\2018.12.7.1\\dapper.parameterextensions.2018.12.7.1.nupkg.sha512",
