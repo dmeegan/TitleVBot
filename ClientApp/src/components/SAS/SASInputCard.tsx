@@ -1,7 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ChangeEvent, useEffect } from "react";
-import { ProjectStateUpdateParam, SoilClass } from "../../types";
-import { tempFieldTypes, tempSoilClasses } from "../../tempData/tempSASData";
 import {
   Flex,
   FormControl,
@@ -12,7 +9,14 @@ import {
   Select,
   Stack,
 } from "@chakra-ui/react";
+import { ChangeEvent, useEffect } from "react";
 import { useStore } from "../../store/store";
+import { ProjectStateUpdateParam, SoilClass } from "../../types";
+import {
+  fetchEffluentLoadingRates,
+  fetchFieldTypes,
+  fetchSoilClasses,
+} from "../../utilities/fetchUtil";
 
 export const SASInputCard = () => {
   const {
@@ -23,12 +27,25 @@ export const SASInputCard = () => {
     setCurrentSoilClass,
     soilClasses,
     setSoilClasses,
+    setEffluentLoadingRates,
     handleValidateConstraint,
   } = useStore();
 
+  // useEffect(() => {
+  //   setSoilClasses(tempSoilClasses);
+  //   setFieldTypes(tempFieldTypes);
+  // }, []);
+
   useEffect(() => {
-    setSoilClasses(tempSoilClasses);
-    setFieldTypes(tempFieldTypes);
+    Promise.all([
+      fetchFieldTypes(),
+      fetchEffluentLoadingRates(),
+      fetchSoilClasses("I"),
+    ]).then(([fieldTypesRes, effluentLoadingRatesRes, soilClassRes]) => {
+      setFieldTypes(fieldTypesRes);
+      setEffluentLoadingRates(effluentLoadingRatesRes);
+      setSoilClasses(soilClassRes);
+    });
   }, []);
 
   useEffect(() => {

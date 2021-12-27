@@ -1,7 +1,9 @@
+import toast from "react-hot-toast";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import {
   ConstraintType,
+  EffluentLoadingRate,
   Establishment,
   FieldType,
   ProjectState,
@@ -9,7 +11,6 @@ import {
   SoilClass,
   Use,
 } from "../types";
-import toast from "react-hot-toast";
 
 interface StoreProps {
   projectUses: Use[];
@@ -24,6 +25,15 @@ interface StoreProps {
   setSoilClasses: (returnedSoilClasses: SoilClass[]) => void;
   currentSoilClass?: SoilClass;
   setCurrentSoilClass: (selectedSoilClass: SoilClass) => void;
+
+  effluentLoadingRates: EffluentLoadingRate[];
+  setEffluentLoadingRates: (
+    returnedEffluentLoadingRates: EffluentLoadingRate[]
+  ) => void;
+  currentEffluentLoadingRate?: EffluentLoadingRate;
+  setCurrentEffluentLoadingRate: (
+    selectedEffluentLoadingRate: EffluentLoadingRate
+  ) => void;
 
   establishments: Establishment[];
   setEstablishments: (establishmentsReturned: Establishment[]) => void;
@@ -68,6 +78,17 @@ const store = (set: any, get: any): StoreProps => ({
   currentSoilClass: undefined,
   setCurrentSoilClass: (selectedSoilClass: SoilClass) => {
     set({ currentSoilClass: selectedSoilClass });
+  },
+
+  effluentLoadingRates: [],
+  setEffluentLoadingRates: (effluentLoadingRates: EffluentLoadingRate[]) => {
+    set({ effluentLoadingRates: effluentLoadingRates });
+  },
+  currentEffluentLoadingRate: undefined,
+  setCurrentEffluentLoadingRate: (
+    selectedEffluentLoadingRate: EffluentLoadingRate
+  ) => {
+    set({ currentEffluentLoadingRate: selectedEffluentLoadingRate });
   },
 
   establishments: [],

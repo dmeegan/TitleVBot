@@ -10,7 +10,12 @@
       "ProjectGuid": "469d32a9-c1f4-47e1-bcf0-59fb5e781da1",
       "DisplayName": "ClientApp (loading...)",
       "ColorIndex": 0
+    },
+    "9fc7e76f-5e00-4f68-9c1b-8c2e7001876a": {
+      "ProjectGuid": "9fc7e76f-5e00-4f68-9c1b-8c2e7001876a",
+      "DisplayName": "TitleVBotWebAPI",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

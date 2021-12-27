@@ -10,7 +10,7 @@ import { SASInputCard } from "./components/SAS/SASInputCard";
 import { SASOutputCard } from "./components/SAS/SASOutputCard";
 import { useStore } from "./store/store";
 import { tempConstraints } from "./tempData/tempErrorData";
-import { LTAR } from "./types";
+// import { LTAR } from "./types";
 
 let env = dotenv;
 
@@ -22,6 +22,7 @@ const App = () => {
     setConstraintTypes,
     designFlowOutputActive,
     setDesignFlowOutputActive,
+    effluentLoadingRates,
   } = useStore();
 
   useEffect(() => {
@@ -40,30 +41,30 @@ const App = () => {
     setConstraintTypes(tempConstraints);
   }, []);
 
-  useEffect(() => {
-    handleCalcAcceptanceRate();
-  }, [projectState.soilClassId, projectState.percRate]);
+  // useEffect(() => {
+  //   handleCalcAcceptanceRate();
+  // }, [projectState.soilClassId, projectState.percRate]);
 
-  const handleCalcAcceptanceRate = () => {
-    let calcedLtar: LTAR = null;
+  // const handleCalcAcceptanceRate = () => {
+  //   let calcedLtar: LTAR = null;
 
-    if (projectState.percRate && projectState.soilClassId && currentSoilClass) {
-      const { acceptanceRates } = currentSoilClass;
-      const { percRate } = projectState;
+  //   if (projectState.percRate && projectState.soilClassId && currentSoilClass) {
+  //     // const { acceptanceRates } = currentSoilClass;
+  //     const { percRate } = projectState;
 
-      if (percRate < 5) {
-        calcedLtar = acceptanceRates[0];
-      } else if (percRate < 8) {
-        calcedLtar = acceptanceRates[Math.ceil(percRate - 5)];
-      } else if (percRate < 30) {
-        calcedLtar = acceptanceRates[3 + Math.ceil((percRate - 8) / 5)];
-      } else if (percRate <= 60) {
-        calcedLtar = acceptanceRates[8 + Math.ceil((percRate - 30) / 10)];
-      }
+  //     if (percRate < 5) {
+  //       calcedLtar = acceptanceRates[0];
+  //     } else if (percRate < 8) {
+  //       calcedLtar = acceptanceRates[Math.ceil(percRate - 5)];
+  //     } else if (percRate < 30) {
+  //       calcedLtar = acceptanceRates[3 + Math.ceil((percRate - 8) / 5)];
+  //     } else if (percRate <= 60) {
+  //       calcedLtar = acceptanceRates[8 + Math.ceil((percRate - 30) / 10)];
+  //     }
 
-      updateProjectState({ ltar: calcedLtar });
-    }
-  };
+  //     updateProjectState({ ltar: calcedLtar });
+  //   }
+  // };
 
   return (
     <div className="App">

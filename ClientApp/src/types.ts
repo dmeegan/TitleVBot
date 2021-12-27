@@ -32,7 +32,7 @@ export class ProjectState {
   minDesignFlowRate: number | null = null;
   provDesignFlowRate: number = 0;
   soilClassId: number | null = null;
-  ltar: LTAR = null;
+  ltar: number | "n/a" | null = null;
   percRate: number | null = null;
   SASFieldTypeId: number = 1;
   SASMaxLength: number | null = null;
@@ -66,11 +66,18 @@ export interface FieldType {
   isTrenches: boolean;
 }
 
+export interface EffluentLoadingRate {
+  maxPercRate: number;
+  I: number | null;
+  II: number | null;
+  III: number | null;
+  IV: number | null;
+}
+
 export interface SoilClass {
   id: number;
   numeral: string;
   description: string;
-  acceptanceRates: LTAR[];
 }
 
 export interface ConfigurationType {
@@ -78,6 +85,6 @@ export interface ConfigurationType {
   description: string;
 }
 
-export const NOT_APPLICABLE = "n/a";
+// export const NOT_APPLICABLE = "n/a";
 
-export type LTAR = number | null | typeof NOT_APPLICABLE;
+// export type LTAR = number | null | typeof NOT_APPLICABLE;
