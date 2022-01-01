@@ -34,10 +34,9 @@ export const DesignFlowInputCard = () => {
   useEffect(() => {}, [projectState.establishmentTypeId]);
 
   useEffect(() => {
-    if (!projectState.useId) return;
-    let currentUse: Use = projectUses.find(
+    let currentUse: Use | undefined = projectUses.find(
       (projectUse) => projectUse.useId === projectState.useId
-    )!;
+    );
     setCurrentProjectUse(currentUse);
   }, [projectState.useId, projectUses]);
 
@@ -87,7 +86,9 @@ export const DesignFlowInputCard = () => {
   };
 
   const handleSetUse = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const useIdSelected = parseInt(event.target.value) as unknown as number;
+    const useIdSelected = event.target.value
+      ? (parseInt(event.target.value) as unknown as number)
+      : null;
     const updatedProperties: ProjectStateUpdateParam = {
       useId: useIdSelected,
     };

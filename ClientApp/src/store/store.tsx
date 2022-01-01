@@ -16,7 +16,7 @@ interface StoreProps {
   projectUses: Use[];
   setProjectUses: (returnedUses: Use[]) => void;
   currentProjectUse?: Use;
-  setCurrentProjectUse: (selectedUse: Use) => void;
+  setCurrentProjectUse: (selectedUse: Use | undefined) => void;
 
   designFlowOutputActive: boolean;
   setDesignFlowOutputActive: (isActive: boolean) => void;
@@ -62,7 +62,7 @@ const store = (set: any, get: any): StoreProps => ({
     set({ projectUses: returnedProjectUses });
   },
   currentProjectUse: undefined,
-  setCurrentProjectUse: (selectedProjectUse: Use) => {
+  setCurrentProjectUse: (selectedProjectUse: Use | undefined) => {
     set({ currentProjectUse: selectedProjectUse });
   },
 
