@@ -23,6 +23,8 @@ const App = () => {
     designFlowOutputActive,
     setDesignFlowOutputActive,
     effluentLoadingRates,
+    SASOutputActive,
+    setSASOutputActive,
   } = useStore();
 
   useEffect(() => {
@@ -35,6 +37,22 @@ const App = () => {
     projectState.minDesignFlowRate,
     projectState.useSecondaryUnitValue,
     projectState.usePrimaryUnitValue,
+  ]);
+
+  useEffect(() => {
+    projectState.ltar ||
+    projectState.SASMinSurfaceArea ||
+    projectState.SASLength ||
+    projectState.SASProvOverallWidth ||
+    projectState.SASProvSurfaceArea
+      ? setSASOutputActive(true)
+      : setSASOutputActive(false);
+  }, [
+    projectState.ltar,
+    projectState.SASMinSurfaceArea,
+    projectState.SASLength,
+    projectState.SASProvOverallWidth,
+    projectState.SASProvSurfaceArea,
   ]);
 
   useEffect(() => {
@@ -91,7 +109,7 @@ const App = () => {
             p={4}
           >
             <SASInputCard />
-            <SASOutputCard projectState={projectState} />
+            {SASOutputActive && <SASOutputCard />}
           </Flex>
         </SimpleGrid>
       </ChakraProvider>

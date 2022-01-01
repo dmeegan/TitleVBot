@@ -31,11 +31,6 @@ export const SASInputCard = () => {
     handleValidateConstraint,
   } = useStore();
 
-  // useEffect(() => {
-  //   setSoilClasses(tempSoilClasses);
-  //   setFieldTypes(tempFieldTypes);
-  // }, []);
-
   useEffect(() => {
     Promise.all([
       fetchFieldTypes(),
@@ -265,6 +260,7 @@ export const SASInputCard = () => {
     const isTrenches = fieldTypes.find(
       (fieldType) => fieldType.id === fieldTypeIdSelected
     )?.isTrenches;
+
     const updatedProperties: ProjectStateUpdateParam = {
       SASFieldTypeId: fieldTypeIdSelected,
       SASIsTrenches: isTrenches,
@@ -346,8 +342,8 @@ export const SASInputCard = () => {
           placeholder="Select Field Type"
           onChange={handleSelectFieldType}
         >
-          {fieldTypes.map((fieldType, i) => (
-            <option key={i} value={fieldType.id}>
+          {fieldTypes.map((fieldType) => (
+            <option key={fieldType.description} value={fieldType.id}>
               {fieldType.description}
             </option>
           ))}
@@ -419,9 +415,9 @@ export const SASInputCard = () => {
           placeholder="Select Soil Class"
           onChange={handleSelectSoilClass}
         >
-          {soilClasses.map((fieldType, i) => (
-            <option key={i} value={fieldType.id}>
-              {fieldType.description}
+          {soilClasses.map((soilClass) => (
+            <option key={soilClass.description} value={soilClass.id}>
+              {soilClass.description}
             </option>
           ))}
         </Select>

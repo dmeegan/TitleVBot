@@ -175,8 +175,11 @@ export const DesignFlowInputCard = () => {
           }
           onChange={handleSetEstablishment}
         >
-          {establishments.map((establishment, i) => (
-            <option key={i} value={establishment.establishmentTypeId}>
+          {establishments.map((establishment) => (
+            <option
+              key={establishment.description}
+              value={establishment.establishmentTypeId}
+            >
               {establishment.description}
             </option>
           ))}
@@ -192,8 +195,8 @@ export const DesignFlowInputCard = () => {
             placeholder="Select Use Type"
             onChange={handleSetUse}
           >
-            {filteredUses.map((projectUse, i) => (
-              <option key={i} value={projectUse.useId}>
+            {filteredUses.map((projectUse) => (
+              <option key={projectUse.description} value={projectUse.useId}>
                 {projectUse.description}
               </option>
             ))}

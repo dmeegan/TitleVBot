@@ -1,18 +1,16 @@
-import { Heading, Text, Flex, SimpleGrid } from "@chakra-ui/react";
-import { ProjectState } from "../../types";
+import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { useStore } from "../../store/store";
 
-interface SASOutputCardProps {
-  projectState: ProjectState;
-}
+export const SASOutputCard = () => {
+  const { projectState, SASOutputActive } = useStore();
 
-export const SASOutputCard = ({ projectState }: SASOutputCardProps) => {
   return (
     <Flex
       p={4}
       direction="column"
       alignItems="center"
       justifyContent="center"
-      width="100%"
+      width={!SASOutputActive ? "50%" : "100%"}
       borderRadius="md"
       border="1px solid lightgrey"
     >

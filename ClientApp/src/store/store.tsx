@@ -21,6 +21,9 @@ interface StoreProps {
   designFlowOutputActive: boolean;
   setDesignFlowOutputActive: (isActive: boolean) => void;
 
+  SASOutputActive: boolean;
+  setSASOutputActive: (isActive: boolean) => void;
+
   soilClasses: SoilClass[];
   setSoilClasses: (returnedSoilClasses: SoilClass[]) => void;
   currentSoilClass?: SoilClass;
@@ -69,6 +72,11 @@ const store = (set: any, get: any): StoreProps => ({
   designFlowOutputActive: false,
   setDesignFlowOutputActive: (isActive: boolean) => {
     set({ designFlowOutputActive: isActive });
+  },
+
+  SASOutputActive: false,
+  setSASOutputActive: (isActive: boolean) => {
+    set({ SASOutputActive: isActive });
   },
 
   soilClasses: [],
