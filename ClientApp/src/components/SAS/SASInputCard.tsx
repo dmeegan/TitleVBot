@@ -40,7 +40,7 @@ export const SASInputCard = () => {
     Promise.all([
       fetchFieldTypes(),
       fetchEffluentLoadingRates(),
-      fetchSoilClasses("I"),
+      fetchSoilClasses(),
     ]).then(([fieldTypesRes, effluentLoadingRatesRes, soilClassRes]) => {
       setFieldTypes(fieldTypesRes);
       setEffluentLoadingRates(effluentLoadingRatesRes);
