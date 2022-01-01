@@ -31,20 +31,7 @@ export const DesignFlowInputCard = () => {
     );
   }, []);
 
-  useEffect(() => {
-    const filteredUses =
-      projectUses.filter(
-        (projectUse) =>
-          projectUse.establishmentTypeId === projectState.establishmentTypeId
-      ) !== undefined
-        ? projectUses.filter(
-            (projectUse) =>
-              projectUse.establishmentTypeId ===
-              projectState.establishmentTypeId
-          )
-        : projectUses;
-    setProjectUses(filteredUses);
-  }, [projectState.establishmentTypeId]);
+  useEffect(() => {}, [projectState.establishmentTypeId]);
 
   useEffect(() => {
     if (!projectState.useId) return;
@@ -90,9 +77,9 @@ export const DesignFlowInputCard = () => {
   const handleSetEstablishment = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    let establishmentIdSelected = parseInt(
-      event.target.value
-    ) as unknown as number;
+    let establishmentIdSelected = event.target.value
+      ? (parseInt(event.target.value) as unknown as number)
+      : null;
     let updatedProperties: ProjectStateUpdateParam = {
       establishmentTypeId: establishmentIdSelected,
     };
@@ -157,6 +144,17 @@ export const DesignFlowInputCard = () => {
     }
   };
 
+  const filteredUses =
+    projectUses.filter(
+      (projectUse) =>
+        projectUse.establishmentTypeId === projectState.establishmentTypeId
+    ) !== undefined
+      ? projectUses.filter(
+          (projectUse) =>
+            projectUse.establishmentTypeId === projectState.establishmentTypeId
+        )
+      : projectUses;
+
   return (
     <Flex
       p={4}
@@ -195,7 +193,7 @@ export const DesignFlowInputCard = () => {
             placeholder="Select Use Type"
             onChange={handleSetUse}
           >
-            {projectUses.map((projectUse, i) => (
+            {filteredUses.map((projectUse, i) => (
               <option key={i} value={projectUse.useId}>
                 {projectUse.description}
               </option>
