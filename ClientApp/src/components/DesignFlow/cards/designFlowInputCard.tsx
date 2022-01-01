@@ -31,8 +31,6 @@ export const DesignFlowInputCard = () => {
     );
   }, []);
 
-  useEffect(() => {}, [projectState.establishmentTypeId]);
-
   useEffect(() => {
     let currentUse: Use | undefined = projectUses.find(
       (projectUse) => projectUse.useId === projectState.useId
