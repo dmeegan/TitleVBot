@@ -2,7 +2,7 @@ import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { useStore } from "../../store/store";
 
 export const SASOutputCard = () => {
-  const { projectState, SASOutputActive } = useStore();
+  const { projectState } = useStore();
 
   return (
     <Flex
@@ -10,7 +10,6 @@ export const SASOutputCard = () => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      width={!SASOutputActive ? "50%" : "100%"}
       borderRadius="md"
       border="1px solid lightgrey"
     >

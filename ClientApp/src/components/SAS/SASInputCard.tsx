@@ -29,6 +29,7 @@ export const SASInputCard = () => {
     setSoilClasses,
     setEffluentLoadingRates,
     handleValidateConstraint,
+    SASOutputActive,
   } = useStore();
 
   useEffect(() => {
@@ -48,10 +49,9 @@ export const SASInputCard = () => {
   }, [soilClasses, projectState.soilClassId]);
 
   const handleSetCurrentSoilClass = () => {
-    if (!projectState.soilClassId) return;
-    let currentSoilClass: SoilClass = soilClasses.find(
+    let currentSoilClass: SoilClass | undefined = soilClasses.find(
       (soilClass) => soilClass.id === projectState.soilClassId
-    )!;
+    );
     setCurrentSoilClass(currentSoilClass);
   };
 
@@ -256,7 +256,9 @@ export const SASInputCard = () => {
   };
 
   const handleSelectFieldType = (event: ChangeEvent<HTMLSelectElement>) => {
-    const fieldTypeIdSelected = parseInt(event.target.value);
+    const fieldTypeIdSelected = event.target.value
+      ? parseInt(event.target.value)
+      : undefined;
     const isTrenches = fieldTypes.find(
       (fieldType) => fieldType.id === fieldTypeIdSelected
     )?.isTrenches;
@@ -318,17 +320,22 @@ export const SASInputCard = () => {
   };
 
   const handleSelectSoilClass = (event: ChangeEvent<HTMLSelectElement>) => {
-    const soilClassIdSelected = parseInt(event.target.value);
+    console.log("event.target.value: ", event.target.value);
+    const soilClassIdSelected = event.target.value
+      ? parseInt(event.target.value)
+      : undefined;
     const updatedProperties: ProjectStateUpdateParam = {
       soilClassId: soilClassIdSelected,
     };
     updateProjectState(updatedProperties);
   };
 
+  console.log("soilClasses: ", soilClasses);
+
   return (
     <Flex
       p={4}
-      width="100%"
+      width={!SASOutputActive ? "50%" : "100%"}
       height="100%"
       justifyContent="flex-start"
       direction="column"
@@ -417,7 +424,7 @@ export const SASInputCard = () => {
         >
           {soilClasses.map((soilClass) => (
             <option key={soilClass.description} value={soilClass.id}>
-              {soilClass.description}
+              {`${soilClass.numeral} - ${soilClass.description}`}
             </option>
           ))}
         </Select>

@@ -33,7 +33,7 @@ export const DesignFlowInputCard = () => {
 
   useEffect(() => {
     let currentUse: Use | undefined = projectUses.find(
-      (projectUse) => projectUse.useId === projectState.useId
+      (projectUse) => projectUse.id === projectState.useId
     );
     setCurrentProjectUse(currentUse);
   }, [projectState.useId, projectUses]);
@@ -176,10 +176,7 @@ export const DesignFlowInputCard = () => {
           onChange={handleSetEstablishment}
         >
           {establishments.map((establishment) => (
-            <option
-              key={establishment.description}
-              value={establishment.establishmentTypeId}
-            >
+            <option key={establishment.description} value={establishment.id}>
               {establishment.description}
             </option>
           ))}
@@ -196,7 +193,7 @@ export const DesignFlowInputCard = () => {
             onChange={handleSetUse}
           >
             {filteredUses.map((projectUse) => (
-              <option key={projectUse.description} value={projectUse.useId}>
+              <option key={projectUse.description} value={projectUse.id}>
                 {projectUse.description}
               </option>
             ))}

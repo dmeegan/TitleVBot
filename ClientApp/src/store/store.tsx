@@ -27,7 +27,7 @@ interface StoreProps {
   soilClasses: SoilClass[];
   setSoilClasses: (returnedSoilClasses: SoilClass[]) => void;
   currentSoilClass?: SoilClass;
-  setCurrentSoilClass: (selectedSoilClass: SoilClass) => void;
+  setCurrentSoilClass: (selectedSoilClass: SoilClass | undefined) => void;
 
   effluentLoadingRates: EffluentLoadingRate[];
   setEffluentLoadingRates: (
@@ -35,18 +35,20 @@ interface StoreProps {
   ) => void;
   currentEffluentLoadingRate?: EffluentLoadingRate;
   setCurrentEffluentLoadingRate: (
-    selectedEffluentLoadingRate: EffluentLoadingRate
+    selectedEffluentLoadingRate: EffluentLoadingRate | undefined
   ) => void;
 
   establishments: Establishment[];
   setEstablishments: (establishmentsReturned: Establishment[]) => void;
   currentEstablishment?: Establishment;
-  handleSetCurrentEstablishment: (establishmentSelected: Establishment) => void;
+  handleSetCurrentEstablishment: (
+    establishmentSelected: Establishment | undefined
+  ) => void;
 
   fieldTypes: FieldType[];
   setFieldTypes: (fieldTypesReturned: FieldType[]) => void;
   currentFieldType?: FieldType;
-  handleSetCurrentFieldType: (fieldTypeSelected: FieldType) => void;
+  handleSetCurrentFieldType: (fieldTypeSelected: FieldType | undefined) => void;
 
   projectState: ProjectState;
   updateProjectState: (updatedProperties: ProjectStateUpdateParam) => void;
@@ -84,17 +86,19 @@ const store = (set: any, get: any): StoreProps => ({
     set({ soilClasses: returnedSoilClasses });
   },
   currentSoilClass: undefined,
-  setCurrentSoilClass: (selectedSoilClass: SoilClass) => {
+  setCurrentSoilClass: (selectedSoilClass: SoilClass | undefined) => {
     set({ currentSoilClass: selectedSoilClass });
   },
 
   effluentLoadingRates: [],
-  setEffluentLoadingRates: (effluentLoadingRates: EffluentLoadingRate[]) => {
+  setEffluentLoadingRates: (
+    effluentLoadingRates: EffluentLoadingRate[] | undefined
+  ) => {
     set({ effluentLoadingRates: effluentLoadingRates });
   },
   currentEffluentLoadingRate: undefined,
   setCurrentEffluentLoadingRate: (
-    selectedEffluentLoadingRate: EffluentLoadingRate
+    selectedEffluentLoadingRate: EffluentLoadingRate | undefined
   ) => {
     set({ currentEffluentLoadingRate: selectedEffluentLoadingRate });
   },
@@ -103,7 +107,9 @@ const store = (set: any, get: any): StoreProps => ({
   setEstablishments: (establishmentsReturned: Establishment[]) => {
     set({ establishments: establishmentsReturned });
   },
-  handleSetCurrentEstablishment: (establishmentSelected: Establishment) => {
+  handleSetCurrentEstablishment: (
+    establishmentSelected: Establishment | undefined
+  ) => {
     set({ currentEstablishment: establishmentSelected });
   },
 
@@ -111,7 +117,7 @@ const store = (set: any, get: any): StoreProps => ({
   setFieldTypes: (fieldTypesReturned: FieldType[]) => {
     set({ fieldTypes: fieldTypesReturned });
   },
-  handleSetCurrentFieldType: (fieldTypeSelected: FieldType) => {
+  handleSetCurrentFieldType: (fieldTypeSelected: FieldType | undefined) => {
     set({ currentFieldType: fieldTypeSelected });
   },
 

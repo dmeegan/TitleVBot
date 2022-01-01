@@ -1,5 +1,5 @@
 export interface Use {
-  useId: number;
+  id: number;
   establishmentTypeId: number;
   description: string;
   primaryFlowRate: number;
@@ -10,7 +10,7 @@ export interface Use {
 }
 
 export interface Establishment {
-  establishmentTypeId: number;
+  id: number;
   description: string;
 }
 
@@ -78,6 +78,7 @@ export interface SoilClass {
   id: number;
   numeral: string;
   description: string;
+  loadingRates: [number | null];
 }
 
 export interface ConfigurationType {

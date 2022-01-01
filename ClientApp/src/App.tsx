@@ -104,7 +104,7 @@ const App = () => {
             backgroundColor="#FFFFFF"
             borderRadius="md"
             alignItems="center"
-            justifyContent="center"
+            justifyContent="flex-start"
             minHeight={0.33 * window.innerHeight}
             p={4}
           >
