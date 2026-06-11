@@ -21,8 +21,3 @@ The program is built in such a way that many options and calculations are depend
 ## Authors
 
 * **Daniel Meegan** - [dmeegan](https://github.com/dmeegan)
-
-## Contact
-
-* **Email:**  dn_meegan@yahoo.com
-* **Phone:**  774-722-1964
